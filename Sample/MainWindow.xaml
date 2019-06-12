@@ -12,9 +12,14 @@
     mc:Ignorable="d">
     <StackPanel Orientation="Horizontal">
         <cp:HexColorPicker Width="256" Height="256" />
-        <Grid>
-            <cp:RingColorPicker Width="256" Height="256" />
-            <cp:TriangleColorPicker Margin="32,0,0,0" Width="160" Height="160" />
+        <Grid VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <cp:RingColorPicker Width="192" Height="192" />
+            <cp:TriangleColorPicker Margin="32,0,0,0" Width="128" Height="128" />
+            <cp:RgbEditor Grid.Row="1" CurrentColor="{Binding Path=CurrentColor}" />
         </Grid>
         <cp:GradualColorPickerSlot BaseColors="{Binding Path=BaseColors, Mode=OneTime}" />
     </StackPanel>

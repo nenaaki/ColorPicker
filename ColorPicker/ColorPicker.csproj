@@ -71,6 +71,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="RgbEditor.xaml.cs">
+      <DependentUpon>RgbEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RingColorPicker.xaml.cs">
       <DependentUpon>RingColorPicker.xaml</DependentUpon>
     </Compile>
@@ -98,6 +101,10 @@
     <Page Include="HexColorPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RgbEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RingColorPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
