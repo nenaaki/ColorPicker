@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace ColorPicker
@@ -63,7 +59,7 @@ namespace ColorPicker
                 color1.H * ratio2 + color2.H * ratio,
                 color1.S * ratio2 + color2.S * ratio,
                 color1.V * ratio2 + color2.V * ratio);
-        }  
+        }
 
         public Color ToRgb()
         {
@@ -99,6 +95,15 @@ namespace ColorPicker
         public static Color ToRgb(double h, double s, double v)
         {
             return new HsvColor(h, s, v).ToRgb();
+        }
+
+        /// <summary>
+        /// ITU-R Rec BT.601
+        /// </summary>
+        public double GetBrightness()
+        {
+            var color = ToRgb();
+            return (0.299 * color.R + 0.587 * color.G + 0.114 * color.B) / 255.0;
         }
 
         private static byte ToByte(double d)

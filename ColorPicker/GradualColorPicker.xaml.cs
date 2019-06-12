@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ColorPicker
 {
@@ -66,15 +55,14 @@ namespace ColorPicker
             else
             {
                 color1 = HsvColor.FromRgb(baseColor.R, baseColor.G, baseColor.B);
-                // TODO : ここが間違えている。
-                bool toWhite = color1.V < 0.5;
-                color2 = new HsvColor(color1.H, toWhite ? color1.S : 0.0, toWhite ? 0.0 : color1.V);
+                bool toWhite = color1.GetBrightness() < 0.5;
+                color2 = new HsvColor(color1.H, toWhite ? 0.25 : color1.S, toWhite ? 1.0 : 0.25);
             }
 
             var count = Count;
 
             var brushes = new Brush[count + 1];
-            for(int idx=0; idx<=count ; idx++)
+            for (int idx = 0; idx <= count; idx++)
             {
                 double ratio = idx / (double)count;
                 var hsvColor = HsvColor.Blend(color1, color2, ratio);

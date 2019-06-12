@@ -16,7 +16,6 @@
             <cp:RingColorPicker Width="256" Height="256" />
             <cp:TriangleColorPicker Margin="32,0,0,0" Width="160" Height="160" />
         </Grid>
-        <cp:GradualColorPicker Count="8"/>
         <cp:GradualColorPickerSlot BaseColors="{Binding Path=BaseColors, Mode=OneTime}" />
     </StackPanel>
 </Window>
