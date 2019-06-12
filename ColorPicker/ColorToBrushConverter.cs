@@ -7,8 +7,8 @@ namespace ColorPicker
 {
     public class ColorToBrushConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) => value == null ? null : new SolidColorBrush((Color)value);
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) => value is Color color ? new SolidColorBrush(color) : null;
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => value == null ? Colors.Transparent : ((SolidColorBrush)value).Color;
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => value is SolidColorBrush brush ? brush.Color : Colors.Transparent;
     }
 }

@@ -14,7 +14,7 @@
     <ListBox Background="Transparent"
              BorderBrush="Transparent"
              BorderThickness="0"
-             SelectedValue="{Binding Path=CurrentColor}"
+             SelectedValue="{Binding Path=CurrentColor, ElementName=_this}"
              ItemsSource="{Binding Path=ColorArray,
                                    ElementName=_this}">
         <ListBox.ItemsPanel>

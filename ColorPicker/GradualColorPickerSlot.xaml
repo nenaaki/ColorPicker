@@ -15,7 +15,7 @@
         </ItemsControl.ItemsPanel>
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <local:GradualColorPicker BaseColor="{Binding}" CurrentColor="{Binding (local:GradualColorPickerSlot.CurrentColor),RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:GradualColorPickerSlot}}}" Count="8" Margin="4" />
+                <local:GradualColorPicker BaseColor="{Binding}" CurrentColor="{Binding Path=CurrentColor,ElementName=_this}" Count="8" Margin="4" />
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>
