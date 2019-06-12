@@ -27,13 +27,21 @@ namespace ColorPicker
             = DependencyProperty.Register(nameof(Count), typeof(int), typeof(GradualColorPicker), new PropertyMetadata(8,
             (d, e) => ((GradualColorPicker)d).EnsureColors()));
 
-        public Brush[] BrushArray
+        public Selectable<Brush>[] BrushArray
         {
-            get => (Brush[])GetValue(BrushArrayProperty);
+            get => (Selectable<Brush>[])GetValue(BrushArrayProperty);
             private set => SetValue(BrushArrayProperty, value);
         }
         public static readonly DependencyProperty BrushArrayProperty
-            = DependencyProperty.Register(nameof(BrushArray), typeof(Brush[]), typeof(GradualColorPicker), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
+            = DependencyProperty.Register(nameof(BrushArray), typeof(Selectable<Brush>[]), typeof(GradualColorPicker), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
+
+        public Color CurrentColor
+        {
+            get { return (Color)GetValue(CurrentColorProperty); }
+            set { SetValue(CurrentColorProperty, value); }
+        }
+        public static readonly DependencyProperty CurrentColorProperty
+            = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(GradualColorPicker), new PropertyMetadata(Colors.Transparent));
 
         private void EnsureColors()
         {
@@ -55,18 +63,26 @@ namespace ColorPicker
             else
             {
                 color1 = HsvColor.FromRgb(baseColor.R, baseColor.G, baseColor.B);
-                bool toWhite = color1.GetBrightness() < 0.5;
-                color2 = new HsvColor(color1.H, toWhite ? 0.25 : color1.S, toWhite ? 1.0 : 0.25);
+
+                // MEMO : グレースケール化したときの明度が50%未満かで白に向けるか黒に向けるかを切り替える。
+                if (color1.GetBrightness() < 0.5)
+                {
+                    color2 = new HsvColor(color1.H, 0.0, 0.9);
+                }
+                else
+                {
+                    color2 = new HsvColor(color1.H, color1.S, 0.20);
+                }
             }
 
             var count = Count;
 
-            var brushes = new Brush[count + 1];
+            var brushes = new Selectable<Brush>[count + 1];
             for (int idx = 0; idx <= count; idx++)
             {
                 double ratio = idx / (double)count;
                 var hsvColor = HsvColor.Blend(color1, color2, ratio);
-                brushes[idx] = new SolidColorBrush(hsvColor.ToRgb());
+                brushes[idx] = new Selectable<Brush> { Value = new SolidColorBrush(hsvColor.ToRgb()) };
             }
             BrushArray = brushes;
         }
@@ -75,6 +91,14 @@ namespace ColorPicker
         {
             InitializeComponent();
             EnsureColors();
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count == 1)
+            {
+                CurrentColor = ((SolidColorBrush)((Selectable<Brush>)e.AddedItems[0]).Value).Color;
+            }
         }
     }
 }

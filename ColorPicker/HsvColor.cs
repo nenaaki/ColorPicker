@@ -5,7 +5,7 @@ namespace ColorPicker
 {
     public readonly struct HsvColor
     {
-        public readonly double H; // 0-360
+        public readonly double H;
 
         public readonly double S;
 
@@ -98,7 +98,7 @@ namespace ColorPicker
         }
 
         /// <summary>
-        /// ITU-R Rec BT.601
+        /// ITU-R Rec BT.601 によるグレースケール
         /// </summary>
         public double GetBrightness()
         {

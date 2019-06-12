@@ -77,6 +77,7 @@
     <Compile Include="RingColorPicker.xaml.cs">
       <DependentUpon>RingColorPicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Selectable.cs" />
     <Compile Include="TriangleColorPicker.xaml.cs">
       <DependentUpon>TriangleColorPicker.xaml</DependentUpon>
     </Compile>

@@ -21,6 +21,6 @@
             <cp:TriangleColorPicker Margin="32,0,0,0" Width="128" Height="128" />
             <cp:RgbEditor Grid.Row="1" CurrentColor="{Binding Path=CurrentColor}" />
         </Grid>
-        <cp:GradualColorPickerSlot BaseColors="{Binding Path=BaseColors, Mode=OneTime}" />
+        <cp:GradualColorPickerSlot BaseColors="{Binding Path=BaseColors, Mode=OneTime}" CurrentColor="{Binding Path=CurrentColor}" />
     </StackPanel>
 </Window>
