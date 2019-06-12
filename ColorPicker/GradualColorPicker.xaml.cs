@@ -27,13 +27,13 @@ namespace ColorPicker
             = DependencyProperty.Register(nameof(Count), typeof(int), typeof(GradualColorPicker), new PropertyMetadata(8,
             (d, e) => ((GradualColorPicker)d).EnsureColors()));
 
-        public Selectable<Brush>[] BrushArray
+        public Color[] ColorArray
         {
-            get => (Selectable<Brush>[])GetValue(BrushArrayProperty);
-            private set => SetValue(BrushArrayProperty, value);
+            get => (Color[])GetValue(ColorArrayProperty);
+            private set => SetValue(ColorArrayProperty, value);
         }
-        public static readonly DependencyProperty BrushArrayProperty
-            = DependencyProperty.Register(nameof(BrushArray), typeof(Selectable<Brush>[]), typeof(GradualColorPicker), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
+        public static readonly DependencyProperty ColorArrayProperty
+            = DependencyProperty.Register(nameof(ColorArray), typeof(Color[]), typeof(GradualColorPicker), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         public Color CurrentColor
         {
@@ -77,28 +77,20 @@ namespace ColorPicker
 
             var count = Count;
 
-            var brushes = new Selectable<Brush>[count + 1];
+            var brushes = new Color[count + 1];
             for (int idx = 0; idx <= count; idx++)
             {
                 double ratio = idx / (double)count;
                 var hsvColor = HsvColor.Blend(color1, color2, ratio);
-                brushes[idx] = new Selectable<Brush> { Value = new SolidColorBrush(hsvColor.ToRgb()) };
+                brushes[idx] = hsvColor.ToRgb();
             }
-            BrushArray = brushes;
+            ColorArray = brushes;
         }
 
         public GradualColorPicker()
         {
             InitializeComponent();
             EnsureColors();
-        }
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (e.AddedItems.Count == 1)
-            {
-                CurrentColor = ((SolidColorBrush)((Selectable<Brush>)e.AddedItems[0]).Value).Color;
-            }
         }
     }
 }
