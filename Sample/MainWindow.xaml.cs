@@ -23,7 +23,7 @@ namespace Sample
     {
         public Color[] BaseColors => new Color[] { Colors.White, Colors.Black, Colors.Red, Colors.Blue, Colors.Green, Colors.LightGreen, Colors.Pink, Colors.SkyBlue };
 
-        private Color _baseColor;
+        private Color _baseColor = Colors.Red;
         public Color BaseColor
         {
             get => _baseColor;

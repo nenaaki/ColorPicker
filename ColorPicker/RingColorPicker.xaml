@@ -6,6 +6,16 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Viewbox>
-        <Image Name="Ring" />
+        <Grid>
+            <Image Name="Ring" />
+            <Grid>
+                <Canvas>
+                    <Grid Name="Current" Width="16" Height="16">
+                        <Ellipse Stroke="White"/>
+                        <Ellipse Margin="1" Stroke="Black" Name="Pointer"/>
+                    </Grid>
+                </Canvas>
+            </Grid>
+        </Grid>
     </Viewbox>
 </UserControl>

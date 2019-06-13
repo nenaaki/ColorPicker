@@ -18,6 +18,9 @@ namespace ColorPicker
             V = brightness;
         }
 
+        public static HsvColor FromColor(Color color)
+            => FromRgb(color.R, color.G, color.B);
+
         public static HsvColor FromRgb(byte r, byte g, byte b)
         {
             byte max = Math.Max(r, Math.Max(g, b));

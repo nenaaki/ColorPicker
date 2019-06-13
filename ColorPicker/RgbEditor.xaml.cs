@@ -50,16 +50,16 @@ namespace ColorPicker
             InitializeComponent();
         }
 
-        private bool colorUpdating;
+        private bool _colorUpdating;
 
         private void SyncColor(bool currentChanged)
         {
-            if (colorUpdating)
+            if (_colorUpdating)
                 return;
 
             try
             {
-                colorUpdating = true;
+                _colorUpdating = true;
                 if (currentChanged)
                 {
                     var current = CurrentColor;
@@ -74,7 +74,7 @@ namespace ColorPicker
             }
             finally
             {
-                colorUpdating = false;
+                _colorUpdating = false;
             }
         }
     }

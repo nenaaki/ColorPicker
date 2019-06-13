@@ -17,7 +17,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <cp:RingColorPicker Width="192" Height="192" />
+            <cp:RingColorPicker Width="192" Height="192" CurrentColor="{Binding Path=CurrentColor}"/>
             <cp:TriangleColorPicker Margin="32,0,0,0" Width="128" Height="128" />
             <cp:RgbEditor Grid.Row="1" CurrentColor="{Binding Path=CurrentColor}" />
         </Grid>
