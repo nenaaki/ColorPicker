@@ -42,8 +42,9 @@ namespace ColorPicker
             set { SetValue(CurrentColorProperty, value); }
         }
         public static readonly DependencyProperty CurrentColorProperty
-            = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(RgbEditor), new PropertyMetadata(Colors.Black,
-            (d, e) => ((RgbEditor)d).SyncColor(true)));
+            = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(RgbEditor), new FrameworkPropertyMetadata(Colors.Black,
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                (d, e) => ((RgbEditor)d).SyncColor(true)));
 
         public RgbEditor()
         {
