@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
+using System.Windows.Media;
 
 namespace Sample
 {
@@ -32,7 +30,7 @@ namespace Sample
             set => UpdateProperty(ref _baseColor, value);
         }
 
-        private Color _currentColor;
+        private Color _currentColor = Colors.Red;
         public Color CurrentColor
         {
             get => _currentColor;
@@ -42,7 +40,11 @@ namespace Sample
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void UpdateProperty<T>(ref T field, T value, [CallerMemberName]string propertyName = null, string[] dependedProperties = null)
+            where T : IEquatable<T>
         {
+            if (field.Equals(value))
+                return;
+
             field = value;
             OnPropertyChanged(propertyName);
         }

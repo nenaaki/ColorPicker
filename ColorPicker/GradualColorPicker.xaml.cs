@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.ComponentModel;
 
 namespace ColorPicker
 {
@@ -15,8 +16,9 @@ namespace ColorPicker
             set => SetValue(BaseColorProperty, value);
         }
         public static readonly DependencyProperty BaseColorProperty
-            = DependencyProperty.Register(nameof(BaseColor), typeof(Color), typeof(GradualColorPicker), new PropertyMetadata(Colors.Black,
-            (d, e) => ((GradualColorPicker)d).EnsureColors()));
+            = DependencyProperty.Register(nameof(BaseColor), typeof(Color), typeof(GradualColorPicker),
+                new FrameworkPropertyMetadata(Colors.Black, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
+                (d, e) => ((GradualColorPicker)d).EnsureColors()));
 
         public int Count
         {
@@ -24,8 +26,9 @@ namespace ColorPicker
             set => SetValue(CountProperty, value);
         }
         public static readonly DependencyProperty CountProperty
-            = DependencyProperty.Register(nameof(Count), typeof(int), typeof(GradualColorPicker), new PropertyMetadata(8,
-            (d, e) => ((GradualColorPicker)d).EnsureColors()));
+            = DependencyProperty.Register(nameof(Count), typeof(int), typeof(GradualColorPicker),
+                new FrameworkPropertyMetadata(8, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
+                (d, e) => ((GradualColorPicker)d).EnsureColors()));
 
         public Color[] ColorArray
         {
@@ -33,7 +36,8 @@ namespace ColorPicker
             private set => SetValue(ColorArrayProperty, value);
         }
         public static readonly DependencyProperty ColorArrayProperty
-            = DependencyProperty.Register(nameof(ColorArray), typeof(Color[]), typeof(GradualColorPicker), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
+            = DependencyProperty.Register(nameof(ColorArray), typeof(Color[]), typeof(GradualColorPicker),
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         public Color CurrentColor
         {
@@ -41,7 +45,10 @@ namespace ColorPicker
             set { SetValue(CurrentColorProperty, value); }
         }
         public static readonly DependencyProperty CurrentColorProperty
-            = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(GradualColorPicker), new PropertyMetadata(Colors.Transparent));
+            = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(GradualColorPicker),
+                new FrameworkPropertyMetadata(Colors.Transparent,
+                    (d, e) =>
+                    { }));
 
         private void EnsureColors()
         {
@@ -83,6 +90,15 @@ namespace ColorPicker
         {
             InitializeComponent();
             EnsureColors();
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var items = e.AddedItems;
+            if (items?.Count == 1)
+            {
+                CurrentColor = (Color)items[0];
+            }
         }
     }
 }
