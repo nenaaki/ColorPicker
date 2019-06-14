@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ColorPicker
 {
@@ -20,8 +11,8 @@ namespace ColorPicker
     /// </summary>
     public partial class RingColorPicker : UserControl
     {
-        const int width = 128;
-        const int height = 128;
+        private const int width = 128;
+        private const int height = 128;
 
         public double Hue
         {
@@ -67,7 +58,6 @@ namespace ColorPicker
         public static readonly DependencyProperty CurrentColorProperty
             = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(RingColorPicker), new PropertyMetadata(Colors.Red,
             (d, e) => ((RingColorPicker)d).SyncColor(true)));
-
 
         public RingColorPicker()
         {
@@ -130,17 +120,19 @@ namespace ColorPicker
                 if (currentChanged)
                 {
                     var color = HsvColor.FromColor(CurrentColor);
-                    Hue = color.H;
+                    if (color.S > 0)
+                        Hue = color.H;
+
                     Saturation = color.S;
                     Brightness = color.V;
-                    BaseColor = new HsvColor(color.H, 1.0, 1.0).ToRgb();
+                    BaseColor = new HsvColor(Hue, 1.0, 1.0).ToRgb();
                 }
                 else
                 {
                     BaseColor = new HsvColor(Hue, Saturation, Brightness).ToRgb();
                 }
-                Canvas.SetLeft(Current, (Math.Cos(Hue) + 1.0) * xCenter - 8.0);
-                Canvas.SetTop(Current, (Math.Sin(Hue) + 1.0) * yCenter - 8.0);
+                Canvas.SetLeft(Current, (Math.Cos(Hue) * 0.9 + 1.0) * xCenter - 8.0);
+                Canvas.SetTop(Current, (Math.Sin(Hue) * 0.9 + 1.0) * yCenter - 8.0);
                 Pointer.Fill = _brush;
                 _brush.Color = BaseColor;
             }

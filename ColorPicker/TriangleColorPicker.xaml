@@ -9,41 +9,35 @@
     mc:Ignorable="d"
     Name="_this">
     <Viewbox Stretch="Uniform" StretchDirection="Both">
-        <Canvas Width="100" Height="100">
-            <Canvas.Clip>
-                <PathGeometry>
-                    <PathGeometry.Figures>
-                        <PathFigure
+        <Grid>
+            <Canvas Width="100" Height="100" Name="_canvas">
+                <Canvas.Clip>
+                    <PathGeometry>
+                        <PathGeometry.Figures>
+                            <PathFigure
                             IsClosed="True"
                             IsFilled="True"
                             StartPoint="0,0">
-                            <PathFigure.Segments>
-                                <PolyLineSegment Points="100,50 0,100" />
-                            </PathFigure.Segments>
-                        </PathFigure>
-                    </PathGeometry.Figures>
-                </PathGeometry>
-            </Canvas.Clip>
-            <Rectangle Width="100" Height="100">
-                <Rectangle.Fill>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <LinearGradientBrush.GradientStops>
-                            <GradientStop Offset="0" Color="White" />
-                            <GradientStop Offset="1" Color="Black" />
-                        </LinearGradientBrush.GradientStops>
-                    </LinearGradientBrush>
-                </Rectangle.Fill>
-            </Rectangle>
-            <Rectangle Width="100" Height="100">
-                <Rectangle.Fill>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                        <LinearGradientBrush.GradientStops>
-                            <GradientStop Offset="0" Color="Transparent" />
-                            <GradientStop Offset="1" Color="{Binding Path=BaseColor, ElementName=_this}" />
-                        </LinearGradientBrush.GradientStops>
-                    </LinearGradientBrush>
-                </Rectangle.Fill>
-            </Rectangle>
-        </Canvas>
+                                <PathFigure.Segments>
+                                    <PolyLineSegment Points="100,50 0,100" />
+                                </PathFigure.Segments>
+                            </PathFigure>
+                        </PathGeometry.Figures>
+                    </PathGeometry>
+                </Canvas.Clip>
+                <Rectangle Width="100" Height="100" Name="_baseColor" />
+                <Viewbox Width="100" Height="100" Stretch="Uniform" StretchDirection="Both">
+                    <Image Name="_image" Stretch="Fill" StretchDirection="Both" />
+                </Viewbox>
+            </Canvas>
+            <Grid>
+                <Canvas>
+                    <Grid Name="Current" Width="16" Height="16">
+                        <Ellipse Stroke="White" />
+                        <Ellipse Margin="1" Stroke="Black" Name="Pointer" />
+                    </Grid>
+                </Canvas>
+            </Grid>
+        </Grid>
     </Viewbox>
 </UserControl>
