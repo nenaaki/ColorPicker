@@ -9,53 +9,8 @@ namespace ColorPicker
     /// <summary>
     /// TriangleColorPicker.xaml の相互作用ロジック
     /// </summary>
-    public partial class TriangleColorPicker : UserControl
+    public partial class TriangleColorPicker : ColorPickerBase
     {
-        public double Hue
-        {
-            get { return (double)GetValue(HueProperty); }
-            set { SetValue(HueProperty, value); }
-        }
-        public static readonly DependencyProperty HueProperty
-            = DependencyProperty.Register(nameof(Hue), typeof(double), typeof(TriangleColorPicker), new PropertyMetadata((double)0,
-            (d, e) => ((TriangleColorPicker)d).SyncColor(false)));
-
-        public double Saturation
-        {
-            get { return (double)GetValue(SaturationProperty); }
-            set { SetValue(SaturationProperty, value); }
-        }
-        public static readonly DependencyProperty SaturationProperty
-            = DependencyProperty.Register(nameof(Saturation), typeof(double), typeof(TriangleColorPicker), new PropertyMetadata((double)0,
-            (d, e) => ((TriangleColorPicker)d).SyncColor(false)));
-
-        public double Brightness
-        {
-            get { return (double)GetValue(BrightnessProperty); }
-            set { SetValue(BrightnessProperty, value); }
-        }
-        public static readonly DependencyProperty BrightnessProperty
-            = DependencyProperty.Register(nameof(Brightness), typeof(double), typeof(TriangleColorPicker), new PropertyMetadata((double)0,
-            (d, e) => ((TriangleColorPicker)d).SyncColor(false)));
-
-        public Color BaseColor
-        {
-            get { return (Color)GetValue(BaseColorProperty); }
-            set { SetValue(BaseColorProperty, value); }
-        }
-        public static readonly DependencyProperty BaseColorProperty
-            = DependencyProperty.Register(nameof(BaseColor), typeof(Color), typeof(TriangleColorPicker), new PropertyMetadata(Colors.Red,
-            (d, e) => ((TriangleColorPicker)d).SyncColor(true)));
-
-        public Color CurrentColor
-        {
-            get { return (Color)GetValue(CurrentColorProperty); }
-            set { SetValue(CurrentColorProperty, value); }
-        }
-        public static readonly DependencyProperty CurrentColorProperty
-            = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(TriangleColorPicker), new PropertyMetadata(Colors.Red,
-            (d, e) => ((TriangleColorPicker)d).SyncColor(true)));
-
         public TriangleColorPicker()
         {
             InitializeComponent();
@@ -92,7 +47,7 @@ namespace ColorPicker
 
         private bool _colorUpdating;
 
-        private void SyncColor(bool currentChanged)
+        protected override void SyncColor(bool currentChanged)
         {
             if (_colorUpdating)
                 return;
