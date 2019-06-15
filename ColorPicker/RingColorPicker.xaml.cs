@@ -45,8 +45,8 @@ namespace ColorPicker
             {
                 for (int x = 0; x < width; x++)
                 {
-                    double radian = Math.Atan2(y - yDiff, x - xDiff);
-                    var c = HsvColor.ToRgb(radian, 1.0, 1.0);
+                    float radian = (float)Math.Atan2(y - yDiff, x - xDiff);
+                    var c = HsvColor.ToRgb(radian, 1.0f, 1.0f);
                     var p = y * stride + x * 3;
                     pixels[p] = c.R;
                     pixels[p + 1] = c.G;
@@ -80,11 +80,11 @@ namespace ColorPicker
 
                     Saturation = color.S;
                     Brightness = color.V;
-                    BaseColor = new HsvColor(Hue, 1.0, 1.0).ToRgb();
+                    BaseColor = new HsvColor((float)Hue, 1.0f, 1.0f).ToRgb();
                 }
                 else
                 {
-                    BaseColor = new HsvColor(Hue, Saturation, Brightness).ToRgb();
+                    BaseColor = new HsvColor((float)Hue, (float)Saturation, (float)Brightness).ToRgb();
                 }
                 Canvas.SetLeft(Current, (Math.Cos(Hue) * 0.9 + 1.0) * xCenter - 8.0);
                 Canvas.SetTop(Current, (Math.Sin(Hue) * 0.9 + 1.0) * yCenter - 8.0);

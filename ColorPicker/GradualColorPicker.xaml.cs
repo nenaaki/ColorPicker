@@ -73,7 +73,7 @@ namespace ColorPicker
 
                 // MEMO : グレースケール化したときの明度が50%未満かで白に向けるか黒に向けるかを切り替える。
                 var brightness = color1.GetBrightness();
-                color2 = brightness < 0.5 ? new HsvColor(color1.H, 0.1, 1.0 - brightness * 0.1) : new HsvColor(color1.H, 1.0, brightness * 0.1);
+                color2 = brightness < 0.5 ? new HsvColor(color1.H, 0, 1) : new HsvColor(color1.H, 0, 0);
             }
 
             var count = Count;
@@ -81,7 +81,7 @@ namespace ColorPicker
             var brushes = new Color[count + 1];
             for (int idx = 0; idx <= count; idx++)
             {
-                double ratio = idx / (double)count;
+                float ratio = idx / (float)(count + 1);
                 brushes[idx] = HsvColor.Blend(color1, color2, ratio).ToRgb();
             }
             ColorArray = brushes;

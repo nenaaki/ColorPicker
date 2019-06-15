@@ -11,8 +11,8 @@ namespace ColorPicker
     {
         public byte Red
         {
-            get { return (byte)GetValue(RedProperty); }
-            set { SetValue(RedProperty, value); }
+            get => (byte)GetValue(RedProperty);
+            set => SetValue(RedProperty, value);
         }
         public static readonly DependencyProperty RedProperty
             = DependencyProperty.Register(nameof(Red), typeof(byte), typeof(RgbEditor), new PropertyMetadata((byte)0,
@@ -20,8 +20,8 @@ namespace ColorPicker
 
         public byte Blue
         {
-            get { return (byte)GetValue(BlueProperty); }
-            set { SetValue(BlueProperty, value); }
+            get => (byte)GetValue(BlueProperty);
+            set => SetValue(BlueProperty, value);
         }
         public static readonly DependencyProperty BlueProperty
             = DependencyProperty.Register(nameof(Blue), typeof(byte), typeof(RgbEditor), new PropertyMetadata((byte)0,
@@ -29,8 +29,8 @@ namespace ColorPicker
 
         public byte Green
         {
-            get { return (byte)GetValue(GreenProperty); }
-            set { SetValue(GreenProperty, value); }
+            get => (byte)GetValue(GreenProperty);
+            set => SetValue(GreenProperty, value);
         }
         public static readonly DependencyProperty GreenProperty
             = DependencyProperty.Register(nameof(Green), typeof(byte), typeof(RgbEditor), new PropertyMetadata((byte)0,
@@ -38,13 +38,13 @@ namespace ColorPicker
 
         public Color CurrentColor
         {
-            get { return (Color)GetValue(CurrentColorProperty); }
-            set { SetValue(CurrentColorProperty, value); }
+            get => (Color)GetValue(CurrentColorProperty);
+            set => SetValue(CurrentColorProperty, value);
         }
         public static readonly DependencyProperty CurrentColorProperty
             = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(RgbEditor), new FrameworkPropertyMetadata(Colors.Black,
-                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
-                (d, e) => ((RgbEditor)d).SyncColor(true)));
+            FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+            (d, e) => ((RgbEditor)d).SyncColor(true)));
 
         public RgbEditor()
         {

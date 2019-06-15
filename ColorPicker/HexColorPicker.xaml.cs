@@ -62,7 +62,7 @@ namespace ColorPicker
                         var path = new Path();
                         path.Data = sg;
                         path.StrokeThickness = 1.0;
-                        path.Fill = new SolidColorBrush() { Color = HsvColor.ToRgb((h1 + h2 / (double)s) * Math.PI / 3, s / 6.0, 1) };
+                        path.Fill = new SolidColorBrush() { Color = HsvColor.ToRgb((float)((h1 + h2 / (double)s) * Math.PI / 3), s / 6.0f, 1.0f) };
                         Canvas.SetLeft(path, cx);
                         Canvas.SetTop(path, cy);
                         canvas.Children.Add(path);

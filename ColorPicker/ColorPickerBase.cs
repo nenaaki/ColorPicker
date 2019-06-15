@@ -21,7 +21,7 @@ namespace ColorPicker
             set { SetValue(SaturationProperty, value); }
         }
         public static readonly DependencyProperty SaturationProperty
-            = DependencyProperty.Register(nameof(Saturation), typeof(double), typeof(ColorPickerBase), new PropertyMetadata((double)0,
+            = DependencyProperty.Register(nameof(Saturation), typeof(double), typeof(ColorPickerBase), new PropertyMetadata((double)1.0,
             (d, e) => ((ColorPickerBase)d).SyncColor(false)));
 
         public double Brightness
@@ -30,7 +30,7 @@ namespace ColorPicker
             set { SetValue(BrightnessProperty, value); }
         }
         public static readonly DependencyProperty BrightnessProperty
-            = DependencyProperty.Register(nameof(Brightness), typeof(double), typeof(ColorPickerBase), new PropertyMetadata((double)0,
+            = DependencyProperty.Register(nameof(Brightness), typeof(double), typeof(ColorPickerBase), new PropertyMetadata((double)1.0,
             (d, e) => ((ColorPickerBase)d).SyncColor(false)));
 
         public Color BaseColor
@@ -48,7 +48,8 @@ namespace ColorPicker
             set { SetValue(CurrentColorProperty, value); }
         }
         public static readonly DependencyProperty CurrentColorProperty
-            = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(ColorPickerBase), new PropertyMetadata(Colors.Red,
+            = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(ColorPickerBase), new FrameworkPropertyMetadata(Colors.Red,
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
             (d, e) => ((ColorPickerBase)d).SyncColor(true)));
 
         protected abstract void SyncColor(bool colorChanged);
