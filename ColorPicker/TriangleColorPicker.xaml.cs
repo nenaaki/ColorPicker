@@ -40,21 +40,22 @@ namespace ColorPicker
             if (e.LeftButton != MouseButtonState.Pressed)
                 return;
 
-            var (s, v) = ToSV(_canvas.ActualWidth, _canvas.ActualHeight, e.GetPosition(_canvas));
-
-            Saturation = s;
-            Brightness = v;
+            UpdateCurrentColorFromCanvas(e.GetPosition(_canvas));
         }
 
-        private void TriangleColorPicker_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void TriangleColorPicker_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            var (s, v) = ToSV(_canvas.ActualWidth, _canvas.ActualHeight, e.GetPosition(_canvas));
-
-            Saturation = s;
-            Brightness = v;
-
+            UpdateCurrentColorFromCanvas(e.GetPosition(_canvas));
             CaptureMouse();
         }
+
+        private void UpdateCurrentColorFromCanvas(Point position)
+        {
+            var (s, v) = ToSV(_canvas.ActualWidth, _canvas.ActualHeight, position);
+
+            CurrentColor = new HsvColor(Hue, s, v).ToRgb();
+        }
+
 
         private (double s, double v) ToSV(double width, double height, Point location)
         {
@@ -64,11 +65,15 @@ namespace ColorPicker
             return (s, v);
         }
 
-        private Point ToLocation(double width, double height, double s, double v)
+        private Point ToLocation(double width, double height, Color color)
         {
-            double x = s * width;
+            HsvColor hsvColor = HsvColor.FromColor(color);
+            var s = hsvColor.S;
+            var v = hsvColor.V;
 
-            double y = (1.0 - Math.Max(0.0, Math.Min(1.0, v * (1.0 - s) + s / 2))) * height;
+            double x = s * width * v;
+
+            double y = (1.0 - Math.Max(0.0, Math.Min(1.0, v * (1.0 - s)))) * height - x / 2;
             return new Point(x, y);
         }
 
@@ -120,7 +125,7 @@ namespace ColorPicker
                 BaseColor = new HsvColor((float)Hue, 1.0f, 1.0f).ToRgb();
                 var saturation = Saturation;
 
-                var location = ToLocation(_canvas.ActualWidth, _canvas.ActualHeight, Saturation, Brightness);
+                var location = ToLocation(_canvas.ActualWidth, _canvas.ActualHeight, CurrentColor);
 
                 Canvas.SetLeft(Current, location.X - 8.0);
                 Canvas.SetTop(Current, location.Y - 8.0);
