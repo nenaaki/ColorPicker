@@ -22,5 +22,6 @@
             <cp:RgbEditor Grid.Row="1" CurrentColor="{Binding Path=CurrentColor}" />
         </Grid>
         <cp:GradualColorPickerSlot BaseColors="{Binding Path=BaseColors, Mode=OneTime}" CurrentColor="{Binding Path=CurrentColor}" />
+        <cp:SimpleColorPicker Width="192" ItemsSource="{Binding BaseColors,Mode=OneTime}" SelectedItem="{Binding Path=CurrentColor}" />
     </StackPanel>
 </Window>

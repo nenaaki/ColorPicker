@@ -82,6 +82,9 @@
     <Compile Include="RingColorPicker.xaml.cs">
       <DependentUpon>RingColorPicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SimpleColorPicker.xaml.cs">
+      <DependentUpon>SimpleColorPicker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TriangleColorPicker.xaml.cs">
       <DependentUpon>TriangleColorPicker.xaml</DependentUpon>
     </Compile>
@@ -115,6 +118,10 @@
     <Page Include="RingColorPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SimpleColorPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TriangleColorPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
