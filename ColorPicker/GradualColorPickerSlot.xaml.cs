@@ -13,6 +13,24 @@ namespace ColorPicker
     /// </summary>
     public partial class GradualColorPickerSlot : UserControl
     {
+        public int ContentLength
+        {
+            get { return (int)GetValue(ContentLengthProperty); }
+            set { SetValue(ContentLengthProperty, value); }
+        }
+        public static readonly DependencyProperty ContentLengthProperty
+            = DependencyProperty.Register(nameof(ContentLength), typeof(int), typeof(GradualColorPickerSlot), new FrameworkPropertyMetadata(8,
+                (d, e) => { }));
+
+        public bool Expanded
+        {
+            get { return (bool)GetValue(ExpandedProperty); }
+            set { SetValue(ExpandedProperty, value); }
+        }
+        public static readonly DependencyProperty ExpandedProperty
+            = DependencyProperty.Register(nameof(Expanded), typeof(bool), typeof(GradualColorPickerSlot), new FrameworkPropertyMetadata(false,
+                (d, e) => { }));
+
         public Color CurrentColor
         {
             get { return (Color)GetValue(CurrentColorProperty); }

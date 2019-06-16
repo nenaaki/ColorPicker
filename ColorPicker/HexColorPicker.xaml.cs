@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
@@ -11,6 +14,21 @@ namespace ColorPicker
     /// </summary>
     public partial class HexColorPicker : UserControl
     {
+        public Color CurrentColor
+        {
+            get { return (Color)GetValue(CurrentColorProperty); }
+            set { SetValue(CurrentColorProperty, value); }
+        }
+        public static readonly DependencyProperty CurrentColorProperty =
+            DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(HexColorPicker), new FrameworkPropertyMetadata(Colors.White,
+            FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+            (d, e) =>
+            {
+                ((HexColorPicker)d).SyncColor();
+            }));
+
+        private readonly List<Path> _pathList = new List<Path>();
+
         public HexColorPicker()
         {
             InitializeComponent();
@@ -39,26 +57,20 @@ namespace ColorPicker
 
             var sqrt3 = Math.Sqrt(3);
 
-            // 6角形を6個の正三角形に分けます
             for (int h1 = 0; h1 < 6; h1++)
             {
-                // 単位移動量の計算
                 var sx = sqrt3 * hexRadius * Math.Cos(h1 * pi3);
                 var sy = sqrt3 * hexRadius * Math.Sin(h1 * pi3);
                 var h2x = sqrt3 * hexRadius * Math.Cos((h1 + 2) * pi3);
                 var h2y = sqrt3 * hexRadius * Math.Sin((h1 + 2) * pi3);
 
-                // 彩度(半径方向)の繰り返し
                 for (int s = 0; s < 7; s++)
                 {
-                    // 色相(角度方向)の繰り返し
                     for (int h2 = 0; h2 < s || h1 == 0 && s == 0 && h2 == 0; h2++)
                     {
-                        // 中心位置の計算
                         double cx = 128 + s * sx + h2 * h2x;
                         double cy = 128 + s * sy + h2 * h2y;
 
-                        // 6角形の追加
                         var path = new Path();
                         path.Data = sg;
                         path.StrokeThickness = 1.0;
@@ -66,8 +78,42 @@ namespace ColorPicker
                         Canvas.SetLeft(path, cx);
                         Canvas.SetTop(path, cy);
                         canvas.Children.Add(path);
+
+                        path.MouseDown += Path_MouseDown;
+                        path.MouseMove += Path_MouseMove;
+                        _pathList.Add(path);
                     }
                 }
+            }
+        }
+
+        private void Path_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            if (e.LeftButton != MouseButtonState.Pressed)
+                return;
+
+            CurrentColor = ((SolidColorBrush)((Path)sender).Fill).Color;
+        }
+
+        private void Path_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            CurrentColor = ((SolidColorBrush)((Path)sender).Fill).Color;
+        }
+
+        private void SyncColor()
+        {
+            ClearSelction();
+            var currentColor = CurrentColor;
+            var selectedPath = _pathList.FirstOrDefault(path => ((SolidColorBrush)((Path)path).Fill).Color == currentColor);
+            if (selectedPath != null)
+                selectedPath.Stroke = Brushes.Black;
+        }
+
+        private void ClearSelction()
+        {
+            foreach (var path in _pathList)
+            {
+                path.Stroke = null;
             }
         }
     }

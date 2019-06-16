@@ -51,11 +51,8 @@ namespace ColorPicker
 
         private void UpdateCurrentColorFromCanvas(Point position)
         {
-            var (s, v) = ToSV(_canvas.ActualWidth, _canvas.ActualHeight, position);
-
-            CurrentColor = new HsvColor(Hue, s, v).ToRgb();
+            CurrentColor = ToColor(_canvas.ActualWidth, _canvas.ActualHeight, position, BaseColor);
         }
-
 
         private (double s, double v) ToSV(double width, double height, Point location)
         {
@@ -63,6 +60,17 @@ namespace ColorPicker
             var y = Math.Max(0.0, Math.Min(1.0, 1.0 - location.Y / height));
             double v = s >= 1.0 ? 1.0 : Math.Max(0.0, Math.Min(1.0, (y - s / 2) / Math.Min(1.0, 1.0 - s)));
             return (s, v);
+        }
+        private Color ToColor(double width, double height, Point location, Color baseColor)
+        {
+            var (s, v) = ToSV(width, height, location);
+
+            var baseHsv = HsvColor.FromColor(baseColor);
+
+            return Color.FromScRgb(1.0f,
+                (float)(v * (1 - s) + baseColor.ScR * s),
+                (float)(v * (1 - s) + baseColor.ScG * s),
+                (float)(v * (1 - s) + baseColor.ScB * s));
         }
 
         private Point ToLocation(double width, double height, Color color)

@@ -11,7 +11,7 @@
     Height="450"
     mc:Ignorable="d">
     <StackPanel Orientation="Horizontal">
-        <cp:HexColorPicker Width="256" Height="256" />
+        <cp:HexColorPicker Width="256" Height="256" CurrentColor="{Binding Path=CurrentColor}"/>
         <Grid VerticalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -21,7 +21,12 @@
             <cp:TriangleColorPicker Margin="32,0,0,0" Width="128" Height="128" CurrentColor="{Binding CurrentColor}" />
             <cp:RgbEditor Grid.Row="1" CurrentColor="{Binding Path=CurrentColor}" />
         </Grid>
-        <cp:GradualColorPickerSlot BaseColors="{Binding Path=BaseColors, Mode=OneTime}" CurrentColor="{Binding Path=CurrentColor}" />
-        <cp:SimpleColorPicker Width="192" ItemsSource="{Binding BaseColors,Mode=OneTime}" SelectedItem="{Binding Path=CurrentColor}" />
+        <StackPanel Orientation="Vertical">
+            <cp:GradualColorPickerSlot BaseColors="{Binding Path=BaseColors, Mode=OneTime}" CurrentColor="{Binding Path=CurrentColor}" />
+            <Border Background="Black">
+                <TextBlock Foreground="White" FontWeight="Bold">最近使った色</TextBlock>
+            </Border>
+            <cp:SimpleColorPicker Width="192" ItemsSource="{Binding BaseColors,Mode=OneTime}" SelectedItem="{Binding Path=CurrentColor}" />
+        </StackPanel>
     </StackPanel>
 </Window>

@@ -23,14 +23,14 @@ namespace Sample
     {
         public Color[] BaseColors => new Color[] { Colors.White, Colors.Black, Colors.Red, Colors.Blue, Colors.Green, Colors.LightGreen, Colors.Pink, Colors.SkyBlue };
 
-        private Color _baseColor = Colors.Red;
+        private Color _baseColor = Colors.Green;
         public Color BaseColor
         {
             get => _baseColor;
             set => UpdateProperty(ref _baseColor, value);
         }
 
-        private Color _currentColor = Colors.Red;
+        private Color _currentColor = Colors.Green;
         public Color CurrentColor
         {
             get => _currentColor;
