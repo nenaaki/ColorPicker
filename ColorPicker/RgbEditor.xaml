@@ -32,5 +32,21 @@
             </Grid>
             <Slider VerticalAlignment="Center" Width="100" Minimum="0" Maximum="255" Value="{Binding Path=Blue, ElementName=_this}" />
         </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+            <Grid Margin="2">
+                <TextBox MinWidth="64" HorizontalContentAlignment="Right" Text="{Binding Path=Saturation, ElementName=_this}"></TextBox>
+                <TextBlock FontWeight="Bold" Foreground="LightGray" Margin="1">S</TextBlock>
+                <TextBlock FontWeight="Bold" Foreground="Black">S</TextBlock>
+            </Grid>
+            <Slider VerticalAlignment="Center" Width="100" Minimum="0" Maximum="100" Value="{Binding Path=Red, ElementName=_this}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Grid Margin="2">
+                <TextBox MinWidth="64" HorizontalContentAlignment="Right" Text="{Binding Path=Brightness, ElementName=_this}"></TextBox>
+                <TextBlock FontWeight="Bold" Foreground="DarkGray" Margin="1">V</TextBlock>
+                <TextBlock FontWeight="Bold" Foreground="Black">V</TextBlock>
+            </Grid>
+            <Slider VerticalAlignment="Center" Width="100" Minimum="0" Maximum="100" Value="{Binding Path=Brightness, ElementName=_this}" />
+        </StackPanel>
     </StackPanel>
 </UserControl>

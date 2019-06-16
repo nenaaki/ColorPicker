@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Viewbox>
-        <Grid>
+        <Grid Name="_canvas">
             <Image Name="Ring" />
             <Grid>
                 <Canvas>

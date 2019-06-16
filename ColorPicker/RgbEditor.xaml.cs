@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -36,6 +37,25 @@ namespace ColorPicker
             = DependencyProperty.Register(nameof(Green), typeof(byte), typeof(RgbEditor), new PropertyMetadata((byte)0,
             (d, e) => ((RgbEditor)d).SyncColor(false)));
 
+        public double Saturation
+        {
+            get => (double)GetValue(SaturationProperty);
+            set => SetValue(SaturationProperty, value);
+        }
+        public static readonly DependencyProperty SaturationProperty
+            = DependencyProperty.Register(nameof(Saturation), typeof(double), typeof(RgbEditor), new PropertyMetadata(0.0,
+            (d, e) => ((RgbEditor)d).SyncColor(false)));
+
+        public double Brightness
+        {
+            get => (double)GetValue(BrightnessProperty);
+            set => SetValue(BrightnessProperty, value);
+        }
+        public static readonly DependencyProperty BrightnessProperty
+            = DependencyProperty.Register(nameof(Brightness), typeof(double), typeof(RgbEditor), new PropertyMetadata(0.0,
+            (d, e) => ((RgbEditor)d).SyncColor(false)));
+
+
         public Color CurrentColor
         {
             get => (Color)GetValue(CurrentColorProperty);
@@ -72,6 +92,9 @@ namespace ColorPicker
                 {
                     CurrentColor = Color.FromRgb(Red, Green, Blue);
                 }
+                var hsv = HsvColor.FromColor(CurrentColor);
+                Saturation = Math.Round(hsv.S * 100);
+                Brightness = Math.Round(hsv.V * 100);
             }
             finally
             {

@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Input;
 
 namespace ColorPicker
 {
@@ -11,26 +12,59 @@ namespace ColorPicker
     /// </summary>
     public partial class RingColorPicker : ColorPickerBase
     {
-        private const int width = 128;
-        private const int height = 128;
+        private const int CANVAS_WIDTH = 128;
+        private const int CANVAS_HEIGHT = 128;
+
+        private readonly SolidColorBrush _brush = new SolidColorBrush();
 
         public RingColorPicker()
         {
             InitializeComponent();
 
-            Ring.Source = MakeHueRountRect(width, height);
+            Ring.Source = MakeHueRountRect(CANVAS_WIDTH, CANVAS_HEIGHT);
+            Pointer.Fill = _brush;
 
             double ringWidth = 10;
             var pg = new PathGeometry();
-            pg.AddGeometry(new EllipseGeometry(new Rect(0, 0, width, height)));
-            double xCenter = width / 2.0;
-            double yCenter = height / 2.0;
+            pg.AddGeometry(new EllipseGeometry(new Rect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)));
+            double xCenter = CANVAS_WIDTH / 2.0;
+            double yCenter = CANVAS_HEIGHT / 2.0;
             double xRadius = xCenter - ringWidth;
             double yRadius = yCenter - ringWidth;
             pg.AddGeometry(new EllipseGeometry(new Point(xCenter, yCenter), xRadius, yRadius));
 
             Ring.Clip = pg;
             SyncColor(true);
+
+            MouseDown += RingColorPicker_MouseDown;
+            MouseMove += RingColorPicker_MouseMove;
+            MouseUp += RingColorPicker_MouseUp;
+        }
+
+        private void RingColorPicker_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            ReleaseMouseCapture();
+        } 
+
+        private void RingColorPicker_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton != MouseButtonState.Pressed)
+                return;
+
+            UpdateColor(e.GetPosition(_canvas));
+        }
+
+        private void RingColorPicker_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            UpdateColor(e.GetPosition(_canvas));
+
+            CaptureMouse();
+        }
+
+        private void UpdateColor(Point position)
+        {
+            var radian = -Math.Atan2(position.X - _canvas.ActualWidth / 2, position.Y - _canvas.ActualHeight / 2) + Math.PI / 2;
+            CurrentColor = HsvColor.ToRgb(radian, Saturation, Brightness);
         }
 
         private BitmapSource MakeHueRountRect(int width, int height)
@@ -57,8 +91,6 @@ namespace ColorPicker
             return wb;
         }
 
-        private SolidColorBrush _brush = new SolidColorBrush();
-
         private bool _colorUpdating;
 
         protected override void SyncColor(bool currentChanged)
@@ -66,8 +98,8 @@ namespace ColorPicker
             if (_colorUpdating)
                 return;
 
-            double xCenter = width / 2.0;
-            double yCenter = height / 2.0;
+            double xCenter = CANVAS_WIDTH / 2.0;
+            double yCenter = CANVAS_HEIGHT / 2.0;
 
             try
             {
@@ -86,9 +118,8 @@ namespace ColorPicker
                 {
                     BaseColor = new HsvColor((float)Hue, (float)Saturation, (float)Brightness).ToRgb();
                 }
-                Canvas.SetLeft(Current, (Math.Cos(Hue) * 0.9 + 1.0) * xCenter - 8.0);
-                Canvas.SetTop(Current, (Math.Sin(Hue) * 0.9 + 1.0) * yCenter - 8.0);
-                Pointer.Fill = _brush;
+                Canvas.SetLeft(Current, (Math.Cos(Hue) * 0.92 + 1.0) * xCenter - 8.0);
+                Canvas.SetTop(Current, (Math.Sin(Hue) * 0.92 + 1.0) * yCenter - 8.0);
                 _brush.Color = BaseColor;
             }
             finally
