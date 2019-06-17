@@ -11,29 +11,26 @@
     <UserControl.Resources>
         <local:ColorToBrushConverter x:Key="ColorToBrushConverter" />
     </UserControl.Resources>
-    <ListBox Background="Transparent"
-             BorderBrush="Transparent"
-             BorderThickness="0"
-             SelectionChanged="ListBox_SelectionChanged"
-             SelectedValue="{Binding Path=CurrentColor, ElementName=_this}"
-             ItemsSource="{Binding Path=ColorArray,
-                                   ElementName=_this}">
-        <ListBox.ItemsPanel>
+    <ItemsControl
+        Background="Transparent"
+        BorderBrush="Transparent"
+        BorderThickness="0"
+        ItemsSource="{Binding Path=ColorArray,
+                            ElementName=_this}">
+        <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
                 <StackPanel Orientation="Vertical" />
             </ItemsPanelTemplate>
-        </ListBox.ItemsPanel>
-        <ListBox.ItemContainerStyle>
-            <Style TargetType="ListBoxItem">
-                <Setter Property="Padding" Value="0" />
-            </Style>
-        </ListBox.ItemContainerStyle>
-        <ListBox.ItemTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <Rectangle Width="16"
+                <local:ColorItem Width="16"
                            Height="16"
-                           Fill="{Binding Path=.,Converter={StaticResource ColorToBrushConverter}}" />
+                           Value="{Binding}"
+                           CurrentColor="{Binding Path=CurrentColor,ElementName=_this}"
+                           MouseDown="ColorItem_MouseDown"
+                           MouseMove="ColorItem_MouseMove"/>
             </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
 </UserControl>

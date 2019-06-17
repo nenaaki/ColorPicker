@@ -1,7 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Input;
 using System.ComponentModel;
+using System.Linq;
 
 namespace ColorPicker
 {
@@ -18,7 +20,7 @@ namespace ColorPicker
         public static readonly DependencyProperty BaseColorProperty
             = DependencyProperty.Register(nameof(BaseColor), typeof(Color), typeof(GradualColorPicker),
                 new FrameworkPropertyMetadata(Colors.Black, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
-                (d, e) => ((GradualColorPicker)d).EnsureColors()));
+                (d, e) => ((GradualColorPicker)d).SetupColors()));
 
         public int Count
         {
@@ -28,7 +30,7 @@ namespace ColorPicker
         public static readonly DependencyProperty CountProperty
             = DependencyProperty.Register(nameof(Count), typeof(int), typeof(GradualColorPicker),
                 new FrameworkPropertyMetadata(8, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
-                (d, e) => ((GradualColorPicker)d).EnsureColors()));
+                (d, e) => ((GradualColorPicker)d).SetupColors()));
 
         public Color[] ColorArray
         {
@@ -47,10 +49,10 @@ namespace ColorPicker
         public static readonly DependencyProperty CurrentColorProperty
             = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(GradualColorPicker),
                 new FrameworkPropertyMetadata(Colors.Transparent,
-                    (d, e) =>
-                    { }));
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault | FrameworkPropertyMetadataOptions.AffectsParentArrange,
+                (d, e) => ((GradualColorPicker)d).SyncColor(true)));
 
-        private void EnsureColors()
+        private void SetupColors()
         {
             var baseColor = BaseColor;
 
@@ -90,16 +92,55 @@ namespace ColorPicker
         public GradualColorPicker()
         {
             InitializeComponent();
-            EnsureColors();
+            SetupColors();
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private bool _updating;
+        private void SyncColor(bool colorChanged)
         {
-            var items = e.AddedItems;
-            if (items?.Count == 1)
+            if (_updating)
+                return;
+
+            try
             {
-                CurrentColor = (Color)items[0];
+                _updating = true;
+                if(colorChanged)
+                {
+                    var currentColor = CurrentColor;
+                    var colorArray = ColorArray;
+                    if (ColorArray == null)
+                        return;
+
+                    for(var idx=0;idx<colorArray.Length; idx++)
+                    {
+                        if (colorArray[idx] == currentColor)
+                        {
+                        }
+                    }
+                }
+                else
+                {
+
+                }
             }
+            finally
+            {
+                _updating = false;
+            }
+        }
+
+        private void ColorItem_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            CurrentColor = ((ColorItem)sender).Value;
+        }
+
+        private void ColorItem_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton != MouseButtonState.Pressed)
+                return;
+
+            CurrentColor = ((ColorItem)sender).Value;
         }
     }
 }

@@ -51,6 +51,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorItem.cs" />
     <Compile Include="ColorPickerBase.cs" />
     <Compile Include="ColorToBrushConverter.cs" />
     <Compile Include="GradualColorPicker.xaml.cs">
