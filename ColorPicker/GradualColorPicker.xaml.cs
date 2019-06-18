@@ -12,6 +12,36 @@ namespace ColorPicker
     /// </summary>
     public partial class GradualColorPicker : UserControl
     {
+        public class ColorItemContent : ContentBase
+        {
+            private readonly GradualColorPicker _owner;
+
+            private Color _currentColor;
+            public Color CurrentColor
+            {
+                get => _currentColor;
+                set
+                {
+                    if (UpdateProperty(ref _currentColor, value))
+                    {
+                        _owner.CurrentColor = value;
+                    }
+                }
+            }
+
+            private Color _value;
+            public Color Value
+            {
+                get => _value;
+                set => UpdateProperty(ref _value, value);
+            }
+
+            public ColorItemContent(GradualColorPicker owner)
+            {
+                _owner = owner;
+            }
+        }
+
         public Color BaseColor
         {
             get => (Color)GetValue(BaseColorProperty);
@@ -32,14 +62,15 @@ namespace ColorPicker
                 new FrameworkPropertyMetadata(8, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
                 (d, e) => ((GradualColorPicker)d).SetupColors()));
 
-        public Color[] ColorArray
+        public ColorItemContent[] ColorArray
         {
-            get => (Color[])GetValue(ColorArrayProperty);
+            get => (ColorItemContent[])GetValue(ColorArrayProperty);
             private set => SetValue(ColorArrayProperty, value);
         }
         public static readonly DependencyProperty ColorArrayProperty
-            = DependencyProperty.Register(nameof(ColorArray), typeof(Color[]), typeof(GradualColorPicker),
-                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
+            = DependencyProperty.Register(nameof(ColorArray), typeof(ColorItemContent[]), typeof(GradualColorPicker),
+                new FrameworkPropertyMetadata(null,
+                    FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         public Color CurrentColor
         {
@@ -80,13 +111,13 @@ namespace ColorPicker
 
             var count = Count;
 
-            var brushes = new Color[count + 1];
+            var colors = new ColorItemContent[count + 1];
             for (int idx = 0; idx <= count; idx++)
             {
                 float ratio = idx / (float)(count + 1);
-                brushes[idx] = HsvColor.Blend(color1, color2, ratio).ToRgb();
+                colors[idx] = new ColorItemContent(this) { Value = HsvColor.Blend(color1, color2, ratio).ToRgb(), CurrentColor = CurrentColor };
             }
-            ColorArray = brushes;
+            ColorArray = colors;
         }
 
         public GradualColorPicker()
@@ -94,7 +125,6 @@ namespace ColorPicker
             InitializeComponent();
             SetupColors();
         }
-
 
         private bool _updating;
         private void SyncColor(bool colorChanged)
@@ -105,42 +135,20 @@ namespace ColorPicker
             try
             {
                 _updating = true;
-                if(colorChanged)
-                {
-                    var currentColor = CurrentColor;
-                    var colorArray = ColorArray;
-                    if (ColorArray == null)
-                        return;
+                var colors = ColorArray;
+                if (colors == null)
+                    return;
 
-                    for(var idx=0;idx<colorArray.Length; idx++)
-                    {
-                        if (colorArray[idx] == currentColor)
-                        {
-                        }
-                    }
-                }
-                else
+                var currentColor = CurrentColor;
+                foreach (var color in colors)
                 {
-
+                    color.CurrentColor = currentColor;
                 }
             }
             finally
             {
                 _updating = false;
             }
-        }
-
-        private void ColorItem_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            CurrentColor = ((ColorItem)sender).Value;
-        }
-
-        private void ColorItem_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton != MouseButtonState.Pressed)
-                return;
-
-            CurrentColor = ((ColorItem)sender).Value;
         }
     }
 }

@@ -15,7 +15,9 @@
         </ItemsControl.ItemsPanel>
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <local:GradualColorPicker BaseColor="{Binding Path=BaseColor}" CurrentColor="{Binding Path=CurrentColor,Mode=TwoWay}" Count="{Binding Path=ContentLength,ElementName=_this}" />
+                <local:GradualColorPicker BaseColor="{Binding Path=BaseColor}"
+                                          CurrentColor="{Binding Path=CurrentColor}"
+                                          Count="{Binding Path=ContentLength,ElementName=_this}" />
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>

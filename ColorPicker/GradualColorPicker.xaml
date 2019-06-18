@@ -26,10 +26,8 @@
             <DataTemplate>
                 <local:ColorItem Width="16"
                            Height="16"
-                           Value="{Binding}"
-                           CurrentColor="{Binding Path=CurrentColor,ElementName=_this}"
-                           MouseDown="ColorItem_MouseDown"
-                           MouseMove="ColorItem_MouseMove"/>
+                           Value="{Binding Path=Value}"
+                           CurrentColor="{Binding Path=CurrentColor}" />
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>

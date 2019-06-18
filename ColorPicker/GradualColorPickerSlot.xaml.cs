@@ -39,7 +39,7 @@ namespace ColorPicker
         public static readonly DependencyProperty CurrentColorProperty
             = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(GradualColorPickerSlot), new FrameworkPropertyMetadata(default(Color),
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
-                (d, e) => { }));
+                (d, e) => ((GradualColorPickerSlot)d).SyncColor()));
 
         public Color[] BaseColors
         {
@@ -69,9 +69,34 @@ namespace ColorPicker
         {
             InitializeComponent();
         }
+
+        private bool _updating;
+        private void SyncColor()
+        {
+            if (_updating)
+                return;
+
+            try
+            {
+                _updating = true;
+
+                var contents = ColorPickerContents;
+                if (contents == null)
+                    return;
+
+                foreach (var content in contents)
+                {
+                    content.CurrentColor = CurrentColor;
+                }
+            }
+            finally
+            {
+                _updating = false;
+            }
+        }
     }
 
-    public class GradualColorPickerContent : INotifyPropertyChanged
+    public class GradualColorPickerContent : ContentBase
     {
         private readonly GradualColorPickerSlot _owner;
 
@@ -95,24 +120,9 @@ namespace ColorPicker
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public GradualColorPickerContent(GradualColorPickerSlot owner)
         {
             _owner = owner;
         }
-
-        public bool UpdateProperty<T>(ref T field, T value, [CallerMemberName]string propertyName = null, string[] dependedProperties = null)
-            where T : IEquatable<T>
-        {
-            if (field.Equals(value))
-                return false;
-
-            field = value;
-            OnPropertyChanged(propertyName);
-            return true;
-        }
-
-        public void OnPropertyChanged([CallerMemberName]string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

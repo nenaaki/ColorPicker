@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace ColorPicker
@@ -18,7 +19,7 @@ namespace ColorPicker
         }
         public static readonly DependencyProperty CurrentColorProperty =
             DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(ColorItem), new FrameworkPropertyMetadata(Colors.Transparent,
-            FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+            FrameworkPropertyMetadataOptions.BindsTwoWayByDefault | FrameworkPropertyMetadataOptions.AffectsRender));
 
         public Color Value
         {
@@ -30,14 +31,27 @@ namespace ColorPicker
             FrameworkPropertyMetadataOptions.AffectsRender,
             (d, e) => { ((ColorItem)d)._brush.Color = (Color)e.NewValue; }));
 
+        public ColorItem()
+        {
+            MouseDown += (d, e) => CurrentColor = Value;
+            MouseMove += (d, e) =>
+            {
+                if (e.LeftButton != MouseButtonState.Pressed)
+                    return;
+
+                CurrentColor = Value;
+            };
+        }
+
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
 
             if (CurrentColor == Value)
             {
-                drawingContext.DrawRectangle(_brush, _whitePen, new Rect(RenderSize));
-                drawingContext.DrawRectangle(null, _blackPen, new Rect(1, 1, RenderSize.Width - 2, RenderSize.Height - 2));
+                var renderSize = RenderSize;
+                drawingContext.DrawRectangle(_brush, _whitePen, new Rect(0.5, 0.5, renderSize.Width - 1, renderSize.Height - 1));
+                drawingContext.DrawRectangle(null, _blackPen, new Rect(1.5, 1.5, RenderSize.Width - 3, RenderSize.Height - 3));
             }
             else
             {
