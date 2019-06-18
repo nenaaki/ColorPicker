@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -37,7 +38,8 @@ namespace ColorPicker
             set { SetValue(CurrentColorProperty, value); }
         }
         public static readonly DependencyProperty CurrentColorProperty
-            = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(GradualColorPickerSlot), new FrameworkPropertyMetadata(default(Color),
+            = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(GradualColorPickerSlot), 
+                new FrameworkPropertyMetadata(Colors.Transparent,
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                 (d, e) => ((GradualColorPickerSlot)d).SyncColor()));
 
@@ -52,18 +54,19 @@ namespace ColorPicker
                 {
                     var owner = (GradualColorPickerSlot)d;
                     var colors = (Color[])e.NewValue;
-                    owner.ColorPickerContents = colors != null
-                        ? colors.Select(c => new GradualColorPickerContent(owner) { BaseColor = c }).ToArray()
-                        : (new GradualColorPickerContent[0]);
+                    owner.ColorPickerContents.Clear();
+                    if (colors == null)
+                        return;
+
+                    foreach(var color in colors)
+                    {
+                        owner.ColorPickerContents.Add(new GradualColorPickerContent(owner) { BaseColor = color });
+                    }
                 }));
 
-        public GradualColorPickerContent[] ColorPickerContents
-        {
-            get => (GradualColorPickerContent[])GetValue(ColorPickerContentsProperty);
-            set => SetValue(ColorPickerContentsProperty, value);
-        }
-        public static readonly DependencyProperty ColorPickerContentsProperty =
-            DependencyProperty.Register(nameof(ColorPickerContents), typeof(GradualColorPickerContent[]), typeof(GradualColorPickerSlot), new PropertyMetadata(null));
+        private readonly ObservableCollection<GradualColorPickerContent> _colorPickerContents = new ObservableCollection<GradualColorPickerContent>();
+
+        public ObservableCollection<GradualColorPickerContent> ColorPickerContents => _colorPickerContents;
 
         public GradualColorPickerSlot()
         {

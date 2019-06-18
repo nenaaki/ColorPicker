@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="_this">
-    <ItemsControl ItemsSource="{Binding Path=ColorPickerContents, ElementName=_this}" Name="ColorPickers">
+    <ItemsControl ItemsSource="{Binding Path=ColorPickerContents,ElementName=_this,Mode=OneTime}" Name="ColorPickers">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
                 <StackPanel Orientation="Horizontal" />
@@ -17,7 +17,8 @@
             <DataTemplate>
                 <local:GradualColorPicker BaseColor="{Binding Path=BaseColor}"
                                           CurrentColor="{Binding Path=CurrentColor}"
-                                          Count="{Binding Path=ContentLength,ElementName=_this}" />
+                                          Count="{Binding Path=ContentLength,ElementName=_this}"
+                                          Margin="1"/>
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>

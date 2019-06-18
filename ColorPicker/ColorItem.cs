@@ -6,10 +6,6 @@ namespace ColorPicker
 {
     public class ColorItem : FrameworkElement
     {
-        private static readonly Pen _blackPen = new Pen(Brushes.Black, 1);
-
-        private static readonly Pen _whitePen = new Pen(Brushes.White, 1);
-
         private readonly SolidColorBrush _brush = new SolidColorBrush();
 
         public Color CurrentColor
@@ -50,8 +46,8 @@ namespace ColorPicker
             if (CurrentColor == Value)
             {
                 var renderSize = RenderSize;
-                drawingContext.DrawRectangle(_brush, _whitePen, new Rect(0.5, 0.5, renderSize.Width - 1, renderSize.Height - 1));
-                drawingContext.DrawRectangle(null, _blackPen, new Rect(1.5, 1.5, RenderSize.Width - 3, RenderSize.Height - 3));
+                drawingContext.DrawRectangle(_brush, ColorPickerUtils.WhitePen, new Rect(0.5, 0.5, renderSize.Width - 1, renderSize.Height - 1));
+                drawingContext.DrawRectangle(null, ColorPickerUtils.BlackPen, new Rect(1.5, 1.5, RenderSize.Width - 3, RenderSize.Height - 3));
             }
             else
             {

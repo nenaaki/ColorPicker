@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="ColorItem.cs" />
     <Compile Include="ColorPickerBase.cs" />
+    <Compile Include="ColorPickerUtils.cs" />
     <Compile Include="ColorToBrushConverter.cs" />
     <Compile Include="ContentBase.cs" />
     <Compile Include="GradualColorPicker.xaml.cs">
