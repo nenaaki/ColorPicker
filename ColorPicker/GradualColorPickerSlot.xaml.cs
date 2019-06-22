@@ -12,7 +12,7 @@ namespace ColorPicker
     /// <summary>
     /// GradualColorPickerSlot.xaml の相互作用ロジック
     /// </summary>
-    public partial class GradualColorPickerSlot : UserControl
+    public partial class GradualColorPickerSlot : ItemsControl
     {
         public int ContentLength
         {
@@ -49,24 +49,9 @@ namespace ColorPicker
             set => SetValue(BaseColorsProperty, value);
         }
         public static readonly DependencyProperty BaseColorsProperty =
-            DependencyProperty.Register(nameof(BaseColors), typeof(Color[]), typeof(GradualColorPickerSlot), new PropertyMetadata(null,
-                (d, e) =>
-                {
-                    var owner = (GradualColorPickerSlot)d;
-                    var colors = (Color[])e.NewValue;
-                    owner.ColorPickerContents.Clear();
-                    if (colors == null)
-                        return;
-
-                    foreach(var color in colors)
-                    {
-                        owner.ColorPickerContents.Add(new GradualColorPickerContent(owner) { BaseColor = color });
-                    }
-                }));
-
-        private readonly ObservableCollection<GradualColorPickerContent> _colorPickerContents = new ObservableCollection<GradualColorPickerContent>();
-
-        public ObservableCollection<GradualColorPickerContent> ColorPickerContents => _colorPickerContents;
+            DependencyProperty.Register(nameof(BaseColors), typeof(Color[]), typeof(GradualColorPickerSlot), 
+                new FrameworkPropertyMetadata(null,
+                (d, e)=> { ((GradualColorPickerSlot)d).ItemsSource = e.NewValue as Color[]; }));
 
         public GradualColorPickerSlot()
         {
@@ -82,50 +67,11 @@ namespace ColorPicker
             try
             {
                 _updating = true;
-
-                var contents = ColorPickerContents;
-                if (contents == null)
-                    return;
-
-                foreach (var content in contents)
-                {
-                    content.CurrentColor = CurrentColor;
-                }
             }
             finally
             {
                 _updating = false;
             }
-        }
-    }
-
-    public class GradualColorPickerContent : ContentBase
-    {
-        private readonly GradualColorPickerSlot _owner;
-
-        private Color _baseColor;
-        public Color BaseColor
-        {
-            get => _baseColor;
-            set => UpdateProperty(ref _baseColor, value);
-        }
-
-        private Color _currentColor = Colors.Red;
-        public Color CurrentColor
-        {
-            get => _currentColor;
-            set
-            {
-                if (UpdateProperty(ref _currentColor, value))
-                {
-                    _owner.CurrentColor = value;
-                }
-            }
-        }
-
-        public GradualColorPickerContent(GradualColorPickerSlot owner)
-        {
-            _owner = owner;
         }
     }
 }

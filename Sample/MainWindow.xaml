@@ -28,5 +28,6 @@
             </Border>
             <cp:SimpleColorPicker Width="192" ItemsSource="{Binding BaseColors,Mode=OneTime}" SelectedItem="{Binding Path=CurrentColor}" />
         </StackPanel>
+        <cp:GradualColorPicker BaseColor="Red" Count="12" CurrentColor="{Binding Path=CurrentColor}"></cp:GradualColorPicker>
     </StackPanel>
 </Window>

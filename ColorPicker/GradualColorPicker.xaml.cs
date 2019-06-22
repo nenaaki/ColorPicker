@@ -1,47 +1,14 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Input;
-using System.ComponentModel;
-using System.Linq;
 
 namespace ColorPicker
 {
     /// <summary>
     /// GradualColorPicker.xaml の相互作用ロジック
     /// </summary>
-    public partial class GradualColorPicker : UserControl
+    public partial class GradualColorPicker : ItemsControl
     {
-        public class ColorItemContent : ContentBase
-        {
-            private readonly GradualColorPicker _owner;
-
-            private Color _currentColor;
-            public Color CurrentColor
-            {
-                get => _currentColor;
-                set
-                {
-                    if (UpdateProperty(ref _currentColor, value))
-                    {
-                        _owner.CurrentColor = value;
-                    }
-                }
-            }
-
-            private Color _value;
-            public Color Value
-            {
-                get => _value;
-                set => UpdateProperty(ref _value, value);
-            }
-
-            public ColorItemContent(GradualColorPicker owner)
-            {
-                _owner = owner;
-            }
-        }
-
         public Color BaseColor
         {
             get => (Color)GetValue(BaseColorProperty);
@@ -62,16 +29,6 @@ namespace ColorPicker
                 new FrameworkPropertyMetadata(8, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
                 (d, e) => ((GradualColorPicker)d).SetupColors()));
 
-        public ColorItemContent[] ColorArray
-        {
-            get => (ColorItemContent[])GetValue(ColorArrayProperty);
-            private set => SetValue(ColorArrayProperty, value);
-        }
-        public static readonly DependencyProperty ColorArrayProperty
-            = DependencyProperty.Register(nameof(ColorArray), typeof(ColorItemContent[]), typeof(GradualColorPicker),
-                new FrameworkPropertyMetadata(null,
-                    FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
-
         public Color CurrentColor
         {
             get { return (Color)GetValue(CurrentColorProperty); }
@@ -80,8 +37,7 @@ namespace ColorPicker
         public static readonly DependencyProperty CurrentColorProperty
             = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(GradualColorPicker),
                 new FrameworkPropertyMetadata(Colors.Transparent,
-                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault | FrameworkPropertyMetadataOptions.AffectsParentArrange,
-                (d, e) => ((GradualColorPicker)d).SyncColor(true)));
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         private void SetupColors()
         {
@@ -111,44 +67,19 @@ namespace ColorPicker
 
             var count = Count;
 
-            var colors = new ColorItemContent[count + 1];
+            var colors = new Color[count + 1];
             for (int idx = 0; idx <= count; idx++)
             {
                 float ratio = idx / (float)(count + 1);
-                colors[idx] = new ColorItemContent(this) { Value = HsvColor.Blend(color1, color2, ratio).ToRgb(), CurrentColor = CurrentColor };
+                colors[idx] = HsvColor.Blend(color1, color2, ratio).ToRgb();
             }
-            ColorArray = colors;
+            ItemsSource = colors;
         }
 
         public GradualColorPicker()
         {
             InitializeComponent();
             SetupColors();
-        }
-
-        private bool _updating;
-        private void SyncColor(bool colorChanged)
-        {
-            if (_updating)
-                return;
-
-            try
-            {
-                _updating = true;
-                var colors = ColorArray;
-                if (colors == null)
-                    return;
-
-                var currentColor = CurrentColor;
-                foreach (var color in colors)
-                {
-                    color.CurrentColor = currentColor;
-                }
-            }
-            finally
-            {
-                _updating = false;
-            }
         }
     }
 }
