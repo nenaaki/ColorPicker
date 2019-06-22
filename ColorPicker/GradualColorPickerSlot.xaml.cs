@@ -1,27 +1,22 @@
-﻿using System;
-using System.ComponentModel;
-using System.Linq;
-using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace ColorPicker
 {
     /// <summary>
-    /// GradualColorPickerSlot.xaml の相互作用ロジック
+    /// グラデーション型のカラーピッカーのスロットです。
     /// </summary>
     public partial class GradualColorPickerSlot : ItemsControl
     {
-        public int ContentLength
+        public int StepCount
         {
-            get { return (int)GetValue(ContentLengthProperty); }
-            set { SetValue(ContentLengthProperty, value); }
+            get { return (int)GetValue(StepCountProperty); }
+            set { SetValue(StepCountProperty, value); }
         }
-        public static readonly DependencyProperty ContentLengthProperty
-            = DependencyProperty.Register(nameof(ContentLength), typeof(int), typeof(GradualColorPickerSlot), new FrameworkPropertyMetadata(8,
-                (d, e) => { }));
+        public static readonly DependencyProperty StepCountProperty
+            = DependencyProperty.Register(nameof(StepCount), typeof(int), typeof(GradualColorPickerSlot),
+                new FrameworkPropertyMetadata(8));
 
         public bool Expanded
         {
@@ -29,8 +24,8 @@ namespace ColorPicker
             set { SetValue(ExpandedProperty, value); }
         }
         public static readonly DependencyProperty ExpandedProperty
-            = DependencyProperty.Register(nameof(Expanded), typeof(bool), typeof(GradualColorPickerSlot), new FrameworkPropertyMetadata(false,
-                (d, e) => { }));
+            = DependencyProperty.Register(nameof(Expanded), typeof(bool), typeof(GradualColorPickerSlot),
+                new FrameworkPropertyMetadata(false));
 
         public Color CurrentColor
         {
@@ -38,10 +33,9 @@ namespace ColorPicker
             set { SetValue(CurrentColorProperty, value); }
         }
         public static readonly DependencyProperty CurrentColorProperty
-            = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(GradualColorPickerSlot), 
+            = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(GradualColorPickerSlot),
                 new FrameworkPropertyMetadata(Colors.Transparent,
-                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
-                (d, e) => ((GradualColorPickerSlot)d).SyncColor()));
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public Color[] BaseColors
         {
@@ -49,29 +43,13 @@ namespace ColorPicker
             set => SetValue(BaseColorsProperty, value);
         }
         public static readonly DependencyProperty BaseColorsProperty =
-            DependencyProperty.Register(nameof(BaseColors), typeof(Color[]), typeof(GradualColorPickerSlot), 
+            DependencyProperty.Register(nameof(BaseColors), typeof(Color[]), typeof(GradualColorPickerSlot),
                 new FrameworkPropertyMetadata(null,
-                (d, e)=> { ((GradualColorPickerSlot)d).ItemsSource = e.NewValue as Color[]; }));
+                (d, e) => { ((GradualColorPickerSlot)d).ItemsSource = e.NewValue as Color[]; }));
 
         public GradualColorPickerSlot()
         {
             InitializeComponent();
-        }
-
-        private bool _updating;
-        private void SyncColor()
-        {
-            if (_updating)
-                return;
-
-            try
-            {
-                _updating = true;
-            }
-            finally
-            {
-                _updating = false;
-            }
         }
     }
 }

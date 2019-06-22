@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorItem.cs" />
+    <Compile Include="ColorItemBase.cs" />
     <Compile Include="ColorPickerBase.cs" />
     <Compile Include="ColorPickerUtils.cs" />
     <Compile Include="ColorToBrushConverter.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="GradualColorPickerSlot.xaml.cs">
       <DependentUpon>GradualColorPickerSlot.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HexColorItem.cs" />
     <Compile Include="HexColorPicker.xaml.cs">
       <DependentUpon>HexColorPicker.xaml</DependentUpon>
     </Compile>

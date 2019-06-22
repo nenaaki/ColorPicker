@@ -17,9 +17,9 @@
     </ItemsControl.ItemsPanel>
     <ItemsControl.ItemTemplate>
         <DataTemplate>
-            <local:ColorItem Width="16"
-                        Height="16"
-                        Value="{Binding}"
+            <local:ColorItem Value="{Binding}"
+                             Width="16"
+                             Height="16"
                         CurrentColor="{Binding Path=CurrentColor,RelativeSource={RelativeSource AncestorType=ItemsControl}}" />
         </DataTemplate>
     </ItemsControl.ItemTemplate>

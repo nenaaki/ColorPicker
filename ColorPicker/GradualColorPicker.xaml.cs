@@ -17,17 +17,17 @@ namespace ColorPicker
         public static readonly DependencyProperty BaseColorProperty
             = DependencyProperty.Register(nameof(BaseColor), typeof(Color), typeof(GradualColorPicker),
                 new FrameworkPropertyMetadata(Colors.Black, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
-                (d, e) => ((GradualColorPicker)d).SetupColors()));
+                (d, _) => ((GradualColorPicker)d).SetupColors()));
 
-        public int Count
+        public int StepCount
         {
-            get => (int)GetValue(CountProperty);
-            set => SetValue(CountProperty, value);
+            get => (int)GetValue(StepCountProperty);
+            set => SetValue(StepCountProperty, value);
         }
-        public static readonly DependencyProperty CountProperty
-            = DependencyProperty.Register(nameof(Count), typeof(int), typeof(GradualColorPicker),
+        public static readonly DependencyProperty StepCountProperty
+            = DependencyProperty.Register(nameof(StepCount), typeof(int), typeof(GradualColorPicker),
                 new FrameworkPropertyMetadata(8, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
-                (d, e) => ((GradualColorPicker)d).SetupColors()));
+                (d, _) => ((GradualColorPicker)d).SetupColors()));
 
         public Color CurrentColor
         {
@@ -65,7 +65,7 @@ namespace ColorPicker
                 color2 = brightness < 0.5 ? new HsvColor(color1.H, 0, 1) : new HsvColor(color1.H, 0, 0);
             }
 
-            var count = Count;
+            var count = StepCount;
 
             var colors = new Color[count + 1];
             for (int idx = 0; idx <= count; idx++)

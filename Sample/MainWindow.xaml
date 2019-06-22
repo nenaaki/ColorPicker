@@ -26,8 +26,8 @@
             <Border Background="Black">
                 <TextBlock Foreground="White" FontWeight="Bold">最近使った色</TextBlock>
             </Border>
-            <cp:SimpleColorPicker Width="192" ItemsSource="{Binding BaseColors,Mode=OneTime}" SelectedItem="{Binding Path=CurrentColor}" />
+            <cp:SimpleColorPicker Width="192" ItemsSource="{Binding BaseColors,Mode=OneTime}" CurrentColor="{Binding Path=CurrentColor}"/>
         </StackPanel>
-        <cp:GradualColorPicker BaseColor="Red" Count="12" CurrentColor="{Binding Path=CurrentColor}"></cp:GradualColorPicker>
+        <cp:GradualColorPicker BaseColor="Red" StepCount="12" CurrentColor="{Binding Path=CurrentColor}"></cp:GradualColorPicker>
     </StackPanel>
 </Window>
