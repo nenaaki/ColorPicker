@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -37,15 +38,15 @@ namespace ColorPicker
                 new FrameworkPropertyMetadata(Colors.Transparent,
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
-        public Color[] BaseColors
+        public IList<Color> BaseColors
         {
-            get => (Color[])GetValue(BaseColorsProperty);
+            get => (IList<Color>)GetValue(BaseColorsProperty);
             set => SetValue(BaseColorsProperty, value);
         }
         public static readonly DependencyProperty BaseColorsProperty =
-            DependencyProperty.Register(nameof(BaseColors), typeof(Color[]), typeof(GradualColorPickerSlot),
+            DependencyProperty.Register(nameof(BaseColors), typeof(IList<Color>), typeof(GradualColorPickerSlot),
                 new FrameworkPropertyMetadata(null,
-                (d, e) => { ((GradualColorPickerSlot)d).ItemsSource = e.NewValue as Color[]; }));
+                (d, e) => { ((GradualColorPickerSlot)d).ItemsSource = e.NewValue as IList<Color>; }));
 
         public GradualColorPickerSlot()
         {

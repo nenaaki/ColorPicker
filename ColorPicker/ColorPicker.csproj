@@ -54,11 +54,17 @@
     <Compile Include="ColorItem.cs" />
     <Compile Include="ColorItemBase.cs" />
     <Compile Include="ColorPickerBase.cs" />
+    <Compile Include="ColorPickerControl.xaml.cs">
+      <DependentUpon>ColorPickerControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ColorPickerUtils.cs" />
     <Compile Include="ColorToBrushConverter.cs" />
     <Compile Include="ContentBase.cs" />
     <Compile Include="GradualColorPicker.xaml.cs">
       <DependentUpon>GradualColorPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GradualColorPickerMultiSlot.xaml.cs">
+      <DependentUpon>GradualColorPickerMultiSlot.xaml</DependentUpon>
     </Compile>
     <Compile Include="GradualColorPickerSlot.xaml.cs">
       <DependentUpon>GradualColorPickerSlot.xaml</DependentUpon>
@@ -104,9 +110,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ColorPickerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GradualColorPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GradualColorPickerMultiSlot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GradualColorPickerSlot.xaml">
       <Generator>MSBuild:Compile</Generator>

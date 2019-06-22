@@ -21,7 +21,11 @@ namespace Sample
 
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-        public Color[] BaseColors => new Color[] { Colors.White, Colors.Black, Colors.Red, Colors.Blue, Colors.Green, Colors.LightGreen, Colors.Pink, Colors.SkyBlue };
+        public Color[] BaseColors => new Color[]
+        {
+            Colors.White, Colors.Black, Colors.Red, Colors.Blue, Colors.Green, Colors.LightGreen,
+            Colors.Pink, Colors.SkyBlue, Colors.Azure, Colors.BlueViolet
+        };
 
         private Color _baseColor = Colors.Green;
         public Color BaseColor
