@@ -10,27 +10,32 @@ namespace ColorPicker
     /// <summary>
     /// RingColorPicker.xaml の相互作用ロジック
     /// </summary>
-    public partial class RingColorPicker : ColorPickerBase
+    public partial class RingColorPicker : HsvColorPickerBase
     {
         private const int CANVAS_WIDTH = 128;
         private const int CANVAS_HEIGHT = 128;
+        private const double RING_THICKNESS = 10;
 
         private readonly SolidColorBrush _brush = new SolidColorBrush();
+
+        private static BitmapSource _colorMap;
 
         public RingColorPicker()
         {
             InitializeComponent();
 
-            Ring.Source = MakeHueRountRect(CANVAS_WIDTH, CANVAS_HEIGHT);
+            if (_colorMap == null)
+                _colorMap = MakeHueRountRect(CANVAS_WIDTH, CANVAS_HEIGHT);
+
+            Ring.Source = _colorMap;
             Pointer.Fill = _brush;
 
-            double ringWidth = 10;
             var pg = new PathGeometry();
             pg.AddGeometry(new EllipseGeometry(new Rect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)));
             double xCenter = CANVAS_WIDTH / 2.0;
             double yCenter = CANVAS_HEIGHT / 2.0;
-            double xRadius = xCenter - ringWidth;
-            double yRadius = yCenter - ringWidth;
+            double xRadius = xCenter - RING_THICKNESS;
+            double yRadius = yCenter - RING_THICKNESS;
             pg.AddGeometry(new EllipseGeometry(new Point(xCenter, yCenter), xRadius, yRadius));
 
             Ring.Clip = pg;
@@ -67,6 +72,9 @@ namespace ColorPicker
             CurrentColor = HsvColor.ToRgb(radian, Saturation, Brightness);
         }
 
+        /// <summary>
+        /// 色相環のBitmapを生成します。
+        /// </summary>
         private BitmapSource MakeHueRountRect(int width, int height)
         {
             var wb = new WriteableBitmap(width, height, 96, 96, PixelFormats.Rgb24, null);

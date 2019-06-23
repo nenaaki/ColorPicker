@@ -5,10 +5,19 @@ namespace ColorPicker
 {
     public readonly struct HsvColor
     {
+        /// <summary>
+        /// 色相
+        /// </summary>
         public readonly double H;
 
+        /// <summary>
+        /// 彩度(0-1)
+        /// </summary>
         public readonly double S;
 
+        /// <summary>
+        /// 明度(0-1)
+        /// </summary>
         public readonly double V;
 
         public HsvColor(double hue, double saturation, double brightness)

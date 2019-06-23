@@ -4,7 +4,7 @@ using System.Windows.Media;
 
 namespace ColorPicker
 {
-    public abstract class ColorPickerBase : UserControl
+    public abstract class HsvColorPickerBase : UserControl
     {
         public double Hue
         {
@@ -12,8 +12,8 @@ namespace ColorPicker
             set { SetValue(HueProperty, value); }
         }
         public static readonly DependencyProperty HueProperty
-            = DependencyProperty.Register(nameof(Hue), typeof(double), typeof(ColorPickerBase), new PropertyMetadata((double)0,
-            (d, e) => ((ColorPickerBase)d).SyncColor(false)));
+            = DependencyProperty.Register(nameof(Hue), typeof(double), typeof(HsvColorPickerBase), new PropertyMetadata((double)0,
+            (d, e) => ((HsvColorPickerBase)d).SyncColor(false)));
 
         public double Saturation
         {
@@ -21,8 +21,8 @@ namespace ColorPicker
             set { SetValue(SaturationProperty, value); }
         }
         public static readonly DependencyProperty SaturationProperty
-            = DependencyProperty.Register(nameof(Saturation), typeof(double), typeof(ColorPickerBase), new PropertyMetadata((double)1.0,
-            (d, e) => ((ColorPickerBase)d).SyncColor(false)));
+            = DependencyProperty.Register(nameof(Saturation), typeof(double), typeof(HsvColorPickerBase), new PropertyMetadata((double)1.0,
+            (d, e) => ((HsvColorPickerBase)d).SyncColor(false)));
 
         public double Brightness
         {
@@ -30,8 +30,8 @@ namespace ColorPicker
             set { SetValue(BrightnessProperty, value); }
         }
         public static readonly DependencyProperty BrightnessProperty
-            = DependencyProperty.Register(nameof(Brightness), typeof(double), typeof(ColorPickerBase), new PropertyMetadata((double)1.0,
-            (d, e) => ((ColorPickerBase)d).SyncColor(false)));
+            = DependencyProperty.Register(nameof(Brightness), typeof(double), typeof(HsvColorPickerBase), new PropertyMetadata((double)1.0,
+            (d, e) => ((HsvColorPickerBase)d).SyncColor(false)));
 
         public Color BaseColor
         {
@@ -39,8 +39,8 @@ namespace ColorPicker
             set { SetValue(BaseColorProperty, value); }
         }
         public static readonly DependencyProperty BaseColorProperty
-            = DependencyProperty.Register(nameof(BaseColor), typeof(Color), typeof(ColorPickerBase), new PropertyMetadata(Colors.Red,
-            (d, e) => ((ColorPickerBase)d).SyncColor(true)));
+            = DependencyProperty.Register(nameof(BaseColor), typeof(Color), typeof(HsvColorPickerBase), new PropertyMetadata(Colors.Red,
+            (d, e) => ((HsvColorPickerBase)d).SyncColor(true)));
 
         public Color CurrentColor
         {
@@ -48,10 +48,15 @@ namespace ColorPicker
             set { SetValue(CurrentColorProperty, value); }
         }
         public static readonly DependencyProperty CurrentColorProperty
-            = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(ColorPickerBase), new FrameworkPropertyMetadata(Colors.Red,
+            = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(HsvColorPickerBase), new FrameworkPropertyMetadata(Colors.Red,
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
-            (d, e) => ((ColorPickerBase)d).SyncColor(true)));
+            (d, e) => ((HsvColorPickerBase)d).SyncColor(true)));
 
         protected abstract void SyncColor(bool colorChanged);
+
+        private void SyncBaseColor(bool colorChanged)
+        {
+
+        }
     }
 }

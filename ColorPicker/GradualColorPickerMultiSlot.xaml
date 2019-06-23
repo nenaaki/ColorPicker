@@ -7,7 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    BorderThickness="0"
     mc:Ignorable="d">
+    <ListBox.ItemContainerStyle>
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Padding" Value="-1"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+    </ListBox.ItemContainerStyle>
     <ListBox.ItemTemplate>
         <DataTemplate>
             <StackPanel Orientation="Horizontal">
@@ -18,7 +26,6 @@
                 <Rectangle
                     Width="16"
                     Height="16"/>
-
             </StackPanel>
         </DataTemplate>
     </ListBox.ItemTemplate>

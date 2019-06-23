@@ -10,12 +10,12 @@ namespace ColorPicker
     /// <summary>
     /// TriangleColorPicker.xaml の相互作用ロジック
     /// </summary>
-    public partial class TriangleColorPicker : ColorPickerBase
+    public partial class TriangleColorPicker : HsvColorPickerBase
     {
         private readonly SolidColorBrush _brush = new SolidColorBrush();
         private readonly SolidColorBrush _brushBaseColor = new SolidColorBrush();
 
-        private bool _colorUpdating;
+        private Updater _colorUpdater = new Updater();
 
         public TriangleColorPicker()
         {
@@ -75,7 +75,7 @@ namespace ColorPicker
 
         private Point ToLocation(double width, double height, Color color)
         {
-            HsvColor hsvColor = HsvColor.FromColor(color);
+            var hsvColor = HsvColor.FromColor(color);
             var s = hsvColor.S;
             var v = hsvColor.V;
 
@@ -111,12 +111,8 @@ namespace ColorPicker
 
         protected override void SyncColor(bool currentChanged)
         {
-            if (_colorUpdating)
-                return;
-
-            try
+            _colorUpdater.Update(() =>
             {
-                _colorUpdating = true;
                 if (currentChanged)
                 {
                     var color = HsvColor.FromColor(CurrentColor);
@@ -131,7 +127,7 @@ namespace ColorPicker
                     CurrentColor = new HsvColor((float)Hue, (float)Saturation, (float)Brightness).ToRgb();
                 }
                 BaseColor = new HsvColor((float)Hue, 1.0f, 1.0f).ToRgb();
-                var saturation = Saturation;
+                double saturation = Saturation;
 
                 var location = ToLocation(_canvas.ActualWidth, _canvas.ActualHeight, CurrentColor);
 
@@ -139,11 +135,7 @@ namespace ColorPicker
                 Canvas.SetTop(Current, location.Y - 8.0);
                 _brush.Color = CurrentColor;
                 _brushBaseColor.Color = BaseColor;
-            }
-            finally
-            {
-                _colorUpdating = false;
-            }
+            });
         }
     }
 }

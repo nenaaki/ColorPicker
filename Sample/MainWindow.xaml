@@ -11,6 +11,7 @@
     Height="450"
     mc:Ignorable="d">
     <StackPanel Orientation="Horizontal">
+        <cp:ColorPickerControl CurrentColor="{Binding Path=CurrentColor}"/>
         <cp:HexColorPicker
             Width="256"
             Height="256"

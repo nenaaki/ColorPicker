@@ -53,7 +53,7 @@
   <ItemGroup>
     <Compile Include="ColorItem.cs" />
     <Compile Include="ColorItemBase.cs" />
-    <Compile Include="ColorPickerBase.cs" />
+    <Compile Include="HsvColorPickerBase.cs" />
     <Compile Include="ColorPickerControl.xaml.cs">
       <DependentUpon>ColorPickerControl.xaml</DependentUpon>
     </Compile>
@@ -99,6 +99,7 @@
     <Compile Include="TriangleColorPicker.xaml.cs">
       <DependentUpon>TriangleColorPicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Updater.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

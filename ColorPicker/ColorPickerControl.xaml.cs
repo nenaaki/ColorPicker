@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ColorPicker
 {
@@ -20,6 +9,28 @@ namespace ColorPicker
     /// </summary>
     public partial class ColorPickerControl : UserControl
     {
+        public Color BaseColor
+        {
+            get { return (Color)GetValue(BaseColorProperty); }
+            set { SetValue(BaseColorProperty, value); }
+        }
+        public static readonly DependencyProperty BaseColorProperty
+            = DependencyProperty.Register(nameof(BaseColor), typeof(Color), typeof(ColorPickerControl),
+            new FrameworkPropertyMetadata(Colors.Transparent,
+            FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+            (d, e) =>{ }));
+
+
+        public Color CurrentColor
+        {
+            get { return (Color)GetValue(CurrentColorProperty); }
+            set { SetValue(CurrentColorProperty, value); }
+        }
+        public static readonly DependencyProperty CurrentColorProperty
+            = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(ColorPickerControl),
+            new FrameworkPropertyMetadata(Colors.Transparent,
+            FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
         public ColorPickerControl()
         {
             InitializeComponent();
