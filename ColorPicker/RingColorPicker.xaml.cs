@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Input;
 
 namespace ColorPicker
 {
@@ -15,6 +15,8 @@ namespace ColorPicker
         private const int CANVAS_WIDTH = 128;
         private const int CANVAS_HEIGHT = 128;
         private const double RING_THICKNESS = 10;
+        private const double X_CENTER = CANVAS_WIDTH / 2.0;
+        private const double Y_CENTER = CANVAS_HEIGHT / 2.0;
 
         private readonly SolidColorBrush _brush = new SolidColorBrush();
 
@@ -39,7 +41,7 @@ namespace ColorPicker
             pg.AddGeometry(new EllipseGeometry(new Point(xCenter, yCenter), xRadius, yRadius));
 
             Ring.Clip = pg;
-            SyncColor(true);
+            SyncColor(null);
 
             MouseDown += RingColorPicker_MouseDown;
             MouseMove += RingColorPicker_MouseMove;
@@ -49,28 +51,29 @@ namespace ColorPicker
         private void RingColorPicker_MouseUp(object sender, MouseButtonEventArgs e)
         {
             ReleaseMouseCapture();
-        } 
+        }
 
         private void RingColorPicker_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton != MouseButtonState.Pressed)
                 return;
 
-            UpdateColor(e.GetPosition(_canvas));
+            UpdateHue(e.GetPosition(_canvas));
         }
 
         private void RingColorPicker_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            UpdateColor(e.GetPosition(_canvas));
+            UpdateHue(e.GetPosition(_canvas));
 
             CaptureMouse();
         }
 
-        private void UpdateColor(Point position)
-        {
-            var radian = -Math.Atan2(position.X - _canvas.ActualWidth / 2, position.Y - _canvas.ActualHeight / 2) + Math.PI / 2;
-            CurrentColor = HsvColor.ToRgb(radian, Saturation, Brightness);
-        }
+        /// <summary>
+        /// 色相を更新します。
+        /// </summary>
+        /// <param name="position"></param>
+        private void UpdateHue(Point position)
+            => Hue = Math.PI / 2 - Math.Atan2(position.X - _canvas.ActualWidth / 2, position.Y - _canvas.ActualHeight / 2);
 
         /// <summary>
         /// 色相環のBitmapを生成します。
@@ -99,41 +102,16 @@ namespace ColorPicker
             return wb;
         }
 
-        private bool _colorUpdating;
+        private Updater _colorUpdater;
 
-        protected override void SyncColor(bool currentChanged)
+        protected override void SyncColorCore(string propertyName)
         {
-            if (_colorUpdating)
-                return;
-
-            double xCenter = CANVAS_WIDTH / 2.0;
-            double yCenter = CANVAS_HEIGHT / 2.0;
-
-            try
+            _colorUpdater.Update(() =>
             {
-                _colorUpdating = true;
-                if (currentChanged)
-                {
-                    var color = HsvColor.FromColor(CurrentColor);
-                    if (color.S > 0)
-                        Hue = color.H;
-
-                    Saturation = color.S;
-                    Brightness = color.V;
-                    BaseColor = new HsvColor((float)Hue, 1.0f, 1.0f).ToRgb();
-                }
-                else
-                {
-                    BaseColor = new HsvColor((float)Hue, (float)Saturation, (float)Brightness).ToRgb();
-                }
-                Canvas.SetLeft(Current, (Math.Cos(Hue) * 0.92 + 1.0) * xCenter - 8.0);
-                Canvas.SetTop(Current, (Math.Sin(Hue) * 0.92 + 1.0) * yCenter - 8.0);
+                Canvas.SetLeft(Current, (Math.Cos(Hue) * 0.92 + 1.0) * X_CENTER - 8.0);
+                Canvas.SetTop(Current, (Math.Sin(Hue) * 0.92 + 1.0) * Y_CENTER - 8.0);
                 _brush.Color = BaseColor;
-            }
-            finally
-            {
-                _colorUpdating = false;
-            }
+            });
         }
     }
 }

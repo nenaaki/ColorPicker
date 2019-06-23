@@ -11,52 +11,136 @@
     Height="450"
     mc:Ignorable="d">
     <StackPanel Orientation="Horizontal">
-        <cp:ColorPickerControl CurrentColor="{Binding Path=CurrentColor}"/>
-        <cp:HexColorPicker
-            Width="256"
-            Height="256"
-            CurrentColor="{Binding Path=CurrentColor}" />
-        <Grid VerticalAlignment="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <cp:RingColorPicker
-                Width="192"
-                Height="192"
-                BaseColor="{Binding BaseColor, Mode=OneWayToSource}"
-                CurrentColor="{Binding Path=CurrentColor}" />
-            <cp:TriangleColorPicker
-                Width="128"
-                Height="128"
-                Margin="32,0,0,0"
+        <ComboBox
+            Width="100"
+            Height="24"
+            VerticalAlignment="Top"
+            Background="White"
+            BorderBrush="DarkGray"
+            ItemsSource="{Binding BaseColors}">
+            <ComboBox.Style>
+                <Style>
+                    <Setter Property="UIElement.SnapsToDevicePixels" Value="True" />
+                    <Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True" />
+                    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+                    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+                    <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+                    <Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}" />
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ComboBox}">
+                                <Grid>
+                                    <ToggleButton
+                                        x:Name="ToggleButton"
+                                        Grid.Column="2"
+                                        ClickMode="Press"
+                                        Focusable="False"
+                                        IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
+
+                                    <ContentPresenter
+                                        x:Name="ContentSite"
+                                        Margin="5,3,23,3"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Content="{TemplateBinding SelectionBoxItem}"
+                                        ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                        ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                        IsHitTestVisible="False" />
+
+                                    <TextBox
+                                        x:Name="PART_EditableTextBox"
+                                        Margin="3,3,23,3"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Background="Transparent"
+                                        Focusable="{Binding Focusable, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ComboBox}}}"
+                                        Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ComboBox}}}"
+                                        IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ComboBox}}}"
+                                        Visibility="Hidden">
+
+                                        <TextBox.Template>
+                                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                                <Border x:Name="PART_ContentHost" Focusable="{Binding Focusable, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ComboBox}}}" />
+                                            </ControlTemplate>
+                                        </TextBox.Template>
+                                    </TextBox>
+                                    <!--  Popup showing items  -->
+                                    <Popup
+                                        x:Name="Popup"
+                                        AllowsTransparency="True"
+                                        Focusable="False"
+                                        IsOpen="{TemplateBinding IsDropDownOpen}"
+                                        Placement="Bottom"
+                                        PopupAnimation="Slide" />
+                                </Grid>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="TextElement.Foreground" Value="Gray" />
+                                    </Trigger>
+                                    <Trigger Property="IsGrouping" Value="True">
+                                        <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+                                    </Trigger>
+                                    <Trigger Property="IsEditable" Value="True">
+                                        <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+                                        <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
+                                        <Setter TargetName="ContentSite" Property="Visibility" Value="Hidden" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ComboBox.Style>
+        </ComboBox>
+        <cp:ColorPickerControl CurrentColor="{Binding CurrentColor}" />
+        <StackPanel Visibility="Collapsed">
+            <cp:HexColorPicker
+                Width="256"
+                Height="256"
                 CurrentColor="{Binding CurrentColor}" />
-            <cp:RgbEditor Grid.Row="1" CurrentColor="{Binding Path=CurrentColor}" />
-        </Grid>
-        <StackPanel Orientation="Vertical">
-            <Border Background="Black">
-                <TextBlock FontWeight="Bold" Foreground="White">基本色</TextBlock>
-            </Border>
-            <cp:GradualColorPickerMultiSlot
-                Name="_multiSlot"
-                BaseColors="{Binding Path=BaseColors, Mode=OneTime}"
-                CurrentColor="{Binding Path=CurrentColor}"
-                GroupLength="8" />
-            <Border Background="Black">
-                <TextBlock FontWeight="Bold" Foreground="White">拡張</TextBlock>
-            </Border>
-            <cp:GradualColorPickerSlot BaseColors="{Binding SelectedItem, ElementName=_multiSlot}" CurrentColor="{Binding Path=CurrentColor}" />
-            <Border Background="Black">
-                <TextBlock FontWeight="Bold" Foreground="White">最近使った色</TextBlock>
-            </Border>
-            <cp:SimpleColorPicker
-                Width="192"
-                CurrentColor="{Binding Path=CurrentColor}"
-                ItemsSource="{Binding Path=BaseColors, Mode=OneTime}" />
+            <Grid VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <cp:RingColorPicker
+                    Width="192"
+                    Height="192"
+                    BaseColor="{Binding BaseColor, Mode=OneWayToSource}"
+                    CurrentColor="{Binding CurrentColor}" />
+                <cp:TriangleColorPicker
+                    Width="128"
+                    Height="128"
+                    Margin="32,0,0,0"
+                    CurrentColor="{Binding CurrentColor}" />
+                <cp:RgbEditor Grid.Row="1" CurrentColor="{Binding CurrentColor}" />
+            </Grid>
+            <StackPanel Orientation="Vertical">
+                <Border Background="Black">
+                    <TextBlock FontWeight="Bold" Foreground="White"><Run Text="基本色" /></TextBlock>
+                </Border>
+                <cp:GradualColorPickerMultiSlot
+                    x:Name="_multiSlot"
+                    BaseColors="{Binding BaseColors, Mode=OneTime}"
+                    CurrentColor="{Binding CurrentColor}"
+                    GroupLength="8" />
+                <Border Background="Black">
+                    <TextBlock FontWeight="Bold" Foreground="White"><Run Text="拡張" /></TextBlock>
+                </Border>
+                <cp:GradualColorPickerSlot BaseColors="{Binding SelectedItem, ElementName=_multiSlot}" CurrentColor="{Binding CurrentColor}" />
+                <Border Background="Black">
+                    <TextBlock FontWeight="Bold" Foreground="White"><Run Text="最近使った色" /></TextBlock>
+                </Border>
+                <cp:SimpleColorPicker
+                    Width="192"
+                    CurrentColor="{Binding CurrentColor}"
+                    ItemsSource="{Binding BaseColors, Mode=OneTime}" />
+            </StackPanel>
+            <cp:GradualColorPicker
+                BaseColor="Red"
+                CurrentColor="{Binding CurrentColor}"
+                StepCount="12" />
         </StackPanel>
-        <cp:GradualColorPicker
-            BaseColor="Red"
-            CurrentColor="{Binding Path=CurrentColor}"
-            StepCount="12" />
     </StackPanel>
 </Window>

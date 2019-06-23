@@ -24,7 +24,7 @@ namespace ColorPicker
             Pointer.Fill = _brush;
             _baseColor.Fill = _brushBaseColor;
 
-            SyncColor(true);
+            SyncColor(null);
             MouseDown += TriangleColorPicker_MouseDown;
             MouseMove += TriangleColorPicker_MouseMove;
             MouseUp += TriangleColorPicker_MouseUp;
@@ -109,26 +109,10 @@ namespace ColorPicker
             return wb;
         }
 
-        protected override void SyncColor(bool currentChanged)
+        protected override void SyncColorCore(string propertyName)
         {
             _colorUpdater.Update(() =>
             {
-                if (currentChanged)
-                {
-                    var color = HsvColor.FromColor(CurrentColor);
-                    if (color.S > 0)
-                        Hue = color.H;
-
-                    Saturation = color.S;
-                    Brightness = color.V;
-                }
-                else
-                {
-                    CurrentColor = new HsvColor((float)Hue, (float)Saturation, (float)Brightness).ToRgb();
-                }
-                BaseColor = new HsvColor((float)Hue, 1.0f, 1.0f).ToRgb();
-                double saturation = Saturation;
-
                 var location = ToLocation(_canvas.ActualWidth, _canvas.ActualHeight, CurrentColor);
 
                 Canvas.SetLeft(Current, location.X - 8.0);

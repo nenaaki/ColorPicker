@@ -10,52 +10,62 @@
     mc:Ignorable="d">
     <StackPanel Orientation="Horizontal">
         <StackPanel Orientation="Vertical">
-            <Border Background="Black">
-                <TextBlock FontWeight="Bold" Foreground="White">基本色</TextBlock>
+            <Grid Margin="1">
+                <local:ColorItem Value="White" />
+                <TextBlock IsHitTestVisible="False" HorizontalAlignment="Center">指定なし</TextBlock>
+            </Grid>
+            <Border Margin="1" Background="LightGray">
+                <TextBlock FontWeight="Bold" Foreground="Black">基本色</TextBlock>
             </Border>
             <local:GradualColorPickerMultiSlot
                 x:Name="_multiSlot"
+                Margin="1"
                 BaseColors="{Binding Path=BaseColors, Mode=OneTime}"
                 CurrentColor="{Binding Path=CurrentColor}"
                 GroupLength="8" />
-            <Border Background="Black">
-                <TextBlock FontWeight="Bold" Foreground="White">拡張</TextBlock>
+            <Border Background="LightGray" Margin="1">
+                <TextBlock FontWeight="Bold" Foreground="Black">拡張</TextBlock>
             </Border>
-            <local:GradualColorPickerSlot BaseColors="{Binding SelectedItem, ElementName=_multiSlot}" CurrentColor="{Binding Path=CurrentColor}" />
-            <Border Background="Black">
-                <TextBlock FontWeight="Bold" Foreground="White">最近使った色</TextBlock>
+            <local:GradualColorPickerSlot Margin="1" BaseColors="{Binding SelectedItem, ElementName=_multiSlot}" CurrentColor="{Binding Path=CurrentColor}" />
+            <Border Background="LightGray" Margin="1">
+                <TextBlock FontWeight="Bold" Foreground="Black">最近使った色</TextBlock>
             </Border>
             <local:SimpleColorPicker
-                Width="192"
+                Width="128"
+                Margin="1"
                 CurrentColor="{Binding Path=CurrentColor}"
                 ItemsSource="{Binding Path=BaseColors, Mode=OneTime}" />
+            <ToggleButton Margin="1">詳細</ToggleButton>
         </StackPanel>
-        <TabControl Background="Transparent">
-            <TabItem Header="代表色">
-                <local:HexColorPicker
+        <StackPanel Orientation="Vertical">
+            <TabControl Background="Transparent">
+                <TabItem Header="基本色">
+                    <local:HexColorPicker
+                    Margin="8"
+                    VerticalAlignment="Top"
                     Width="192"
                     Height="192"
                     CurrentColor="{Binding Path=CurrentColor}" />
-            </TabItem>
-            <TabItem Header="詳細">
-                <Grid VerticalAlignment="Center">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <local:RingColorPicker
+                </TabItem>
+                <TabItem Header="詳細">
+                    <Grid>
+                        <local:RingColorPicker
+                        Margin="8"
+                        x:Name="_ring"
                         Width="192"
                         Height="192"
                         BaseColor="{Binding BaseColor, Mode=OneWayToSource}"
                         CurrentColor="{Binding Path=CurrentColor}" />
-                    <local:TriangleColorPicker
+                        <local:TriangleColorPicker
                         Width="128"
                         Height="128"
                         Margin="32,0,0,0"
+                        Hue="{Binding Path=Hue,ElementName=_ring}"
                         CurrentColor="{Binding CurrentColor}" />
-                    <local:RgbEditor Grid.Row="1" CurrentColor="{Binding Path=CurrentColor}" />
-                </Grid>
-            </TabItem>
-        </TabControl>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+            <local:RgbEditor CurrentColor="{Binding Path=CurrentColor}" />
+        </StackPanel>
     </StackPanel>
 </UserControl>

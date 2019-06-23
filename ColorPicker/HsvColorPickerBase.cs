@@ -12,8 +12,8 @@ namespace ColorPicker
             set { SetValue(HueProperty, value); }
         }
         public static readonly DependencyProperty HueProperty
-            = DependencyProperty.Register(nameof(Hue), typeof(double), typeof(HsvColorPickerBase), new PropertyMetadata((double)0,
-            (d, e) => ((HsvColorPickerBase)d).SyncColor(false)));
+            = DependencyProperty.Register(nameof(Hue), typeof(double), typeof(HsvColorPickerBase), new PropertyMetadata(0.0,
+            (d, e) => ((HsvColorPickerBase)d).SyncColor(e.Property.Name)));
 
         public double Saturation
         {
@@ -21,8 +21,8 @@ namespace ColorPicker
             set { SetValue(SaturationProperty, value); }
         }
         public static readonly DependencyProperty SaturationProperty
-            = DependencyProperty.Register(nameof(Saturation), typeof(double), typeof(HsvColorPickerBase), new PropertyMetadata((double)1.0,
-            (d, e) => ((HsvColorPickerBase)d).SyncColor(false)));
+            = DependencyProperty.Register(nameof(Saturation), typeof(double), typeof(HsvColorPickerBase), new PropertyMetadata(1.0,
+            (d, e) => ((HsvColorPickerBase)d).SyncColor(e.Property.Name)));
 
         public double Brightness
         {
@@ -30,8 +30,8 @@ namespace ColorPicker
             set { SetValue(BrightnessProperty, value); }
         }
         public static readonly DependencyProperty BrightnessProperty
-            = DependencyProperty.Register(nameof(Brightness), typeof(double), typeof(HsvColorPickerBase), new PropertyMetadata((double)1.0,
-            (d, e) => ((HsvColorPickerBase)d).SyncColor(false)));
+            = DependencyProperty.Register(nameof(Brightness), typeof(double), typeof(HsvColorPickerBase), new PropertyMetadata(1.0,
+            (d, e) => ((HsvColorPickerBase)d).SyncColor(e.Property.Name)));
 
         public Color BaseColor
         {
@@ -40,7 +40,7 @@ namespace ColorPicker
         }
         public static readonly DependencyProperty BaseColorProperty
             = DependencyProperty.Register(nameof(BaseColor), typeof(Color), typeof(HsvColorPickerBase), new PropertyMetadata(Colors.Red,
-            (d, e) => ((HsvColorPickerBase)d).SyncColor(true)));
+            (d, e) => ((HsvColorPickerBase)d).SyncColor(e.Property.Name)));
 
         public Color CurrentColor
         {
@@ -50,13 +50,43 @@ namespace ColorPicker
         public static readonly DependencyProperty CurrentColorProperty
             = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(HsvColorPickerBase), new FrameworkPropertyMetadata(Colors.Red,
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
-            (d, e) => ((HsvColorPickerBase)d).SyncColor(true)));
+            (d, e) => ((HsvColorPickerBase)d).SyncColor(e.Property.Name)));
 
-        protected abstract void SyncColor(bool colorChanged);
 
-        private void SyncBaseColor(bool colorChanged)
+        private Updater _colorUpdater;
+        protected void SyncColor(string propertyName)
         {
+            _colorUpdater.Update(() =>
+            {
+                switch (propertyName)
+                {
+                    case nameof(Hue):
+                    case nameof(Saturation):
+                    case nameof(Brightness):
+                        BaseColor = new HsvColor(Hue, 1.0, 1.0).ToRgb();
+                        CurrentColor = new HsvColor(Hue, Saturation, Brightness).ToRgb();
+                        break;
 
+                    case nameof(BaseColor):
+                        Hue = HsvColor.FromColor(BaseColor).H;
+                        CurrentColor = new HsvColor(Hue, Saturation, Brightness).ToRgb();
+                        break;
+
+                    case nameof(CurrentColor):
+                        var hsvColor = HsvColor.FromColor(CurrentColor);
+                        Saturation = hsvColor.S;
+                        Brightness = hsvColor.V;
+                        if (hsvColor.S > 0.01)
+                        {
+                            Hue = hsvColor.H;
+                            BaseColor = new HsvColor(Hue, 1.0, 1.0).ToRgb();
+                        }
+                        break;
+                }
+                SyncColorCore(propertyName);
+            });
         }
+
+        protected abstract void SyncColorCore(string propertyName);
     }
 }

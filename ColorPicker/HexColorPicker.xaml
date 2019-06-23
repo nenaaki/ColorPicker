@@ -10,7 +10,7 @@
     <Viewbox Stretch="Uniform" StretchDirection="Both">
         <Canvas
             Name="canvas"
-            Width="256"
-            Height="256" />
+            Width="224"
+            Height="224" />
     </Viewbox>
 </UserControl>

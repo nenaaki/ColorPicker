@@ -18,7 +18,7 @@ namespace ColorPicker
             = DependencyProperty.Register(nameof(BaseColor), typeof(Color), typeof(ColorPickerControl),
             new FrameworkPropertyMetadata(Colors.Transparent,
             FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
-            (d, e) =>{ }));
+            (d, e) => { }));
 
 
         public Color CurrentColor

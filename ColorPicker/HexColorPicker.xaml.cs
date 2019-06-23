@@ -46,8 +46,8 @@ namespace ColorPicker
                 {
                     for (int h2 = 0; h2 < s || h1 == 0 && s == 0 && h2 == 0; h2++)
                     {
-                        double cx = 128 + s * sx + h2 * h2x;
-                        double cy = 128 + s * sy + h2 * h2y;
+                        double cx = 112 + s * sx + h2 * h2x;
+                        double cy = 112 + s * sy + h2 * h2y;
 
                         var item = new HexColorItem { Value = HsvColor.ToRgb((float)((h1 + h2 / (double)s) * Math.PI / 3), s / 6.0f, 1.0f) };
 
