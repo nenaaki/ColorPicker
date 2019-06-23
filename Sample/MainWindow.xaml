@@ -18,6 +18,10 @@
             Background="White"
             BorderBrush="DarkGray"
             ItemsSource="{Binding BaseColors}">
+            <ComboBox.Resources>
+                <Style TargetType="{x:Type Popup}">
+</Style>
+            </ComboBox.Resources>
             <ComboBox.Style>
                 <Style>
                     <Setter Property="UIElement.SnapsToDevicePixels" Value="True" />
@@ -71,7 +75,23 @@
                                         Focusable="False"
                                         IsOpen="{TemplateBinding IsDropDownOpen}"
                                         Placement="Bottom"
-                                        PopupAnimation="Slide" />
+                                        PopupAnimation="Slide">
+
+                                        <Border
+                                            x:Name="DropDownBorder"
+                                            Margin="0,1,0,0"
+                                            Padding="2"
+                                            Background="{Binding Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ComboBox}}}"
+                                            BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ComboBox}}}"
+                                            BorderThickness="1"
+                                            CornerRadius="0">
+                                            <cp:ColorPickerControl
+                                                CurrentColor="{TemplateBinding SelectedValue}"
+                                                DataContext="{Binding}"
+                                                SnapsToDevicePixels="False" />
+
+                                        </Border>
+                                    </Popup>
                                 </Grid>
 
                                 <ControlTemplate.Triggers>
