@@ -12,7 +12,7 @@
         <StackPanel Orientation="Vertical">
             <Grid Margin="1">
                 <local:ColorItem Value="White" />
-                <TextBlock IsHitTestVisible="False" HorizontalAlignment="Center">指定なし</TextBlock>
+                <TextBlock HorizontalAlignment="Center" IsHitTestVisible="False">指定なし</TextBlock>
             </Grid>
             <Border Margin="1" Background="LightGray">
                 <TextBlock FontWeight="Bold" Foreground="Black">基本色</TextBlock>
@@ -23,11 +23,14 @@
                 BaseColors="{Binding Path=BaseColors, Mode=OneTime}"
                 CurrentColor="{Binding Path=CurrentColor}"
                 GroupLength="8" />
-            <Border Background="LightGray" Margin="1">
+            <Border Margin="1" Background="LightGray">
                 <TextBlock FontWeight="Bold" Foreground="Black">拡張</TextBlock>
             </Border>
-            <local:GradualColorPickerSlot Margin="1" BaseColors="{Binding SelectedItem, ElementName=_multiSlot}" CurrentColor="{Binding Path=CurrentColor}" />
-            <Border Background="LightGray" Margin="1">
+            <local:GradualColorPickerSlot
+                Margin="1"
+                BaseColors="{Binding SelectedItem, ElementName=_multiSlot}"
+                CurrentColor="{Binding Path=CurrentColor}" />
+            <Border Margin="1" Background="LightGray">
                 <TextBlock FontWeight="Bold" Foreground="Black">最近使った色</TextBlock>
             </Border>
             <local:SimpleColorPicker
@@ -41,27 +44,27 @@
             <TabControl Background="Transparent">
                 <TabItem Header="基本色">
                     <local:HexColorPicker
-                    Margin="8"
-                    VerticalAlignment="Top"
-                    Width="192"
-                    Height="192"
-                    CurrentColor="{Binding Path=CurrentColor}" />
+                        Width="192"
+                        Height="192"
+                        Margin="8"
+                        VerticalAlignment="Top"
+                        CurrentColor="{Binding Path=CurrentColor}" />
                 </TabItem>
                 <TabItem Header="詳細">
                     <Grid>
                         <local:RingColorPicker
-                        Margin="8"
-                        x:Name="_ring"
-                        Width="192"
-                        Height="192"
-                        BaseColor="{Binding BaseColor, Mode=OneWayToSource}"
-                        CurrentColor="{Binding Path=CurrentColor}" />
+                            x:Name="_ring"
+                            Width="192"
+                            Height="192"
+                            Margin="8"
+                            BaseColor="{Binding BaseColor, Mode=OneWayToSource}"
+                            CurrentColor="{Binding Path=CurrentColor}" />
                         <local:TriangleColorPicker
-                        Width="128"
-                        Height="128"
-                        Margin="32,0,0,0"
-                        Hue="{Binding Path=Hue,ElementName=_ring}"
-                        CurrentColor="{Binding CurrentColor}" />
+                            Width="128"
+                            Height="128"
+                            Margin="32,0,0,0"
+                            CurrentColor="{Binding CurrentColor}"
+                            Hue="{Binding Path=Hue, ElementName=_ring}" />
                     </Grid>
                 </TabItem>
             </TabControl>

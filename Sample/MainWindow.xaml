@@ -71,6 +71,9 @@
                                         Focusable="False"
                                         IsOpen="{TemplateBinding IsDropDownOpen}"
                                         Placement="Bottom"
+                                        PlacementTarget="{Binding ElementName=PART_EditableTextBox}"
+                                        HorizontalOffset="100"
+                                        
                                         PopupAnimation="Slide">
 
                                         <Border

@@ -56,10 +56,12 @@ namespace ColorPicker
 
         private (double s, double v) ToSV(double width, double height, Point location)
         {
-            var s = Math.Max(0.0, Math.Min(1.0, location.X / width));
+            var x = Math.Max(0.0, Math.Min(1.0, location.X / width));
             var y = Math.Max(0.0, Math.Min(1.0, 1.0 - location.Y / height));
-            double v = s >= 1.0 ? 1.0 : Math.Max(0.0, Math.Min(1.0, (y - s / 2) / Math.Min(1.0, 1.0 - s)));
-            return (s, v);
+            if (y <= 0)
+                return (1.0, 0.0);
+
+            return (Math.Max(0.0, Math.Min(1.0, x / y)), y - x / 2);
         }
         private Color ToColor(double width, double height, Point location, Color baseColor)
         {
