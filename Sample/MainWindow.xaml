@@ -18,10 +18,6 @@
             Background="White"
             BorderBrush="DarkGray"
             ItemsSource="{Binding BaseColors}">
-            <ComboBox.Resources>
-                <Style TargetType="{x:Type Popup}">
-</Style>
-            </ComboBox.Resources>
             <ComboBox.Style>
                 <Style>
                     <Setter Property="UIElement.SnapsToDevicePixels" Value="True" />
