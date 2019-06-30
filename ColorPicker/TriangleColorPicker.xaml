@@ -17,9 +17,9 @@
                             <PathFigure
                             IsClosed="True"
                             IsFilled="True"
-                            StartPoint="0,0">
+                            StartPoint="0,100">
                                 <PathFigure.Segments>
-                                    <PolyLineSegment Points="100,50 0,100" />
+                                    <PolyLineSegment Points="0,0 100,50" />
                                 </PathFigure.Segments>
                             </PathFigure>
                         </PathGeometry.Figures>

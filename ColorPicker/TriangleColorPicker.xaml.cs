@@ -13,14 +13,23 @@ namespace ColorPicker
     public partial class TriangleColorPicker : HsvColorPickerBase
     {
         private readonly SolidColorBrush _brush = new SolidColorBrush();
-        private readonly SolidColorBrush _brushBaseColor = new SolidColorBrush();
+        private readonly LinearGradientBrush _brushBaseColor = new LinearGradientBrush()
+        {
+            StartPoint = new Point(0, 1),
+            EndPoint = new Point(0.4, 0.2),
+            GradientStops = new GradientStopCollection(new[]
+            {
+                new GradientStop(Colors.Black, 0),
+                new GradientStop(Colors.Transparent, 1.0), // MEMO : BaseColorを入れる
+            })
+        };
 
         private Updater _colorUpdater = new Updater();
 
         public TriangleColorPicker()
         {
             InitializeComponent();
-            _image.Source = MakeHueRountRect();
+            _image.Source = MakeSvRect();
             Pointer.Fill = _brush;
             _baseColor.Fill = _brushBaseColor;
 
@@ -51,28 +60,25 @@ namespace ColorPicker
 
         private void UpdateCurrentColorFromCanvas(Point position)
         {
-            CurrentColor = ToColor(_canvas.ActualWidth, _canvas.ActualHeight, position, BaseColor);
+            System.Diagnostics.Debug.WriteLine("P " + position.ToString());
+            CurrentColor = ToColor(100, 100, position, BaseColor);
         }
 
         private (double s, double v) ToSV(double width, double height, Point location)
         {
-            var x = Math.Max(0.0, Math.Min(1.0, location.X / width));
-            var y = Math.Max(0.0, Math.Min(1.0, 1.0 - location.Y / height));
-            if (y <= 0)
-                return (1.0, 0.0);
+            var x = location.X / width;
+            var y = location.Y / height;
 
-            return (Math.Max(0.0, Math.Min(1.0, x / y)), y - x / 2);
+            var v = Math.Max(0, Math.Min(1, (1 - y) + x / 2));
+            var s = Math.Max(0, Math.Min(1, y + x / 2));
+            return (s, v);
         }
+
         private Color ToColor(double width, double height, Point location, Color baseColor)
         {
             var (s, v) = ToSV(width, height, location);
 
-            var baseHsv = HsvColor.FromColor(baseColor);
-
-            return Color.FromScRgb(1.0f,
-                (float)(v * (1 - s) + baseColor.ScR * s),
-                (float)(v * (1 - s) + baseColor.ScG * s),
-                (float)(v * (1 - s) + baseColor.ScB * s));
+            return new HsvColor(HsvColor.FromColor(BaseColor).H, s, v).ToRgb();
         }
 
         private Point ToLocation(double width, double height, Color color)
@@ -82,12 +88,13 @@ namespace ColorPicker
             var v = hsvColor.V;
 
             double x = s * width * v;
-
             double y = (1.0 - Math.Max(0.0, Math.Min(1.0, v * (1.0 - s)))) * height - x / 2;
+
+            System.Diagnostics.Debug.WriteLine(new Point(x, y).ToString());
             return new Point(x, y);
         }
 
-        private BitmapSource MakeHueRountRect()
+        private BitmapSource MakeSvRect()
         {
             const int height = 128;
             const int width = 128;
@@ -115,12 +122,12 @@ namespace ColorPicker
         {
             _colorUpdater.Update(() =>
             {
-                var location = ToLocation(_canvas.ActualWidth, _canvas.ActualHeight, CurrentColor);
+                var location = ToLocation(100, 100, CurrentColor);
 
                 Canvas.SetLeft(Current, location.X - 8.0);
                 Canvas.SetTop(Current, location.Y - 8.0);
                 _brush.Color = CurrentColor;
-                _brushBaseColor.Color = BaseColor;
+                _brushBaseColor.GradientStops[1].Color = BaseColor;
             });
         }
     }
