@@ -76,7 +76,7 @@ namespace ColorPicker
                         var hsvColor = HsvColor.FromColor(CurrentColor);
                         Saturation = hsvColor.S;
                         Brightness = hsvColor.V;
-                        if (hsvColor.S > 0.01)
+                        if (!hsvColor.IsAchromatic())
                         {
                             Hue = hsvColor.H;
                             BaseColor = new HsvColor(Hue, 1.0, 1.0).ToRgb();

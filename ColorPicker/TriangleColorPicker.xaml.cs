@@ -76,8 +76,6 @@ namespace ColorPicker
             var hsvColor = HsvColor.FromColor(color);
             var s = hsvColor.S;
             var v = hsvColor.V;
-            if (s == 0 && v == 0)
-                s = 1.0;
 
             return new Point(
                 width * Math.Max(0, Math.Min(1, s - 1 + v)),

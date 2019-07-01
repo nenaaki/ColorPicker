@@ -40,7 +40,7 @@ namespace ColorPicker
             {
                 // 無彩色
                 hue = 0.0;
-                saturation = 0.0;
+                saturation = min == 0 ? 1.0 : 0.0;
             }
             else
             {
@@ -63,6 +63,8 @@ namespace ColorPicker
             }
             return new HsvColor(hue, saturation, max / 255.0);
         }
+
+        public bool IsAchromatic() => V + S <= 1.0;
 
         public static HsvColor Blend(in HsvColor color1, in HsvColor color2, double ratio)
         {

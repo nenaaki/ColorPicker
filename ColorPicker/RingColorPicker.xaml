@@ -13,7 +13,11 @@
                 <Canvas>
                     <Grid Name="Current" Width="16" Height="16">
                         <Ellipse Stroke="White"/>
-                        <Ellipse Margin="1" Stroke="Black" Name="Pointer"/>
+                        <Ellipse Margin="1" Stroke="Black">
+                            <Ellipse.Fill>
+                                <SolidColorBrush Color="{Binding Path=BaseColor,RelativeSource={RelativeSource AncestorType=local:RingColorPicker}}" />
+                            </Ellipse.Fill>
+                        </Ellipse>
                     </Grid>
                 </Canvas>
             </Grid>

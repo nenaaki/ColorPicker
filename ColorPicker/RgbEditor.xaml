@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ColorPicker"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Name="_this"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -21,38 +20,43 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid Margin="2">
             <TextBox
                 MinWidth="64"
                 HorizontalContentAlignment="Right"
-                Text="{Binding Path=Red, ElementName=_this}" />
+                Text="{Binding Path=Red, RelativeSource={RelativeSource AncestorType=UserControl}}" />
             <TextBlock
-                Margin="1"
+                MinWidth="12"
+                Margin="2"
+                HorizontalAlignment="Left"
+                Background="Red"
                 FontWeight="Bold"
-                Foreground="Red">
+                Foreground="White">
                 R
             </TextBlock>
-            <TextBlock FontWeight="Bold" Foreground="Pink">R</TextBlock>
         </Grid>
         <Slider
             Grid.Column="1"
             VerticalAlignment="Center"
             Maximum="255"
             Minimum="0"
-            Value="{Binding Path=Red, ElementName=_this}" />
+            Value="{Binding Path=Red, RelativeSource={RelativeSource AncestorType=UserControl}}" />
         <Grid Grid.Row="1" Margin="2">
             <TextBox
                 MinWidth="64"
                 HorizontalContentAlignment="Right"
-                Text="{Binding Path=Green, ElementName=_this}" />
+                Text="{Binding Path=Green, RelativeSource={RelativeSource AncestorType=UserControl}}" />
             <TextBlock
-                Margin="1"
+                MinWidth="12"
+                Margin="2"
+                HorizontalAlignment="Left"
+                Background="DarkGreen"
                 FontWeight="Bold"
-                Foreground="Green">
+                Foreground="White">
                 G
             </TextBlock>
-            <TextBlock FontWeight="Bold" Foreground="LightGreen">G</TextBlock>
         </Grid>
         <Slider
             Grid.Row="1"
@@ -60,19 +64,21 @@
             VerticalAlignment="Center"
             Maximum="255"
             Minimum="0"
-            Value="{Binding Path=Green, ElementName=_this}" />
+            Value="{Binding Path=Green, RelativeSource={RelativeSource AncestorType=UserControl}}" />
         <Grid Grid.Row="2" Margin="2">
             <TextBox
                 MinWidth="64"
                 HorizontalContentAlignment="Right"
-                Text="{Binding Path=Blue, ElementName=_this}" />
+                Text="{Binding Path=Blue, RelativeSource={RelativeSource AncestorType=UserControl}}" />
             <TextBlock
-                Margin="1"
+                MinWidth="12"
+                Margin="2"
+                HorizontalAlignment="Left"
+                Background="Blue"
                 FontWeight="Bold"
-                Foreground="Blue">
+                Foreground="White">
                 B
             </TextBlock>
-            <TextBlock FontWeight="Bold" Foreground="LightBlue">B</TextBlock>
         </Grid>
         <Slider
             Grid.Row="2"
@@ -80,52 +86,81 @@
             VerticalAlignment="Center"
             Maximum="255"
             Minimum="0"
-            Value="{Binding Path=Blue, ElementName=_this}" />
+            Value="{Binding Path=Blue, RelativeSource={RelativeSource AncestorType=UserControl}}" />
         <Border
             Grid.Row="3"
             Grid.ColumnSpan="2"
             Height="2"
-            Background="Gray"
+            Background="LightGray"
             BorderThickness="0" />
         <Grid Grid.Row="4" Margin="2">
             <TextBox
                 MinWidth="64"
                 HorizontalContentAlignment="Right"
-                Text="{Binding Path=Saturation, ElementName=_this}" />
+                Text="{Binding Path=Hue, RelativeSource={RelativeSource AncestorType=UserControl}}" />
             <TextBlock
-                Margin="1"
+                MinWidth="12"
+                Margin="2"
+                HorizontalAlignment="Left"
+                Background="Pink"
                 FontWeight="Bold"
-                Foreground="LightGray">
-                S
+                Foreground="Black">
+                H
             </TextBlock>
-            <TextBlock FontWeight="Bold" Foreground="Black">S</TextBlock>
         </Grid>
         <Slider
             Grid.Row="4"
             Grid.Column="1"
             VerticalAlignment="Center"
-            Maximum="100"
+            SmallChange="1"
+            Maximum="360"
             Minimum="0"
-            Value="{Binding Path=Red, ElementName=_this}" />
+            Value="{Binding Path=Hue, RelativeSource={RelativeSource AncestorType=UserControl}}" />
         <Grid Grid.Row="5" Margin="2">
             <TextBox
                 MinWidth="64"
                 HorizontalContentAlignment="Right"
-                Text="{Binding Path=Brightness, ElementName=_this}" />
+                Text="{Binding Path=Saturation, RelativeSource={RelativeSource AncestorType=UserControl}}" />
             <TextBlock
-                Margin="1"
+                MinWidth="12"
+                Margin="2"
+                HorizontalAlignment="Left"
+                Background="LightGray"
                 FontWeight="Bold"
-                Foreground="DarkGray">
-                V
+                Foreground="Black">
+                S
             </TextBlock>
-            <TextBlock FontWeight="Bold" Foreground="Black">V</TextBlock>
         </Grid>
         <Slider
             Grid.Row="5"
             Grid.Column="1"
             VerticalAlignment="Center"
+            SmallChange="1"
             Maximum="100"
             Minimum="0"
-            Value="{Binding Path=Brightness, ElementName=_this}" />
+            Value="{Binding Path=Saturation, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+        <Grid Grid.Row="6" Margin="2">
+            <TextBox
+                MinWidth="64"
+                HorizontalContentAlignment="Right"
+                Text="{Binding Path=Brightness, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+            <TextBlock
+                MinWidth="12"
+                Margin="2"
+                HorizontalAlignment="Left"
+                Background="Black"
+                FontWeight="Bold"
+                Foreground="White">
+                V
+            </TextBlock>
+        </Grid>
+        <Slider
+            Grid.Row="6"
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            SmallChange="1"
+            Maximum="100"
+            Minimum="0"
+            Value="{Binding Path=Brightness, RelativeSource={RelativeSource AncestorType=UserControl}}" />
     </Grid>
 </UserControl>

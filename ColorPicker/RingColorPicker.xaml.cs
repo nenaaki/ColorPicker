@@ -18,8 +18,6 @@ namespace ColorPicker
         private const double X_CENTER = CANVAS_WIDTH / 2.0;
         private const double Y_CENTER = CANVAS_HEIGHT / 2.0;
 
-        private readonly SolidColorBrush _brush = new SolidColorBrush();
-
         private static BitmapSource _colorMap;
 
         public RingColorPicker()
@@ -30,7 +28,6 @@ namespace ColorPicker
                 _colorMap = MakeHueRountRect(CANVAS_WIDTH, CANVAS_HEIGHT);
 
             Ring.Source = _colorMap;
-            Pointer.Fill = _brush;
 
             var pg = new PathGeometry();
             pg.AddGeometry(new EllipseGeometry(new Rect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)));
@@ -110,7 +107,6 @@ namespace ColorPicker
             {
                 Canvas.SetLeft(Current, (Math.Cos(Hue) * 0.92 + 1.0) * X_CENTER - 8.0);
                 Canvas.SetTop(Current, (Math.Sin(Hue) * 0.92 + 1.0) * Y_CENTER - 8.0);
-                _brush.Color = BaseColor;
             });
         }
     }
