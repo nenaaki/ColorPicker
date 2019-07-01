@@ -93,6 +93,7 @@
     <Compile Include="RingColorPicker.xaml.cs">
       <DependentUpon>RingColorPicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SelectedColorChangedEventArgs.cs" />
     <Compile Include="SimpleColorPicker.xaml.cs">
       <DependentUpon>SimpleColorPicker.xaml</DependentUpon>
     </Compile>

@@ -17,6 +17,11 @@ namespace Sample
 
             DataContext = new MainWindowViewModel();
         }
+
+        private void ColorPickerControl_SelectedColorChanged(object sender, ColorPicker.SelectedColorChangedEventArgs e)
+        {
+            _rect.Fill = new SolidColorBrush(e.Color);
+        }
     }
 
     public class MainWindowViewModel : INotifyPropertyChanged

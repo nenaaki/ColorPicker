@@ -30,6 +30,7 @@
             <TextBlock
                 MinWidth="12"
                 Margin="2"
+                TextAlignment="Center"
                 HorizontalAlignment="Left"
                 Background="Red"
                 FontWeight="Bold"
@@ -51,6 +52,7 @@
             <TextBlock
                 MinWidth="12"
                 Margin="2"
+                TextAlignment="Center"
                 HorizontalAlignment="Left"
                 Background="DarkGreen"
                 FontWeight="Bold"
@@ -73,6 +75,7 @@
             <TextBlock
                 MinWidth="12"
                 Margin="2"
+                TextAlignment="Center"
                 HorizontalAlignment="Left"
                 Background="Blue"
                 FontWeight="Bold"
@@ -102,6 +105,7 @@
                 MinWidth="12"
                 Margin="2"
                 HorizontalAlignment="Left"
+                TextAlignment="Center"
                 Background="Pink"
                 FontWeight="Bold"
                 Foreground="Black">
@@ -124,6 +128,7 @@
             <TextBlock
                 MinWidth="12"
                 Margin="2"
+                TextAlignment="Center"
                 HorizontalAlignment="Left"
                 Background="LightGray"
                 FontWeight="Bold"
@@ -147,6 +152,7 @@
             <TextBlock
                 MinWidth="12"
                 Margin="2"
+                TextAlignment="Center"
                 HorizontalAlignment="Left"
                 Background="Black"
                 FontWeight="Bold"

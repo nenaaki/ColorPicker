@@ -72,8 +72,6 @@
                                         IsOpen="{TemplateBinding IsDropDownOpen}"
                                         Placement="Bottom"
                                         PlacementTarget="{Binding ElementName=PART_EditableTextBox}"
-                                        HorizontalOffset="100"
-                                        
                                         PopupAnimation="Slide">
 
                                         <Border
@@ -88,7 +86,6 @@
                                                 CurrentColor="{TemplateBinding SelectedValue}"
                                                 DataContext="{Binding}"
                                                 SnapsToDevicePixels="False" />
-
                                         </Border>
                                     </Popup>
                                 </Grid>
@@ -112,54 +109,10 @@
                 </Style>
             </ComboBox.Style>
         </ComboBox>
-        <cp:ColorPickerControl CurrentColor="{Binding CurrentColor}" />
-        <StackPanel Visibility="Collapsed">
-            <cp:HexColorPicker
-                Width="256"
-                Height="256"
-                CurrentColor="{Binding CurrentColor}" />
-            <Grid VerticalAlignment="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <cp:RingColorPicker
-                    Width="192"
-                    Height="192"
-                    BaseColor="{Binding BaseColor, Mode=OneWayToSource}"
-                    CurrentColor="{Binding CurrentColor}" />
-                <cp:TriangleColorPicker
-                    Width="128"
-                    Height="128"
-                    Margin="32,0,0,0"
-                    CurrentColor="{Binding CurrentColor}" />
-                <cp:RgbEditor Grid.Row="1" CurrentColor="{Binding CurrentColor}" />
-            </Grid>
-            <StackPanel Orientation="Vertical">
-                <Border Background="Black">
-                    <TextBlock FontWeight="Bold" Foreground="White"><Run Text="基本色" /></TextBlock>
-                </Border>
-                <cp:GradualColorPickerMultiSlot
-                    x:Name="_multiSlot"
-                    BaseColors="{Binding BaseColors, Mode=OneTime}"
-                    CurrentColor="{Binding CurrentColor}"
-                    GroupLength="8" />
-                <Border Background="Black">
-                    <TextBlock FontWeight="Bold" Foreground="White"><Run Text="拡張" /></TextBlock>
-                </Border>
-                <cp:GradualColorPickerSlot BaseColors="{Binding SelectedItem, ElementName=_multiSlot}" CurrentColor="{Binding CurrentColor}" />
-                <Border Background="Black">
-                    <TextBlock FontWeight="Bold" Foreground="White"><Run Text="最近使った色" /></TextBlock>
-                </Border>
-                <cp:SimpleColorPicker
-                    Width="192"
-                    CurrentColor="{Binding CurrentColor}"
-                    ItemsSource="{Binding BaseColors, Mode=OneTime}" />
-            </StackPanel>
-            <cp:GradualColorPicker
-                BaseColor="Red"
-                CurrentColor="{Binding CurrentColor}"
-                StepCount="12" />
-        </StackPanel>
+        <cp:ColorPickerControl CurrentColor="{Binding CurrentColor}" SelectedColorChanged="ColorPickerControl_SelectedColorChanged" />
+        <Rectangle
+            Name="_rect"
+            Width="32"
+            Height="32" />
     </StackPanel>
 </Window>
