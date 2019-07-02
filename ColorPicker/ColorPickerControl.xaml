@@ -40,7 +40,7 @@
                 Width="128"
                 Margin="1"
                 CurrentColor="{Binding Path=CurrentColor}"
-                ItemsSource="{Binding Path=BaseColors, Mode=OneTime}" />
+                ItemsSource="{Binding Path=RecentColors, Mode=OneTime}" />
             <ToggleButton Margin="1" Name="_isOpenedPallet">詳細</ToggleButton>
         </StackPanel>
         <StackPanel Orientation="Vertical" Visibility="{Binding Path=IsChecked,ElementName=_isOpenedPallet,Converter={StaticResource BooleanToVisibilityConverter}}">
