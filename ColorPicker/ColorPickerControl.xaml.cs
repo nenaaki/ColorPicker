@@ -62,6 +62,16 @@ namespace ColorPicker
             new FrameworkPropertyMetadata(default,
             FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
+        public Color[] RecentColors
+        {
+            get => (Color[])GetValue(RecentColorsProperty);
+            set => SetValue(RecentColorsProperty, value);
+        }
+        public static readonly DependencyProperty RecentColorsProperty
+            = DependencyProperty.Register(nameof(RecentColors), typeof(Color[]), typeof(ColorPickerControl),
+            new FrameworkPropertyMetadata(default,
+            FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
+
         public event EventHandler<SelectedColorChangedEventArgs> SelectedColorChanged;
 
         public ColorPickerControl()
