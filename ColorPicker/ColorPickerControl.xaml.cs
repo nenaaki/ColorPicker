@@ -12,8 +12,8 @@ namespace ColorPicker
     {
         public Color BaseColor
         {
-            get { return (Color)GetValue(BaseColorProperty); }
-            set { SetValue(BaseColorProperty, value); }
+            get => (Color)GetValue(BaseColorProperty);
+            set => SetValue(BaseColorProperty, value);
         }
         public static readonly DependencyProperty BaseColorProperty
             = DependencyProperty.Register(nameof(BaseColor), typeof(Color), typeof(ColorPickerControl),
@@ -22,8 +22,8 @@ namespace ColorPicker
 
         public Color CurrentColor
         {
-            get { return (Color)GetValue(CurrentColorProperty); }
-            set { SetValue(CurrentColorProperty, value); }
+            get => (Color)GetValue(CurrentColorProperty);
+            set => SetValue(CurrentColorProperty, value);
         }
         public static readonly DependencyProperty CurrentColorProperty
             = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(ColorPickerControl),
@@ -33,8 +33,8 @@ namespace ColorPicker
 
         public Color SelectedColor
         {
-            get { return (Color)GetValue(SelectedColorProperty); }
-            set { SetValue(SelectedColorProperty, value); }
+            get => (Color)GetValue(SelectedColorProperty);
+            set => SetValue(SelectedColorProperty, value);
         }
         public static readonly DependencyProperty SelectedColorProperty
             = DependencyProperty.Register(nameof(SelectedColor), typeof(Color), typeof(ColorPickerControl),

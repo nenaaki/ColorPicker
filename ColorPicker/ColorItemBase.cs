@@ -32,8 +32,8 @@ namespace ColorPicker
         /// </summary>
         public Color CurrentColor
         {
-            get { return (Color)GetValue(CurrentColorProperty); }
-            set { SetValue(CurrentColorProperty, value); }
+            get => (Color)GetValue(CurrentColorProperty);
+            set => SetValue(CurrentColorProperty, value);
         }
         /// <summary>
         /// <see cref="CurrentColor"/>の依存関係プロパティです。
@@ -48,8 +48,8 @@ namespace ColorPicker
         /// </summary>
         public Color Value
         {
-            get { return (Color)GetValue(ValueProperty); }
-            set { SetValue(ValueProperty, value); }
+            get => (Color)GetValue(ValueProperty);
+            set => SetValue(ValueProperty, value);
         }
         /// <summary>
         /// <see cref="Value"/>の依存関係プロパティです。

@@ -12,26 +12,17 @@ namespace ColorPicker
     {
         public int StepCount
         {
-            get { return (int)GetValue(StepCountProperty); }
-            set { SetValue(StepCountProperty, value); }
+            get => (int)GetValue(StepCountProperty);
+            set => SetValue(StepCountProperty, value);
         }
         public static readonly DependencyProperty StepCountProperty
             = DependencyProperty.Register(nameof(StepCount), typeof(int), typeof(GradualColorPickerSlot),
                 new FrameworkPropertyMetadata(8));
 
-        public bool Expanded
-        {
-            get { return (bool)GetValue(ExpandedProperty); }
-            set { SetValue(ExpandedProperty, value); }
-        }
-        public static readonly DependencyProperty ExpandedProperty
-            = DependencyProperty.Register(nameof(Expanded), typeof(bool), typeof(GradualColorPickerSlot),
-                new FrameworkPropertyMetadata(false));
-
         public Color CurrentColor
         {
-            get { return (Color)GetValue(CurrentColorProperty); }
-            set { SetValue(CurrentColorProperty, value); }
+            get => (Color)GetValue(CurrentColorProperty);
+            set => SetValue(CurrentColorProperty, value);
         }
         public static readonly DependencyProperty CurrentColorProperty
             = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(GradualColorPickerSlot),
@@ -46,7 +37,7 @@ namespace ColorPicker
         public static readonly DependencyProperty BaseColorsProperty =
             DependencyProperty.Register(nameof(BaseColors), typeof(IList<Color>), typeof(GradualColorPickerSlot),
                 new FrameworkPropertyMetadata(null,
-                (d, e) => { ((GradualColorPickerSlot)d).ItemsSource = e.NewValue as IList<Color>; }));
+                (d, e) => ((GradualColorPickerSlot)d).ItemsSource = e.NewValue as IList<Color>));
 
         public GradualColorPickerSlot()
         {

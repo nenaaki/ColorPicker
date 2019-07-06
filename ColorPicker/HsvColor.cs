@@ -3,6 +3,9 @@ using System.Windows.Media;
 
 namespace ColorPicker
 {
+    /// <summary>
+    /// HSV色を表現するクラスです。
+    /// </summary>
     public readonly struct HsvColor
     {
         /// <summary>
@@ -20,6 +23,12 @@ namespace ColorPicker
         /// </summary>
         public readonly double V;
 
+        /// <summary>
+        /// コンストラクターです。
+        /// </summary>
+        /// <param name="hue">色相</param>
+        /// <param name="saturation">彩度</param>
+        /// <param name="brightness">明度</param>
         public HsvColor(double hue, double saturation, double brightness)
         {
             H = hue;
@@ -27,9 +36,15 @@ namespace ColorPicker
             V = brightness;
         }
 
+        /// <summary>
+        /// <see cref="Color"/>から生成します。
+        /// </summary>
         public static HsvColor FromColor(Color color)
             => FromRgb(color.R, color.G, color.B);
 
+        /// <summary>
+        /// RGB色から生成します。
+        /// </summary>
         public static HsvColor FromRgb(byte r, byte g, byte b)
         {
             byte max = Math.Max(r, Math.Max(g, b));
@@ -64,6 +79,9 @@ namespace ColorPicker
             return new HsvColor(hue, saturation, max / 255.0);
         }
 
+        /// <summary>
+        /// 無彩色かどうか判定します。
+        /// </summary>
         public bool IsAchromatic() => V + S <= 1.0;
 
         public static HsvColor Blend(in HsvColor color1, in HsvColor color2, double ratio)
@@ -75,7 +93,10 @@ namespace ColorPicker
                 color1.V * ratio2 + color2.V * ratio);
         }
 
-        public Color ToRgb()
+        /// <summary>
+        /// <see cref="Color"/>に変換します。
+        /// </summary>
+        public Color ToColor()
         {
             var vb = ToByte(255 * V);
             if (S == 0)
@@ -106,20 +127,26 @@ namespace ColorPicker
             }
         }
 
+        /// <summary>
+        /// <see cref="Color"/>に変換します。
+        /// </summary>
         public static Color ToRgb(double h, double s, double v)
         {
-            return new HsvColor(h, s, v).ToRgb();
+            return new HsvColor(h, s, v).ToColor();
         }
 
         /// <summary>
-        /// ITU-R Rec BT.601 によるグレースケール
+        /// ITU-R Rec BT.601 によるグレースケールを行い、明度を取得します。
         /// </summary>
         public double GetBrightness()
         {
-            var color = ToRgb();
+            var color = ToColor();
             return (0.299 * color.R + 0.587 * color.G + 0.114 * color.B) / 255.0;
         }
 
+        /// <summary>
+        /// byteの範囲に丸め、四捨五入します。
+        /// </summary>
         private static byte ToByte(double d)
             => d < 0 ? (byte)0 : d > 255 ? (byte)255 : (byte)Math.Round(d);
     }

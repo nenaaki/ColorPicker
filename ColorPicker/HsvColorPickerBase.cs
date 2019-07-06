@@ -63,13 +63,13 @@ namespace ColorPicker
                     case nameof(Hue):
                     case nameof(Saturation):
                     case nameof(Brightness):
-                        BaseColor = new HsvColor(Hue, 1.0, 1.0).ToRgb();
-                        CurrentColor = new HsvColor(Hue, Saturation, Brightness).ToRgb();
+                        BaseColor = new HsvColor(Hue, 1.0, 1.0).ToColor();
+                        CurrentColor = new HsvColor(Hue, Saturation, Brightness).ToColor();
                         break;
 
                     case nameof(BaseColor):
                         Hue = HsvColor.FromColor(BaseColor).H;
-                        CurrentColor = new HsvColor(Hue, Saturation, Brightness).ToRgb();
+                        CurrentColor = new HsvColor(Hue, Saturation, Brightness).ToColor();
                         break;
 
                     case nameof(CurrentColor):
@@ -79,7 +79,7 @@ namespace ColorPicker
                         if (!hsvColor.IsAchromatic())
                         {
                             Hue = hsvColor.H;
-                            BaseColor = new HsvColor(Hue, 1.0, 1.0).ToRgb();
+                            BaseColor = new HsvColor(Hue, 1.0, 1.0).ToColor();
                         }
                         break;
                 }

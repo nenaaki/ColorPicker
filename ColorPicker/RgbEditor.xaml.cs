@@ -112,7 +112,7 @@ namespace ColorPicker
                             var hsv = HsvColor.FromColor(CurrentColor);
                             if (!hsv.IsAchromatic())
                             {
-                                BaseColor = new HsvColor(hsv.H, 1.0, 1.0).ToRgb();
+                                BaseColor = new HsvColor(hsv.H, 1.0, 1.0).ToColor();
                                 Hue = (int)Math.Round(hsv.H / (Math.PI * 2) * 360);
                             }
                             Saturation = (int)Math.Round(hsv.S * 100);
@@ -143,11 +143,11 @@ namespace ColorPicker
                                 }
                             }
                             var hsv = new HsvColor((double)Hue * (Math.PI * 2) / 360, (double)Saturation / 100, (double)Brightness / 100);
-                            var color = hsv.ToRgb();
+                            var color = hsv.ToColor();
                             CurrentColor = color;
                             if(propertyName == nameof(Hue))
                             {
-                                BaseColor = new HsvColor(hsv.H, 1.0, 1.0).ToRgb();
+                                BaseColor = new HsvColor(hsv.H, 1.0, 1.0).ToColor();
                             }
                             Red = color.R;
                             Green = color.G;
@@ -164,7 +164,7 @@ namespace ColorPicker
                             var hsv = HsvColor.FromColor(CurrentColor);
                             if (!hsv.IsAchromatic())
                             {
-                                BaseColor = new HsvColor(hsv.H, 1.0, 1.0).ToRgb();
+                                BaseColor = new HsvColor(hsv.H, 1.0, 1.0).ToColor();
                                 Hue = (int)Math.Round(hsv.H / (Math.PI * 2) * 360);
                             }
                             Saturation = (int)Math.Round(hsv.S * 100);

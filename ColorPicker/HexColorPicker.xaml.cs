@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Shapes;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace ColorPicker
 {
@@ -17,23 +13,24 @@ namespace ColorPicker
     {
         public Color CurrentColor
         {
-            get { return (Color)GetValue(CurrentColorProperty); }
-            set { SetValue(CurrentColorProperty, value); }
+            get => (Color)GetValue(CurrentColorProperty);
+            set => SetValue(CurrentColorProperty, value);
         }
         public static readonly DependencyProperty CurrentColorProperty =
             DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(HexColorPicker), new FrameworkPropertyMetadata(Colors.White,
             FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
-        private readonly List<Path> _pathList = new List<Path>();
-
         public HexColorPicker()
         {
             InitializeComponent();
 
+            const double CENTER_X = 112.0;
+            const double CENTER_Y = 112.0;
+
             // 個々の6角形の形状を作成
-            var hexRadius = 10;
-            var pi3 = Math.PI / 3;
-            var sqrt3 = Math.Sqrt(3);
+            const double hexRadius = 10.0;
+            const double pi3 = Math.PI / 3;
+            double sqrt3 = Math.Sqrt(3);
 
             for (int h1 = 0; h1 < 6; h1++)
             {
@@ -46,10 +43,10 @@ namespace ColorPicker
                 {
                     for (int h2 = 0; h2 < s || h1 == 0 && s == 0 && h2 == 0; h2++)
                     {
-                        double cx = 112 + s * sx + h2 * h2x;
-                        double cy = 112 + s * sy + h2 * h2y;
+                        double cx = CENTER_X + s * sx + h2 * h2x;
+                        double cy = CENTER_Y + s * sy + h2 * h2y;
 
-                        var item = new HexColorItem { Value = HsvColor.ToRgb((float)((h1 + h2 / (double)s) * Math.PI / 3), s / 6.0f, 1.0f) };
+                        var item = new HexColorItem { Value = HsvColor.ToRgb((float)((h1 + h2 / (double)s) * pi3), s / 6.0f, 1.0f) };
 
                         Canvas.SetLeft(item, cx);
                         Canvas.SetTop(item, cy);

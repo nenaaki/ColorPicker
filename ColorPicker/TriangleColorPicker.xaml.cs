@@ -65,7 +65,7 @@ namespace ColorPicker
         {
             var (s, v) = ToSV(width, height, location);
 
-            return new HsvColor(HsvColor.FromColor(BaseColor).H, s, v).ToRgb();
+            return new HsvColor(HsvColor.FromColor(BaseColor).H, s, v).ToColor();
         }
 
         /// <summary>

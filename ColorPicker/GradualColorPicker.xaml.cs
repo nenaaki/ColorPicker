@@ -31,8 +31,8 @@ namespace ColorPicker
 
         public Color CurrentColor
         {
-            get { return (Color)GetValue(CurrentColorProperty); }
-            set { SetValue(CurrentColorProperty, value); }
+            get => (Color)GetValue(CurrentColorProperty);
+            set => SetValue(CurrentColorProperty, value);
         }
         public static readonly DependencyProperty CurrentColorProperty
             = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(GradualColorPicker),

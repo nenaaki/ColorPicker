@@ -37,17 +37,11 @@ namespace ColorPicker
 
                 using (var c = geometry.Open())
                 {
-                    for (var i = 0; i < 6; i++)
+                    c.BeginFigure(new Point(0, radius), true, true);
+                    for (int idx = 1; idx < 6; idx++)
                     {
-                        var p = new Point(radius * Math.Sin(i * pi3), radius * Math.Cos(i * pi3));
-                        if (i == 0)
-                        {
-                            c.BeginFigure(p, true, true);
-                        }
-                        else
-                        {
-                            c.LineTo(p, true, false);
-                        }
+                        var p = new Point(radius * Math.Sin(idx * pi3), radius * Math.Cos(idx * pi3));
+                        c.LineTo(p, true, false);
                     }
                 }
                 geometry.Freeze();
