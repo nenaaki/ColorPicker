@@ -43,26 +43,26 @@ namespace ColorPicker
         {
             var baseColor = BaseColor;
 
-            HsvColor color1;
-            HsvColor color2;
+            Color color1;
+            Color color2;
 
             if (baseColor == Colors.Black)
             {
-                color1 = HsvColor.FromRgb(0, 0, 0);
-                color2 = HsvColor.FromRgb(255, 255, 255);
+                color1 = Colors.Black;
+                color2 = Colors.White;
             }
             else if (baseColor == Colors.White)
             {
-                color1 = HsvColor.FromRgb(255, 255, 255);
-                color2 = HsvColor.FromRgb(0, 0, 0);
+                color1 = Colors.White;
+                color2 = Colors.Black;
             }
             else
             {
-                color1 = HsvColor.FromRgb(baseColor.R, baseColor.G, baseColor.B);
+                color1 = baseColor;
 
                 // MEMO : グレースケール化したときの明度が50%未満かで白に向けるか黒に向けるかを切り替える。
-                var brightness = color1.GetBrightness();
-                color2 = brightness < 0.5 ? new HsvColor(color1.H, 0, 1) : new HsvColor(color1.H, 0, 0);
+                var brightness = HsvColor.FromColor(color1).GetBrightness();
+                color2 = (brightness < 0.5) ? Colors.White : Colors.Black;
             }
 
             var count = StepCount;
@@ -71,7 +71,10 @@ namespace ColorPicker
             for (int idx = 0; idx <= count; idx++)
             {
                 float ratio = idx / (float)(count + 1);
-                colors[idx] = HsvColor.Blend(color1, color2, ratio).ToRgb();
+                colors[idx] = Color.FromRgb(
+                    (byte)(color2.R * ratio + color1.R * (1 - ratio)),
+                    (byte)(color2.G * ratio + color1.G * (1 - ratio)),
+                    (byte)(color2.B * ratio + color1.B * (1 - ratio)));
             }
             ItemsSource = colors;
         }

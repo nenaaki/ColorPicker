@@ -14,7 +14,7 @@ namespace ColorPicker
             try
             {
                 _updating = true;
-                updater.Invoke();
+                updater?.Invoke();
             }
             finally
             {
