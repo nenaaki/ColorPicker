@@ -41,25 +41,19 @@ namespace ColorPicker
 
         private void SetupColors()
         {
-            var baseColor = BaseColor;
-
-            Color color1;
+            var color1 = BaseColor;
             Color color2;
 
-            if (baseColor == Colors.Black)
+            if (color1 == Colors.Black)
             {
-                color1 = Colors.Black;
                 color2 = Colors.White;
             }
-            else if (baseColor == Colors.White)
+            else if (color1 == Colors.White)
             {
-                color1 = Colors.White;
                 color2 = Colors.Black;
             }
             else
             {
-                color1 = baseColor;
-
                 // MEMO : グレースケール化したときの明度が50%未満かで白に向けるか黒に向けるかを切り替える。
                 var brightness = HsvColor.FromColor(color1).GetBrightness();
                 color2 = (brightness < 0.5) ? Colors.White : Colors.Black;
