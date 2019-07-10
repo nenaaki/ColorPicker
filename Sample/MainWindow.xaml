@@ -10,11 +10,20 @@
     Width="800"
     Height="600"
     mc:Ignorable="d">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/ColorPicker;component/ColorPickerComboBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+        
     <StackPanel Orientation="Horizontal">
         <Rectangle
             Name="_rect"
             Width="32"
             Height="32" />
         <cp:ColorPickerControl CurrentColor="{Binding CurrentColor}" SelectedColorChanged="ColorPickerControl_SelectedColorChanged" />
+        <ComboBox VerticalAlignment="Top" Style="{StaticResource ColorPickerComboBox}"/>
     </StackPanel>
 </Window>
