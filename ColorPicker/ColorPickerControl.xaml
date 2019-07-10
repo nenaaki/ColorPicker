@@ -23,9 +23,9 @@
             <local:GradualColorPickerMultiSlot
                 x:Name="_multiSlot"
                 Margin="1"
-                BaseColors="{Binding Path=BaseColors, Mode=OneTime}"
-                CurrentColor="{Binding Path=CurrentColor}"
-                GroupLength="8" />
+                BaseColors="{Binding Path=BaseColors,Mode=OneTime,RelativeSource={RelativeSource AncestorType=UserControl}}"
+                CurrentColor="{Binding Path=CurrentColor,RelativeSource={RelativeSource AncestorType=UserControl}}"
+                GroupLength="{Binding Path=GroupLength,RelativeSource={RelativeSource AncestorType=UserControl}}" />
             <Border Margin="1" Background="LightGray">
                 <TextBlock FontWeight="Bold" Foreground="Black">拡張</TextBlock>
             </Border>

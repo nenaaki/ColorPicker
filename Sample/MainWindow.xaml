@@ -17,13 +17,21 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-        
+
     <StackPanel Orientation="Horizontal">
         <Rectangle
             Name="_rect"
             Width="32"
             Height="32" />
-        <cp:ColorPickerControl CurrentColor="{Binding CurrentColor}" SelectedColorChanged="ColorPickerControl_SelectedColorChanged" />
-        <ComboBox VerticalAlignment="Top" Style="{StaticResource ColorPickerComboBox}"/>
+        <cp:ColorPickerControl
+            Margin="8"
+            CurrentColor="{Binding CurrentColor}"
+            GroupLength="4"
+            SelectedColorChanged="ColorPickerControl_SelectedColorChanged" />
+        <ComboBox
+            Margin="8"
+            VerticalAlignment="Top"
+            ItemsSource="{Binding Path=BaseColors}"
+            Style="{StaticResource ColorPickerComboBox}" />
     </StackPanel>
 </Window>
