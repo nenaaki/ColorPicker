@@ -34,7 +34,7 @@
                 <local:ColorItem
                 Width="16"
                 Height="16"
-                CurrentColor="{Binding Path=CurrentColor, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                CurrentColor="{Binding Path=CurrentColor, RelativeSource={RelativeSource AncestorType=UserControl}}"
                 Value="{Binding}" />
             </DataTemplate>
         </ItemsControl.ItemTemplate>
