@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace ColorPicker
+namespace ColorPicker.Converters
 {
     public class ColorToBrushConverter : IValueConverter
     {

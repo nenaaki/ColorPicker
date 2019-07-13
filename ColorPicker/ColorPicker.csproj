@@ -53,12 +53,13 @@
   <ItemGroup>
     <Compile Include="ColorItem.cs" />
     <Compile Include="ColorItemBase.cs" />
+    <Compile Include="Converters\ColorToGradualColorsConverter.cs" />
     <Compile Include="HsvColorPickerBase.cs" />
     <Compile Include="ColorPickerControl.xaml.cs">
       <DependentUpon>ColorPickerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ColorPickerUtils.cs" />
-    <Compile Include="ColorToBrushConverter.cs" />
+    <Compile Include="Converters\ColorToBrushConverter.cs" />
     <Compile Include="ContentBase.cs" />
     <Compile Include="GradualColorPicker.xaml.cs">
       <DependentUpon>GradualColorPicker.xaml</DependentUpon>
