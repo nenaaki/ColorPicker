@@ -153,13 +153,6 @@
         </Grid>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="ComboBoxTextBox" TargetType="{x:Type TextBox}">
-        <Border
-            x:Name="PART_ContentHost"
-            Background="{TemplateBinding Background}"
-            Focusable="False" />
-    </ControlTemplate>
-
     <Style x:Key="ColorPickerComboBox" TargetType="{x:Type ComboBox}">
         <Setter Property="SnapsToDevicePixels" Value="false" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
@@ -177,7 +170,7 @@
                             Grid.Column="2"
                             ClickMode="Press"
                             Focusable="false"
-                            IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            IsChecked="{Binding IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
                             Template="{StaticResource ComboBoxToggleButton}" />
                         <ContentPresenter
                             x:Name="ContentSite"
@@ -193,11 +186,10 @@
                             Margin="3,3,23,3"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Bottom"
-                            Background="Transparent"
+                            Background="{Binding SelectedItem,Converter={StaticResource ColorToBrushConverter},RelativeSource={RelativeSource TemplatedParent}}"
                             Focusable="True"
                             IsReadOnly="{TemplateBinding IsReadOnly}"
                             Style="{x:Null}"
-                            Template="{StaticResource ComboBoxTextBox}"
                             Visibility="Hidden" />
                         <Popup
                             x:Name="PART_Popup"

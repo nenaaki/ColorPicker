@@ -88,6 +88,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="RecentColorManager.cs" />
     <Compile Include="RgbEditor.xaml.cs">
       <DependentUpon>RgbEditor.xaml</DependentUpon>
     </Compile>

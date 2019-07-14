@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -62,14 +63,14 @@ namespace ColorPicker
             new FrameworkPropertyMetadata(default,
             FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
-        public Color[] RecentColors
+        public IList<Color> RecentColors
         {
-            get => (Color[])GetValue(RecentColorsProperty);
+            get => (IList<Color>)GetValue(RecentColorsProperty);
             set => SetValue(RecentColorsProperty, value);
         }
         public static readonly DependencyProperty RecentColorsProperty
-            = DependencyProperty.Register(nameof(RecentColors), typeof(Color[]), typeof(ColorPickerControl),
-            new FrameworkPropertyMetadata(default,
+            = DependencyProperty.Register(nameof(RecentColors), typeof(IList<Color>), typeof(ColorPickerControl),
+            new FrameworkPropertyMetadata(RecentColorManager.DefaultInstane,
             FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         public event EventHandler<SelectedColorChangedEventArgs> SelectedColorChanged;
@@ -90,6 +91,8 @@ namespace ColorPicker
 
         private void OnSelectedColorChanged(Color newColor)
         {
+            RecentColors.Insert(0, newColor);
+
             SelectedColorChanged?.Invoke(this, new SelectedColorChangedEventArgs(newColor));
         }
 
