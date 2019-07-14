@@ -2,20 +2,30 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Windows.Threading;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace ColorPicker
 {
     /// <summary>
-    /// 最近使った色を管理するコレクション
+    /// 最近使った色を管理するコレクションです。
+    /// UIスレッド以外で使用することはできません。
     /// </summary>
+    /// <remarks>
+    /// UIスレッド以外で使用すると<see cref="Capacity"/>が正しく機能しません。
+    /// 動作に<see cref="Dispatcher"/>を必要とします。
+    /// </remarks>
     public class RecentColorManager : ObservableCollection<Color>
     {
         /// <summary>
         /// デフォルトの保持数です。
         /// </summary>
         public const int DefaultCapacity = 16;
+
+        /// <summary>
+        /// 更新処理中の状態を保持します。
+        /// </summary>
+        private bool _updating;
 
         /// <summary>
         /// デフォルトで使用するマネージャーです。
@@ -37,10 +47,9 @@ namespace ColorPicker
             CollectionChanged += OnCollectionChanged;
         }
 
-        private bool _updating;
-
         /// <summary>
         /// コレクション変更時に保持数内に収めます。
+        /// イベント内では処理できないので、Dispatcherに処理を送ります。
         /// </summary>
         private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
