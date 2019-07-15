@@ -11,68 +11,69 @@
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>
-    <StackPanel Orientation="Horizontal">
-        <StackPanel Orientation="Vertical">
-            <Grid Margin="1">
-                <local:ColorItem Value="White" />
-                <TextBlock HorizontalAlignment="Center" IsHitTestVisible="False">指定なし</TextBlock>
-            </Grid>
-            <Border Margin="1" Background="LightGray">
-                <TextBlock FontWeight="Bold" Foreground="Black">基本色</TextBlock>
-            </Border>
-            <local:GradualColorPickerMultiSlot
-                x:Name="_multiSlot"
-                Margin="1"
-                BaseColors="{Binding Path=BaseColors,Mode=OneTime,RelativeSource={RelativeSource AncestorType=UserControl}}"
-                CurrentColor="{Binding Path=CurrentColor,RelativeSource={RelativeSource AncestorType=UserControl}}"
-                GroupLength="{Binding Path=GroupLength,RelativeSource={RelativeSource AncestorType=UserControl}}" />
-            <Border Margin="1" Background="LightGray">
-                <TextBlock FontWeight="Bold" Foreground="Black">拡張</TextBlock>
-            </Border>
-            <local:GradualColorPickerSlot
-                Margin="1"
-                BaseColors="{Binding SelectedItem, ElementName=_multiSlot}"
-                CurrentColor="{Binding Path=CurrentColor,RelativeSource={RelativeSource AncestorType=UserControl}}" />
-            <Border Margin="1" Background="LightGray">
-                <TextBlock FontWeight="Bold" Foreground="Black">最近使った色</TextBlock>
-            </Border>
-            <local:SimpleColorPicker
-                Width="128"
-                Margin="1"
-                CurrentColor="{Binding Path=CurrentColor,RelativeSource={RelativeSource AncestorType=UserControl}}"
-                ItemsSource="{Binding Path=RecentColors,RelativeSource={RelativeSource AncestorType=UserControl}}" />
-            <ToggleButton Margin="1" Name="_isOpenedPallet">詳細</ToggleButton>
-        </StackPanel>
-        <StackPanel Orientation="Vertical" Visibility="{Binding Path=IsChecked,ElementName=_isOpenedPallet,Converter={StaticResource BooleanToVisibilityConverter}}">
-            <TabControl Background="Transparent">
-                <TabItem Header="パレット">
-                    <local:HexColorPicker
-                        Width="192"
-                        Height="192"
-                        Margin="8"
-                        VerticalAlignment="Top"
-                        CurrentColor="{Binding Path=CurrentColor,RelativeSource={RelativeSource AncestorType=UserControl}}" />
-                </TabItem>
-                <TabItem Header="詳細">
-                    <Grid>
-                        <local:RingColorPicker
-                            x:Name="_ring"
+    <Border BorderBrush="Gray" BorderThickness="1.0">
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
+                <Grid Margin="1">
+                    <local:ColorItem Value="White" />
+                    <TextBlock HorizontalAlignment="Center" IsHitTestVisible="False">指定なし</TextBlock>
+                </Grid>
+                <Border Margin="1" Background="LightGray">
+                    <TextBlock FontWeight="Bold" Foreground="Black">基本色</TextBlock>
+                </Border>
+                <local:GradualColorPickerMultiSlot
+                    x:Name="_multiSlot"
+                    Margin="1"
+                    BaseColors="{Binding Path=BaseColors, Mode=OneTime, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    CurrentColor="{Binding Path=CurrentColor, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    GroupLength="{Binding Path=GroupLength, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                <Border Margin="1" Background="LightGray">
+                    <TextBlock FontWeight="Bold" Foreground="Black">拡張</TextBlock>
+                </Border>
+                <local:GradualColorPickerSlot
+                    Margin="1"
+                    BaseColors="{Binding SelectedItem, ElementName=_multiSlot}"
+                    CurrentColor="{Binding Path=CurrentColor, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                <Border Margin="1" Background="LightGray">
+                    <TextBlock FontWeight="Bold" Foreground="Black">最近使った色</TextBlock>
+                </Border>
+                <local:SimpleColorPicker
+                    Margin="1"
+                    CurrentColor="{Binding Path=CurrentColor, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    ItemsSource="{Binding Path=RecentColors, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                <ToggleButton Name="_isOpenedPallet" Margin="1">詳細</ToggleButton>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Visibility="{Binding Path=IsChecked, ElementName=_isOpenedPallet, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TabControl Background="Transparent">
+                    <TabItem Header="パレット">
+                        <local:HexColorPicker
                             Width="192"
                             Height="192"
                             Margin="8"
-                            BaseColor="{Binding BaseColor, Mode=OneWayToSource}"
-                            CurrentColor="{Binding Path=CurrentColor,RelativeSource={RelativeSource AncestorType=UserControl}}" />
-                        <local:TriangleColorPicker
-                            Width="128"
-                            Height="128"
-                            Margin="32,0,0,0"
-                            CurrentColor="{Binding CurrentColor,RelativeSource={RelativeSource AncestorType=UserControl}}"
-                            Hue="{Binding Path=Hue, ElementName=_ring}" />
-                    </Grid>
-                </TabItem>
-            </TabControl>
-            <local:RgbEditor CurrentColor="{Binding Path=CurrentColor,RelativeSource={RelativeSource AncestorType=UserControl}}" />
-            <Button Margin="2" Click="OnOkClick">OK</Button>
+                            VerticalAlignment="Top"
+                            CurrentColor="{Binding Path=CurrentColor, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                    </TabItem>
+                    <TabItem Header="詳細">
+                        <Grid>
+                            <local:RingColorPicker
+                                x:Name="_ring"
+                                Width="192"
+                                Height="192"
+                                Margin="8"
+                                BaseColor="{Binding BaseColor, Mode=OneWayToSource}"
+                                CurrentColor="{Binding Path=CurrentColor, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                            <local:TriangleColorPicker
+                                Width="128"
+                                Height="128"
+                                Margin="32,0,0,0"
+                                CurrentColor="{Binding CurrentColor, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                Hue="{Binding Path=Hue, ElementName=_ring}" />
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+                <local:RgbEditor CurrentColor="{Binding Path=CurrentColor, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                <Button Margin="2" Click="OnOkClick">OK</Button>
+            </StackPanel>
         </StackPanel>
-    </StackPanel>
+    </Border>
 </UserControl>
