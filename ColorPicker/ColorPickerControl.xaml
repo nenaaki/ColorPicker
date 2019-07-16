@@ -38,6 +38,7 @@
                     <TextBlock FontWeight="Bold" Foreground="Black">最近使った色</TextBlock>
                 </Border>
                 <local:SimpleColorPicker
+                    Width="{Binding Path=ActualWidth,ElementName=_multiSlot}"
                     Margin="1"
                     CurrentColor="{Binding Path=CurrentColor, RelativeSource={RelativeSource AncestorType=UserControl}}"
                     ItemsSource="{Binding Path=RecentColors, RelativeSource={RelativeSource AncestorType=UserControl}}" />

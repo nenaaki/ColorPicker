@@ -58,7 +58,7 @@
                         <Ellipse Stroke="White" />
                         <Ellipse Margin="1" Stroke="Black">
                             <Ellipse.Fill>
-                                <SolidColorBrush Color="{Binding Path=CurrentColor}" />
+                                <SolidColorBrush Color="{Binding Path=CurrentColor,RelativeSource={RelativeSource AncestorType=local:HsvColorPickerBase}}" />
                             </Ellipse.Fill>
                         </Ellipse>
                     </Grid>
