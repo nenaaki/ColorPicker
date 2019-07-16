@@ -1,5 +1,7 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
+using ColorPicker.Enums;
 
 namespace ColorPicker
 {
@@ -9,7 +11,7 @@ namespace ColorPicker
         {
             base.OnRender(drawingContext);
 
-            if (CurrentColor == Value)
+            if (CurrentColor == Value || SelectionMode == SelectionMode.ClickMode && IsMouseOver && Mouse.LeftButton == MouseButtonState.Pressed)
             {
                 var renderSize = RenderSize;
                 drawingContext.DrawRectangle(Brush, WhitePen, new Rect(0.5, 0.5, renderSize.Width - 1, renderSize.Height - 1));

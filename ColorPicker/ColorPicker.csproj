@@ -54,6 +54,7 @@
     <Compile Include="ColorItem.cs" />
     <Compile Include="ColorItemBase.cs" />
     <Compile Include="Converters\ColorToGradualColorsConverter.cs" />
+    <Compile Include="Enums\SelectionMode.cs" />
     <Compile Include="HsvColorPickerBase.cs" />
     <Compile Include="ColorPickerControl.xaml.cs">
       <DependentUpon>ColorPickerControl.xaml</DependentUpon>

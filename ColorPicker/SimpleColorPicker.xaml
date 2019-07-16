@@ -22,6 +22,7 @@
                              Width="16"
                              Height="16"
                              Margin="1"
+                             SelectionMode="ClickMode"
                              CurrentColor="{Binding Path=CurrentColor,RelativeSource={RelativeSource AncestorType=ItemsControl}}" />
         </DataTemplate>
     </ItemsControl.ItemTemplate>

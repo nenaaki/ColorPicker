@@ -69,6 +69,19 @@ namespace ColorPicker
         }
 
         /// <summary>
+        /// 最近使った色を登録して、順序を整えます。
+        /// </summary>
+        public void Register(Color newColor)
+        {
+            for (int idx = Count - 1; idx >= 0; idx--)
+            {
+                if (this[idx] == newColor)
+                    RemoveAt(idx);
+            }
+            Insert(0, newColor);
+        }
+
+        /// <summary>
         /// 複数件追加します。
         /// </summary>
         public void AddRange(IEnumerable<Color> colors)

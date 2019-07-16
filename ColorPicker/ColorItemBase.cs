@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using ColorPicker.Enums;
 
 namespace ColorPicker
 {
@@ -26,6 +27,20 @@ namespace ColorPicker
         /// インスタンスをそのままに色だけを変更するのでFreezeしません。
         /// </remarks>
         protected SolidColorBrush Brush { get; } = new SolidColorBrush();
+
+        /// <summary>
+        /// 選択状態を変化するモードを選択します。
+        /// </summary>
+        public SelectionMode SelectionMode
+        {
+            get { return (SelectionMode)GetValue(SelectionModeProperty); }
+            set { SetValue(SelectionModeProperty, value); }
+        }
+        /// <summary>
+        /// <see cref="SelectionMode"/>の依存関係プロパていxです。
+        /// </summary>
+        public static readonly DependencyProperty SelectionModeProperty =
+            DependencyProperty.Register("SelectionMode", typeof(SelectionMode), typeof(ColorItemBase), new PropertyMetadata(SelectionMode.PressMode));
 
         /// <summary>
         /// 現在選択中の色です。
@@ -68,14 +83,42 @@ namespace ColorPicker
         /// </remarks>
         protected ColorItemBase()
         {
-            MouseDown += (d, e) => ((ColorItemBase)d).UpdateCurrentColor();
-            MouseMove += (d, e) =>
-            {
-                if (e.LeftButton != MouseButtonState.Pressed)
-                    return;
+            MouseDown += OnMouseDown;
+            MouseMove += OnMouseMove;
+            MouseUp += OnMouseUp;
+        }
 
-                ((ColorItemBase)d).UpdateCurrentColor();
-            };
+        /// <summary>
+        /// <see cref="FrameworkElement.MouseUp"/>イベントを処理します。
+        /// </summary>
+        private void OnMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            UpdateCurrentColor();
+        }
+
+        /// <summary>
+        /// <see cref="FrameworkElement.MouseDown"/>イベントを処理します。
+        /// </summary>
+        private void OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (SelectionMode == SelectionMode.ClickMode)
+            {
+                InvalidateVisual();
+                return;
+            }
+
+            UpdateCurrentColor();
+        }
+
+        /// <summary>
+        /// <see cref="FrameworkElement.MouseMove"/>イベントを処理します。
+        /// </summary>
+        private void OnMouseMove(object sender, MouseEventArgs e)
+        {
+            if (SelectionMode == SelectionMode.ClickMode || e.LeftButton != MouseButtonState.Pressed)
+                return;
+
+            UpdateCurrentColor();
         }
 
         /// <summary>

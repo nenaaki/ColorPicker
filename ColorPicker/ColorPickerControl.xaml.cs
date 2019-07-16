@@ -63,13 +63,13 @@ namespace ColorPicker
             new FrameworkPropertyMetadata(default,
             FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
-        public IList<Color> RecentColors
+        public RecentColorManager RecentColors
         {
-            get => (IList<Color>)GetValue(RecentColorsProperty);
+            get => (RecentColorManager)GetValue(RecentColorsProperty);
             set => SetValue(RecentColorsProperty, value);
         }
         public static readonly DependencyProperty RecentColorsProperty
-            = DependencyProperty.Register(nameof(RecentColors), typeof(IList<Color>), typeof(ColorPickerControl),
+            = DependencyProperty.Register(nameof(RecentColors), typeof(RecentColorManager), typeof(ColorPickerControl),
             new FrameworkPropertyMetadata(RecentColorManager.DefaultInstane,
             FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
@@ -91,7 +91,7 @@ namespace ColorPicker
 
         private void OnSelectedColorChanged(Color newColor)
         {
-            RecentColors.Insert(0, newColor);
+            RecentColors.Register(newColor);
 
             SelectedColorChanged?.Invoke(this, new SelectedColorChangedEventArgs(newColor));
         }
