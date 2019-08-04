@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace ColorPicker
+namespace Oniqys.Wpf.ColorPicker
 {
     /// <summary>
     /// GradualColorPicker.xaml の相互作用ロジック

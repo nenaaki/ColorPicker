@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using ColorPicker.Enums;
+using Oniqys.Wpf.ColorPicker.Enums;
 
-namespace ColorPicker
+namespace Oniqys.Wpf.ColorPicker
 {
     /// <summary>
     /// 選択用の色アイテムの基底クラスです。

@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace ColorPicker
+namespace Oniqys.Wpf.ColorPicker
 {
     /// <summary>
     /// 通知機能の基底クラスです。

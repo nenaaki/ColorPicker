@@ -2,8 +2,8 @@
     x:Class="Sample.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:cp="clr-namespace:ColorPicker;assembly=ColorPicker"
-    xmlns:cpconv="clr-namespace:ColorPicker.Converters;assembly=ColorPicker"
+    xmlns:cp="clr-namespace:Oniqys.Wpf.ColorPicker;assembly=Oniqys.Wpf.ColorPicker"
+    xmlns:cpconv="clr-namespace:Oniqys.Wpf.ColorPicker.Converters;assembly=Oniqys.Wpf.ColorPicker"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Sample"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -14,7 +14,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/ColorPicker;component/ColorPickerComboBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Oniqys.Wpf.ColorPicker;component/ColorPickerComboBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <cpconv:ColorToBrushConverter x:Key="ColorToBrushConverter" />
         </ResourceDictionary>

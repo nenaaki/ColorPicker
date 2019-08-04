@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 
-namespace ColorPicker
+namespace Oniqys.Wpf.ColorPicker
 {
     /// <summary>
     /// 六角形の選択色アイテムです。

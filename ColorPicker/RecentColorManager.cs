@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 using System.Windows.Media;
 using System.Windows.Threading;
 
-namespace ColorPicker
+namespace Oniqys.Wpf.ColorPicker
 {
     /// <summary>
     /// 最近使った色を管理するコレクションです。

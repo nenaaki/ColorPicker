@@ -1,8 +1,8 @@
-﻿<local:HsvColorPickerBase x:Class="ColorPicker.RingColorPicker"
+﻿<local:HsvColorPickerBase x:Class="Oniqys.Wpf.ColorPicker.RingColorPicker"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:ColorPicker"
+             xmlns:local="clr-namespace:Oniqys.Wpf.ColorPicker"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">

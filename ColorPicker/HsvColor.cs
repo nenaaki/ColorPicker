@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Media;
 
-namespace ColorPicker
+namespace Oniqys.Wpf.ColorPicker
 {
     /// <summary>
     /// HSV色を表現するクラスです。
