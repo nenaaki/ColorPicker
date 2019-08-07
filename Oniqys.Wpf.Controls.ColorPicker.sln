@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29001.49
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oniqys.Wpf.ColorPicker", "ColorPicker\Oniqys.Wpf.ColorPicker.csproj", "{7637F59D-64D4-4B95-B445-02B32977521D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oniqys.Wpf.Controls.ColorPicker", "ColorPicker\Oniqys.Wpf.Controls.ColorPicker.csproj", "{7637F59D-64D4-4B95-B445-02B32977521D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample", "Sample\Sample.csproj", "{9DFC9B82-B639-4AA3-83FF-9A336B1B6D35}"
 EndProject

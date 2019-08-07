@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Oniqys.Wpf.ColorPicker
+namespace Oniqys.Wpf.Controls.ColorPicker
 {
     /// <summary>
     /// SimpleColorPicker.xaml の相互作用ロジック

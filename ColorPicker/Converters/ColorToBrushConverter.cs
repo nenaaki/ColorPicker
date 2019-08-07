@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace Oniqys.Wpf.ColorPicker.Converters
+namespace Oniqys.Wpf.Controls.ColorPicker.Converters
 {
     public class ColorToBrushConverter : IValueConverter
     {

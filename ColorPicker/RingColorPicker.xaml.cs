@@ -5,7 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Oniqys.Wpf.ColorPicker
+namespace Oniqys.Wpf.Controls.ColorPicker
 {
     /// <summary>
     /// RingColorPicker.xaml の相互作用ロジック

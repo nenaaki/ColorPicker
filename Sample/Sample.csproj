@@ -95,9 +95,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ColorPicker\Oniqys.Wpf.ColorPicker.csproj">
+    <ProjectReference Include="..\ColorPicker\Oniqys.Wpf.Controls.ColorPicker.csproj">
       <Project>{7637f59d-64d4-4b95-b445-02b32977521d}</Project>
-      <Name>Oniqys.Wpf.ColorPicker</Name>
+      <Name>Oniqys.Wpf.Controls.ColorPicker</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

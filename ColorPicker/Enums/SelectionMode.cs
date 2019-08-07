@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Oniqys.Wpf.ColorPicker.Enums
+namespace Oniqys.Wpf.Controls.ColorPicker.Enums
 {
     /// <summary>
     /// 選択状態を変更するために必要な操作を規定します。

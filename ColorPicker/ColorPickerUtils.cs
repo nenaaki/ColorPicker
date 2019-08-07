@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace Oniqys.Wpf.ColorPicker
+namespace Oniqys.Wpf.Controls.ColorPicker
 {
     internal static class ColorPickerUtils
     {

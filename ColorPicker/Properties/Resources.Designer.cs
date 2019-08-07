@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Oniqys.Wpf.ColorPicker.Properties {
+namespace Oniqys.Wpf.Controls.ColorPicker.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Oniqys.Wpf.ColorPicker.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Oniqys.Wpf.ColorPicker.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Oniqys.Wpf.Controls.ColorPicker.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

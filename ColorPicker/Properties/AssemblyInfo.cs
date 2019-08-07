@@ -7,11 +7,11 @@ using System.Windows;
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更します。
-[assembly: AssemblyTitle("Oniqys.Wpf.ColorPicker")]
+[assembly: AssemblyTitle("Oniqys.Wpf.Controls.ColorPicker")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Oniqys.Wpf.ColorPicker")]
+[assembly: AssemblyProduct("Oniqys.Wpf.Controls.ColorPicker")]
 [assembly: AssemblyCopyright("Copyright ©  2019 Reki Yamamoto")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

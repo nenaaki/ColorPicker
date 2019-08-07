@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Oniqys.Wpf.ColorPicker.Properties {
+namespace Oniqys.Wpf.Controls.ColorPicker.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
