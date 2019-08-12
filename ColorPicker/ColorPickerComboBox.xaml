@@ -196,7 +196,7 @@
                             x:Name="PART_Popup"
                             AllowsTransparency="True"
                             Focusable="False"
-                            IsOpen="{TemplateBinding IsDropDownOpen}"
+                            IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                             Placement="Bottom"
                             PopupAnimation="Slide"
                             SnapsToDevicePixels="False">
@@ -216,8 +216,8 @@
                                 <local:ColorPickerControl
                                     BaseColors="{TemplateBinding ItemsSource}"
                                     GroupLength="8"
-                                    IsSelecting="{Binding Path=IsOpen, RelativeSource={RelativeSource AncestorType=Popup}, Mode=TwoWay}"
-                                    SelectedColor="{TemplateBinding SelectedItem}" />
+                                    IsSelecting="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                    SelectedColor="{Binding SelectedItem, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
                             </Grid>
                         </Popup>
                         <VisualStateManager.VisualStateGroups>
