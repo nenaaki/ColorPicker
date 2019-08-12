@@ -94,6 +94,8 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         private void OnMouseUp(object sender, MouseButtonEventArgs e)
         {
             UpdateCurrentColor();
+            var command = ColorPickerHelper.GetColorChangeCommand(this);
+            command?.Execute(SourceColor);
         }
 
         /// <summary>
@@ -101,13 +103,8 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         /// </summary>
         private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (SelectionMode == SelectionMode.ClickMode)
-            {
-                InvalidateVisual();
-                return;
-            }
-
             UpdateCurrentColor();
+            InvalidateVisual();
         }
 
         /// <summary>
@@ -115,7 +112,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         /// </summary>
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
-            if (SelectionMode == SelectionMode.ClickMode || e.LeftButton != MouseButtonState.Pressed)
+            if (e.LeftButton != MouseButtonState.Pressed)
                 return;
 
             UpdateCurrentColor();

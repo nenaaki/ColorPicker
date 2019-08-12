@@ -155,6 +155,7 @@
 
     <Style x:Key="ColorPickerComboBox" TargetType="{x:Type ComboBox}">
         <Setter Property="SnapsToDevicePixels" Value="false" />
+        <Setter Property="IsEditable" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
@@ -170,7 +171,7 @@
                             Grid.Column="2"
                             ClickMode="Press"
                             Focusable="false"
-                            IsChecked="{Binding IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
+                            IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                             Template="{StaticResource ComboBoxToggleButton}" />
                         <ContentPresenter
                             x:Name="ContentSite"
@@ -186,7 +187,7 @@
                             Margin="3,3,23,3"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Bottom"
-                            Background="{Binding SelectedItem,Converter={StaticResource ColorToBrushConverter},RelativeSource={RelativeSource TemplatedParent}}"
+                            Background="{Binding SelectedItem, Converter={StaticResource ColorToBrushConverter}, RelativeSource={RelativeSource TemplatedParent}}"
                             Focusable="True"
                             IsReadOnly="{TemplateBinding IsReadOnly}"
                             Style="{x:Null}"
@@ -199,7 +200,11 @@
                             Placement="Bottom"
                             PopupAnimation="Slide"
                             SnapsToDevicePixels="False">
-                            <Grid x:Name="DropDown" SnapsToDevicePixels="False" Margin="8" Background="White">
+                            <Grid
+                                x:Name="DropDown"
+                                Margin="8"
+                                Background="White"
+                                SnapsToDevicePixels="False">
                                 <Border x:Name="DropDownBorder" BorderThickness="1">
                                     <Border.BorderBrush>
                                         <SolidColorBrush Color="{DynamicResource BorderMediumColor}" />
@@ -211,6 +216,7 @@
                                 <local:ColorPickerControl
                                     BaseColors="{TemplateBinding ItemsSource}"
                                     GroupLength="8"
+                                    IsSelecting="{Binding Path=IsOpen, RelativeSource={RelativeSource AncestorType=Popup}, Mode=TwoWay}"
                                     SelectedColor="{TemplateBinding SelectedItem}" />
                             </Grid>
                         </Popup>

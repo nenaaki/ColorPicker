@@ -10,6 +10,69 @@ namespace Oniqys.Wpf.Controls.ColorPicker
     /// </summary>
     public partial class ColorPickerControl : UserControl
     {
+        #region Inner Classes
+
+        public class ColorPickerControlContent : ContentBase
+        {
+            private readonly ColorPickerControl _owner;
+
+            private bool _isSelecting;
+
+            public bool IsSelecting
+            {
+                get => _isSelecting;
+                set => UpdateProperty(ref _isSelecting, value);
+            }
+
+            private bool _isDetailOpened;
+
+            public bool IsDetailOpened
+            {
+                get => _isDetailOpened;
+                set => UpdateProperty(ref _isDetailOpened, value);
+            }
+
+            private Color _currentColor;
+
+            public Color CurrentColor
+            {
+                get => _currentColor;
+                set => UpdateProperty(ref _currentColor, value);
+            }
+
+            private Color _baseColor;
+
+            public Color BaseColor
+            {
+                get => _baseColor;
+                set => UpdateProperty(ref _baseColor, value);
+            }
+
+            private RecentColorManager _recentColorManager = RecentColorManager.DefaultInstane;
+
+            public RecentColorManager RecentColors
+            {
+                get => _recentColorManager;
+                set => UpdateReferenceProperty(ref _recentColorManager, value);
+            }
+
+
+            public ColorPickerControlContent(ColorPickerControl owner)
+            {
+                _owner = owner;
+
+                IsSelecting = true;
+
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// DataContextをユーザーに明け渡すために内部で使用するBinding情報を保持します。
+        /// </summary>
+        public ColorPickerControlContent Source { get; }
+
         public Color BaseColor
         {
             get => (Color)GetValue(BaseColorProperty);
@@ -28,8 +91,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         public static readonly DependencyProperty CurrentColorProperty
             = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(ColorPickerControl),
             new FrameworkPropertyMetadata(Colors.Transparent,
-            FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
-            (d, e) => ((ColorPickerControl)d).OnCurrentColorChanged((Color)e.NewValue)));
+            FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public Color SelectedColor
         {
@@ -72,32 +134,53 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             new FrameworkPropertyMetadata(RecentColorManager.DefaultInstane,
             FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
+        public Command SelectColorCommand
+        {
+            get { return (Command)GetValue(SelectColorCommandProperty); }
+            set { SetValue(SelectColorCommandProperty, value); }
+        }
+        public static readonly DependencyProperty SelectColorCommandProperty =
+            DependencyProperty.Register(nameof(SelectColorCommand), typeof(Command), typeof(ColorPickerControl), new PropertyMetadata(null));
+
+        public bool IsSelecting
+        {
+            get { return (bool)GetValue(IsSelectingProperty); }
+            set { SetValue(IsSelectingProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IsSelecting.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsSelectingProperty =
+            DependencyProperty.Register(nameof(IsSelecting), typeof(bool), typeof(ColorPickerControl), new PropertyMetadata(false));
+
         public event EventHandler<SelectedColorChangedEventArgs> SelectedColorChanged;
 
         public ColorPickerControl()
         {
+            Source = new ColorPickerControlContent(this);
+
             InitializeComponent();
-        }
 
-        private void OnCurrentColorChanged(Color newColor)
-        {
-            // MEMO : 詳細を開いている場合は選択色を確定しません。
-            if (_isOpenedPallet.IsChecked == true)
-                return;
-
-            SelectedColor = newColor;
+            SelectColorCommand = new Command(() =>
+            {
+                if(_isOpenedPallet.IsChecked == false)
+                {
+                    SelectedColor = CurrentColor;
+                    RecentColors.Register(SelectedColor);
+                    IsSelecting = false;
+                }
+            });
         }
 
         private void OnSelectedColorChanged(Color newColor)
         {
-            RecentColors.Register(newColor);
-
             SelectedColorChanged?.Invoke(this, new SelectedColorChangedEventArgs(newColor));
         }
 
-        private void OnOkClick(object sender, RoutedEventArgs e)
+        private void OnOkClicked(object sender, RoutedEventArgs e)
         {
             SelectedColor = CurrentColor;
+            RecentColors.Register(SelectedColor);
+            IsSelecting = false;
         }
     }
 }

@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="ColorItem.cs" />
     <Compile Include="ColorItemBase.cs" />
+    <Compile Include="ColorPickerHelper.cs" />
     <Compile Include="CommandBase.cs" />
     <Compile Include="Converters\ColorToGradualColorsConverter.cs" />
     <Compile Include="Enums\SelectionMode.cs" />
@@ -168,8 +169,6 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Behaviors\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

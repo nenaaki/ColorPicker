@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using Oniqys.Wpf.Controls.ColorPicker.Enums;
 
@@ -8,8 +10,19 @@ namespace Oniqys.Wpf.Controls.ColorPicker
     /// <summary>
     /// 四角い色アイテムです。
     /// </summary>
+    [ContentProperty("Content")]
     public sealed class ColorItem : ColorItemBase
     {
+        public UIElement Content
+        {
+            get { return (UIElement)GetValue(ContentProperty); }
+            set { SetValue(ContentProperty, value); }
+        }
+
+        public static readonly DependencyProperty ContentProperty =
+            DependencyProperty.Register(nameof(Content), typeof(UIElement), typeof(ColorItem),
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
+
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);

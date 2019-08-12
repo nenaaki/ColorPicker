@@ -29,13 +29,17 @@ namespace Oniqys.Wpf
             _canExecute = canExecute;
         }
 
-        public bool CanExecute(object parameter) => _canExecute?.Invoke() ?? true;
+        public bool CanExecute() => _canExecute?.Invoke() ?? true;
 
-        public void Execute(object parameter)
+        public void Execute()
         {
             if (_canExecute?.Invoke() ?? true)
                 _execute();
         }
+
+        bool ICommand.CanExecute(object parameter) => CanExecute();
+
+        void ICommand.Execute(object parameter) => Execute();
     }
 
     /// <summary>
@@ -54,13 +58,16 @@ namespace Oniqys.Wpf
             _canExecute = canExecute;
         }
 
-        public bool CanExecute(object parameter) => _canExecute?.Invoke((TParam)parameter) ?? true;
+        public bool CanExecute(TParam parameter) => _canExecute?.Invoke(parameter) ?? true;
 
-        public void Execute(object parameter)
+        public void Execute(TParam parameter)
         {
-            var tparam = (TParam)parameter;
-            if (_canExecute?.Invoke(tparam) ?? true)
-                _execute(tparam);
+            if (_canExecute?.Invoke(parameter) ?? true)
+                _execute(parameter);
         }
+
+        bool ICommand.CanExecute(object parameter) => CanExecute((TParam)parameter);
+
+        void ICommand.Execute(object parameter) => Execute((TParam)parameter);
     }
 }

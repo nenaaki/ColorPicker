@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Oniqys.Wpf.Controls.ColorPicker
@@ -52,6 +53,17 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             = DependencyProperty.Register(nameof(CurrentColor), typeof(Color), typeof(GradualColorPickerMultiSlot),
                 new FrameworkPropertyMetadata(Colors.Transparent,
                 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        /// <summary>
+        /// 色が確定する操作をしたときにコマンドを発します。
+        /// </summary>
+        public ICommand Command
+        {
+            get => (ICommand)GetValue(CommandProperty);
+            set => SetValue(CommandProperty, value);
+        }
+        public static readonly DependencyProperty CommandProperty =
+            DependencyProperty.Register(nameof(Command), typeof(ICommand), typeof(GradualColorPickerMultiSlot), new PropertyMetadata(null));
 
         public GradualColorPickerMultiSlot()
         {

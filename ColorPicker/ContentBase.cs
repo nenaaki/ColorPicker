@@ -24,9 +24,20 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         /// <param name="dependedProperties"></param>
         /// <returns>変更の有無</returns>
         public bool UpdateProperty<T>(ref T field, T value, [CallerMemberName]string propertyName = null, string[] dependedProperties = null)
-            where T : IEquatable<T>
+            where T : struct, IEquatable<T>
         {
             if (field.Equals(value))
+                return false;
+
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+
+        public bool UpdateReferenceProperty<T>(ref T field, T value, [CallerMemberName]string propertyName = null, string[] dependedProperties = null)
+            where T : class
+        {
+            if (field == value)
                 return false;
 
             field = value;
