@@ -118,27 +118,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicColors" xml:space="preserve">
-    <value>Basic Colors</value>
+    <value>基本色</value>
     <comment>基本色</comment>
   </data>
   <data name="Detail" xml:space="preserve">
-    <value>Detail</value>
+    <value>詳細</value>
     <comment>詳細</comment>
   </data>
   <data name="ExtendedColors" xml:space="preserve">
-    <value>Extended Colors</value>
+    <value>拡張色</value>
     <comment>拡張色</comment>
   </data>
   <data name="HexagonPalette" xml:space="preserve">
-    <value>Hexagon Palette</value>
+    <value>六角パレット</value>
     <comment>六角パレット</comment>
   </data>
   <data name="HSVPalette" xml:space="preserve">
-    <value>HSV Palette</value>
+    <value>HSVパレット</value>
     <comment>HSVパレット</comment>
   </data>
   <data name="RecentlyColors" xml:space="preserve">
-    <value>Recently Colors</value>
+    <value>最近使った色</value>
     <comment>最近使った色</comment>
   </data>
 </root>

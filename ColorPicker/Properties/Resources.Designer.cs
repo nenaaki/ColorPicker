@@ -22,7 +22,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker.Properties {
         ///   このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Oniqys.Wpf.Controls.ColorPicker.Properties.Resources", typeof(Resources).Assembly);
@@ -51,12 +51,66 @@ namespace Oniqys.Wpf.Controls.ColorPicker.Properties {
         ///   現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Basic Colors に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string BasicColors {
+            get {
+                return ResourceManager.GetString("BasicColors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Detail に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Detail {
+            get {
+                return ResourceManager.GetString("Detail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Extended Colors に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ExtendedColors {
+            get {
+                return ResourceManager.GetString("ExtendedColors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Hexagon Palette に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string HexagonPalette {
+            get {
+                return ResourceManager.GetString("HexagonPalette", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   HSV Palette に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string HSVPalette {
+            get {
+                return ResourceManager.GetString("HSVPalette", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recently Colors に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string RecentlyColors {
+            get {
+                return ResourceManager.GetString("RecentlyColors", resourceCulture);
             }
         }
     }

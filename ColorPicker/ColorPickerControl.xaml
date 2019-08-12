@@ -19,7 +19,10 @@
                     <TextBlock HorizontalAlignment="Center" IsHitTestVisible="False">指定なし</TextBlock>
                 </Grid>
                 <Border Margin="1" Background="LightGray">
-                    <TextBlock FontWeight="Bold" Foreground="Black">基本色</TextBlock>
+                    <TextBlock
+                        FontWeight="Bold"
+                        Foreground="Black"
+                        Text="{Binding Source={x:Static local:LocalizerService.Instance}, Path=Resources.BasicColors, Mode=OneWay}" />
                 </Border>
                 <local:GradualColorPickerMultiSlot
                     x:Name="_multiSlot"
@@ -28,25 +31,27 @@
                     CurrentColor="{Binding Path=CurrentColor, RelativeSource={RelativeSource AncestorType=UserControl}}"
                     GroupLength="{Binding Path=GroupLength, RelativeSource={RelativeSource AncestorType=UserControl}}" />
                 <Border Margin="1" Background="LightGray">
-                    <TextBlock FontWeight="Bold" Foreground="Black">拡張</TextBlock>
+                    <TextBlock FontWeight="Bold" Foreground="Black" 
+                        Text="{Binding Source={x:Static local:LocalizerService.Instance}, Path=Resources.ExtendedColors, Mode=OneWay}"/>
                 </Border>
                 <local:GradualColorPickerSlot
                     Margin="1"
                     BaseColors="{Binding SelectedItem, ElementName=_multiSlot}"
                     CurrentColor="{Binding Path=CurrentColor, RelativeSource={RelativeSource AncestorType=UserControl}}" />
                 <Border Margin="1" Background="LightGray">
-                    <TextBlock FontWeight="Bold" Foreground="Black">最近使った色</TextBlock>
+                    <TextBlock FontWeight="Bold" Foreground="Black" Text="{Binding Source={x:Static local:LocalizerService.Instance}, Path=Resources.RecentlyColors, Mode=OneWay}"/>
                 </Border>
                 <local:SimpleColorPicker
-                    Width="{Binding Path=ActualWidth,ElementName=_multiSlot}"
+                    Width="{Binding Path=ActualWidth, ElementName=_multiSlot}"
                     Margin="1"
                     CurrentColor="{Binding Path=CurrentColor, RelativeSource={RelativeSource AncestorType=UserControl}}"
                     ItemsSource="{Binding Path=RecentColors, RelativeSource={RelativeSource AncestorType=UserControl}}" />
-                <ToggleButton Name="_isOpenedPallet" Margin="1">詳細</ToggleButton>
+                <ToggleButton Name="_isOpenedPallet" Margin="1" 
+                              Content="{Binding Source={x:Static local:LocalizerService.Instance}, Path=Resources.Detail, Mode=OneWay}"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Visibility="{Binding Path=IsChecked, ElementName=_isOpenedPallet, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <TabControl Background="Transparent">
-                    <TabItem Header="パレット">
+                    <TabItem Header="{Binding Source={x:Static local:LocalizerService.Instance}, Path=Resources.HexagonPalette, Mode=OneWay}">
                         <local:HexColorPicker
                             Width="192"
                             Height="192"
@@ -54,7 +59,7 @@
                             VerticalAlignment="Top"
                             CurrentColor="{Binding Path=CurrentColor, RelativeSource={RelativeSource AncestorType=UserControl}}" />
                     </TabItem>
-                    <TabItem Header="詳細">
+                    <TabItem Header="{Binding Source={x:Static local:LocalizerService.Instance}, Path=Resources.HSVPalette, Mode=OneWay}">
                         <Grid>
                             <local:RingColorPicker
                                 x:Name="_ring"

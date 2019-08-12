@@ -99,6 +99,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="RecentColorManager.cs" />
+    <Compile Include="LocalizerService.cs" />
     <Compile Include="RgbEditor.xaml.cs">
       <DependentUpon>RgbEditor.xaml</DependentUpon>
     </Compile>
@@ -113,8 +114,9 @@
       <DependentUpon>TriangleColorPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Updater.cs" />
+    <EmbeddedResource Include="Properties\Resources.ja-JP.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Oniqys.snk" />
