@@ -58,7 +58,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
 
             drawingContext.DrawGeometry(Brush, null, _hexGeometry);
 
-            if (CurrentColor == Value)
+            if (CurrentColor == SourceColor)
             {
                 drawingContext.DrawGeometry(null, WhitePen, _edgeGeometry);
                 drawingContext.DrawGeometry(null, BlackPen, _cursorGeometry);

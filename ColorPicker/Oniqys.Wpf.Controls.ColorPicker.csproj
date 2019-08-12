@@ -31,6 +31,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Oniqys.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -53,13 +62,13 @@
   <ItemGroup>
     <Compile Include="ColorItem.cs" />
     <Compile Include="ColorItemBase.cs" />
+    <Compile Include="CommandBase.cs" />
     <Compile Include="Converters\ColorToGradualColorsConverter.cs" />
     <Compile Include="Enums\SelectionMode.cs" />
     <Compile Include="HsvColorPickerBase.cs" />
     <Compile Include="ColorPickerControl.xaml.cs">
       <DependentUpon>ColorPickerControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ColorPickerUtils.cs" />
     <Compile Include="Converters\ColorToBrushConverter.cs" />
     <Compile Include="ContentBase.cs" />
     <Compile Include="GradualColorPicker.xaml.cs">
@@ -108,6 +117,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Oniqys.snk" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -61,16 +61,16 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         /// <summary>
         /// この色アイテムに設定されている色を取得または設定します。
         /// </summary>
-        public Color Value
+        public Color SourceColor
         {
-            get => (Color)GetValue(ValueProperty);
-            set => SetValue(ValueProperty, value);
+            get => (Color)GetValue(SourceColorProperty);
+            set => SetValue(SourceColorProperty, value);
         }
         /// <summary>
-        /// <see cref="Value"/>の依存関係プロパティです。
+        /// <see cref="SourceColor"/>の依存関係プロパティです。
         /// </summary>
-        public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register(nameof(Value), typeof(Color), typeof(ColorItemBase),
+        public static readonly DependencyProperty SourceColorProperty =
+            DependencyProperty.Register(nameof(SourceColor), typeof(Color), typeof(ColorItemBase),
             new FrameworkPropertyMetadata(Colors.Transparent,
             FrameworkPropertyMetadataOptions.AffectsRender,
             (d, e) => ((ColorItemBase)d).Brush.Color = (Color)e.NewValue));
@@ -124,6 +124,6 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         /// <summary>
         /// 現在の色をこの色アイテムに設定されている色で更新します。
         /// </summary>
-        private void UpdateCurrentColor() => CurrentColor = Value;
+        private void UpdateCurrentColor() => CurrentColor = SourceColor;
     }
 }

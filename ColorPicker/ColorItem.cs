@@ -5,13 +5,16 @@ using Oniqys.Wpf.Controls.ColorPicker.Enums;
 
 namespace Oniqys.Wpf.Controls.ColorPicker
 {
+    /// <summary>
+    /// 四角い色アイテムです。
+    /// </summary>
     public sealed class ColorItem : ColorItemBase
     {
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
 
-            if (CurrentColor == Value || SelectionMode == SelectionMode.ClickMode && IsMouseOver && Mouse.LeftButton == MouseButtonState.Pressed)
+            if (CurrentColor == SourceColor || SelectionMode == SelectionMode.ClickMode && IsMouseOver && Mouse.LeftButton == MouseButtonState.Pressed)
             {
                 var renderSize = RenderSize;
                 drawingContext.DrawRectangle(Brush, WhitePen, new Rect(0.5, 0.5, renderSize.Width - 1, renderSize.Height - 1));

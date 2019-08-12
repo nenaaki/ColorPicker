@@ -18,7 +18,7 @@
     </ItemsControl.ItemsPanel>
     <ItemsControl.ItemTemplate>
         <DataTemplate>
-            <local:ColorItem Value="{Binding}" 
+            <local:ColorItem SourceColor="{Binding}" 
                              Width="16"
                              Height="16"
                              Margin="1"

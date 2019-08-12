@@ -35,7 +35,7 @@
                 Width="16"
                 Height="16"
                 CurrentColor="{Binding Path=CurrentColor, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                Value="{Binding}" />
+                SourceColor="{Binding}" />
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>
