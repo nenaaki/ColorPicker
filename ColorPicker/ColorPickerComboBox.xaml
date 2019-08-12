@@ -187,7 +187,7 @@
                             Margin="3,3,23,3"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Bottom"
-                            Background="{Binding SelectedItem, Converter={StaticResource ColorToBrushConverter}, RelativeSource={RelativeSource TemplatedParent}}"
+                            Background="{Binding SelectedColor, Converter={StaticResource ColorToBrushConverter}, ElementName=Picker, Mode=OneWay}"
                             Focusable="True"
                             IsReadOnly="{TemplateBinding IsReadOnly}"
                             Style="{x:Null}"
@@ -214,6 +214,7 @@
                                     </Border.Background>
                                 </Border>
                                 <local:ColorPickerControl
+                                    x:Name="Picker"
                                     BaseColors="{TemplateBinding ItemsSource}"
                                     GroupLength="8"
                                     IsSelecting="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
