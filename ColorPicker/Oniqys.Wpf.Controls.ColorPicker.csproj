@@ -67,6 +67,7 @@
     </Compile>
     <Compile Include="ColorPickerHelper.cs" />
     <Compile Include="Converters\ColorToGradualColorsConverter.cs" />
+    <Compile Include="Converters\WhiteOrBlackConverter.cs" />
     <Compile Include="Enums\SelectionMode.cs" />
     <Compile Include="HsvColorPickerBase.cs" />
     <Compile Include="ColorPickerControl.xaml.cs">
