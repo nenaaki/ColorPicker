@@ -121,6 +121,10 @@
     <value>Basic Colors</value>
     <comment>基本色</comment>
   </data>
+  <data name="DefaultColorName" xml:space="preserve">
+    <value>Default Color</value>
+    <comment>指定なし</comment>
+  </data>
   <data name="Detail" xml:space="preserve">
     <value>Detail</value>
     <comment>詳細</comment>

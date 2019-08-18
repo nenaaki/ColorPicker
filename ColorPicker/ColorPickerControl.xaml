@@ -17,7 +17,7 @@
             <StackPanel Orientation="Vertical">
                 <Grid Margin="1">
                     <local:ColorItem SourceColor="White" />
-                    <TextBlock HorizontalAlignment="Center" IsHitTestVisible="False">指定なし</TextBlock>
+                    <TextBlock HorizontalAlignment="Center" IsHitTestVisible="False" Text="{Binding Source={x:Static local:LocalizerService.Instance}, Path=Resources.DefaultColorName, Mode=OneWay}"/>
                 </Grid>
                 <Border Margin="1" Background="LightGray">
                     <TextBlock

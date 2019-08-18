@@ -70,6 +70,15 @@ namespace Oniqys.Wpf.Controls.ColorPicker.Properties {
         }
         
         /// <summary>
+        ///   Default Color に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DefaultColorName {
+            get {
+                return ResourceManager.GetString("DefaultColorName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Detail に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Detail {

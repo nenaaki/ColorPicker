@@ -31,9 +31,9 @@
                 <Border
                     x:Name="Border"
                     Grid.ColumnSpan="2"
+                    Background="{TemplateBinding Background}"
                     BorderThickness="1"
-                    CornerRadius="2"
-                    Background="{TemplateBinding Background}">
+                    CornerRadius="2">
                     <Border.BorderBrush>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                             <GradientStop Offset="0" Color="{DynamicResource BorderLightColor}" />
@@ -44,9 +44,8 @@
                 <Border
                     Grid.Column="0"
                     Margin="1"
-                    CornerRadius="2,0,0,2"
-                    Background="{TemplateBinding Background}">
-                </Border>
+                    Background="{TemplateBinding Background}"
+                    CornerRadius="2,0,0,2" />
                 <Path
                     Grid.Column="1"
                     HorizontalAlignment="Center"
@@ -106,6 +105,7 @@
                         <local:ColorPickerControl
                             x:Name="Picker"
                             BaseColors="{TemplateBinding ItemsSource}"
+                            CurrentColor="{Binding CurrentValue, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                             GroupLength="8"
                             IsSelecting="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                             SelectedColor="{Binding CurrentValue, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
