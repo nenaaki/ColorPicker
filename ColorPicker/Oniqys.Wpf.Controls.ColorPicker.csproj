@@ -62,8 +62,10 @@
   <ItemGroup>
     <Compile Include="ColorItem.cs" />
     <Compile Include="ColorItemBase.cs" />
+    <Compile Include="ColorPickerComboBox.xaml.cs">
+      <DependentUpon>ColorPickerComboBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ColorPickerHelper.cs" />
-    <Compile Include="CommandBase.cs" />
     <Compile Include="Converters\ColorToGradualColorsConverter.cs" />
     <Compile Include="Enums\SelectionMode.cs" />
     <Compile Include="HsvColorPickerBase.cs" />
@@ -71,7 +73,6 @@
       <DependentUpon>ColorPickerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\ColorToBrushConverter.cs" />
-    <Compile Include="ContentBase.cs" />
     <Compile Include="GradualColorPicker.xaml.cs">
       <DependentUpon>GradualColorPicker.xaml</DependentUpon>
     </Compile>
@@ -114,7 +115,6 @@
     <Compile Include="TriangleColorPicker.xaml.cs">
       <DependentUpon>TriangleColorPicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Updater.cs" />
     <EmbeddedResource Include="Properties\Resources.ja-JP.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -169,6 +169,11 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Controls\Oniqys.Wpf.Controls.csproj">
+      <Project>{b9c231cc-0bac-4e8b-9b2c-a7c5fdae9da2}</Project>
+      <Name>Oniqys.Wpf.Controls</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

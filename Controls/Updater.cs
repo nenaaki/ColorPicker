@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Oniqys.Wpf.Controls.ColorPicker
+namespace Oniqys.Wpf
 {
-    internal struct Updater
+    public struct Updater
     {
         private bool _updating;
 

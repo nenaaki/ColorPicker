@@ -2,10 +2,10 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Oniqys.Wpf.Controls.ColorPicker
+namespace Oniqys.Wpf.Controls
 {
     /// <summary>
-    /// 通知機能の基底クラスです。
+    /// <see cref="INotifyPropertyChanged"/>実装の基底クラスです。
     /// </summary>
     public abstract class ContentBase : INotifyPropertyChanged
     {
@@ -23,7 +23,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         /// <param name="propertyName"></param>
         /// <param name="dependedProperties"></param>
         /// <returns>変更の有無</returns>
-        public bool UpdateProperty<T>(ref T field, T value, [CallerMemberName]string propertyName = null, string[] dependedProperties = null)
+        protected bool UpdateProperty<T>(ref T field, T value, [CallerMemberName]string propertyName = null, string[] dependedProperties = null)
             where T : struct, IEquatable<T>
         {
             if (field.Equals(value))
@@ -31,10 +31,15 @@ namespace Oniqys.Wpf.Controls.ColorPicker
 
             field = value;
             OnPropertyChanged(propertyName);
+
+            if (dependedProperties != null)
+                foreach (var prop in dependedProperties)
+                    OnPropertyChanged(propertyName);
+
             return true;
         }
 
-        public bool UpdateReferenceProperty<T>(ref T field, T value, [CallerMemberName]string propertyName = null, string[] dependedProperties = null)
+        protected bool UpdateReferenceProperty<T>(ref T field, T value, [CallerMemberName]string propertyName = null, string[] dependedProperties = null)
             where T : class
         {
             if (field == value)
@@ -42,6 +47,11 @@ namespace Oniqys.Wpf.Controls.ColorPicker
 
             field = value;
             OnPropertyChanged(propertyName);
+
+            if (dependedProperties != null)
+                foreach (var prop in dependedProperties)
+                    OnPropertyChanged(propertyName);
+
             return true;
         }
 
@@ -49,6 +59,6 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         /// <see cref="ProerptyChanged"/>を発生します。
         /// </summary>
         /// <param name="propertyName">プロパティから使用する場合はnullにしてください</param>
-        public void OnPropertyChanged([CallerMemberName]string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        protected void OnPropertyChanged([CallerMemberName]string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

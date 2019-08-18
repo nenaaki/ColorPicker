@@ -1,0 +1,16 @@
+﻿<ListBox x:Class="Oniqys.Wpf.Controls.Slicer.SlicerSlotControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Oniqys.Wpf.Controls.Slicer"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <ListBox.ItemTemplate>
+        <ItemContainerTemplate>
+            <ListBoxItem Margin="2">
+                <Rectangle RadiusX="2" RadiusY="2" />
+            </ListBoxItem>
+        </ItemContainerTemplate>
+    </ListBox.ItemTemplate>
+</ListBox>

@@ -12,24 +12,18 @@
     Height="600"
     mc:Ignorable="d">
     <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Oniqys.Wpf.Controls.ColorPicker;component/ColorPickerComboBox.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-            <cpconv:ColorToBrushConverter x:Key="ColorToBrushConverter" />
-        </ResourceDictionary>
+        <cpconv:ColorToBrushConverter x:Key="ColorToBrushConverter" />
     </Window.Resources>
 
     <StackPanel Orientation="Horizontal">
-        <ComboBox
+        <cp:ColorPickerComboBox
             Margin="8"
             VerticalAlignment="Top"
             ItemsSource="{Binding Path=BaseColors}"
-            SelectedItem="{Binding Path=CurrentColor}"
-            Style="{StaticResource ColorPickerComboBox}" />
+            CurrentValue="{Binding Path=CurrentColor, Mode=TwoWay}"/>
         <Rectangle
             Width="32"
             Height="32"
-            Fill="{Binding Path=CurrentColor, Converter={StaticResource ColorToBrushConverter}}" />
+            Fill="{Binding Path=CurrentColor,Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}" />
     </StackPanel>
 </Window>

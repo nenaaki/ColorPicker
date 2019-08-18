@@ -99,7 +99,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             return wb;
         }
 
-        private Updater _colorUpdater;
+        private Updater _colorUpdater = new Updater();
 
         protected override void SyncColorCore(string propertyName)
         {

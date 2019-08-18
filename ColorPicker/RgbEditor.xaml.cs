@@ -96,7 +96,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             InitializeComponent();
         }
 
-        private Updater _updater;
+        private Updater _updater = new Updater();
 
         private void SyncColor(string propertyName)
         {
@@ -124,16 +124,16 @@ namespace Oniqys.Wpf.Controls.ColorPicker
                     case nameof(Brightness):
                     case nameof(Saturation):
                         {
-                            if(propertyName == nameof(Brightness))
+                            if (propertyName == nameof(Brightness))
                             {
                                 var brightness = Brightness;
                                 var total = brightness + Saturation;
-                                if(brightness + Saturation < 100)
+                                if (brightness + Saturation < 100)
                                 {
                                     Saturation = 100 - brightness;
                                 }
                             }
-                            else if(propertyName == nameof(Saturation))
+                            else if (propertyName == nameof(Saturation))
                             {
                                 var saturation = Saturation;
                                 var total = Brightness + saturation;
@@ -145,7 +145,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
                             var hsv = new HsvColor((double)Hue * (Math.PI * 2) / 360, (double)Saturation / 100, (double)Brightness / 100);
                             var color = hsv.ToColor();
                             CurrentColor = color;
-                            if(propertyName == nameof(Hue))
+                            if (propertyName == nameof(Hue))
                             {
                                 BaseColor = new HsvColor(hsv.H, 1.0, 1.0).ToColor();
                             }
