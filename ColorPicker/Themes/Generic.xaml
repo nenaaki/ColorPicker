@@ -14,13 +14,13 @@
             </Grid.ColumnDefinitions>
             <Border x:Name="Border"
                     Grid.ColumnSpan="2"
-                    Margin="0.5"
+                    Margin="1"
                     Background="{TemplateBinding Background}"
                     BorderThickness="1">
                 <Border.BorderBrush>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                         <GradientStop Offset="0" Color="#FFCCCCCC" />
-                        <GradientStop Offset="1" Color="#FF888888" />
+                        <GradientStop Offset="1" Color="#FFAAAAAA" />
                     </LinearGradientBrush>
                 </Border.BorderBrush>
             </Border>

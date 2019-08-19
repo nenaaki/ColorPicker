@@ -7,11 +7,14 @@
                           d:DesignHeight="450"
                           d:DesignWidth="800"
                           mc:Ignorable="d">
-    <Viewbox Stretch="Uniform" StretchDirection="Both">
-        <Grid>
+    <Viewbox Stretch="Uniform"
+             StretchDirection="Both"
+             Style="{x:Null}">
+        <Grid Style="{x:Null}">
             <Canvas Name="_canvas"
                     Width="100"
-                    Height="100">
+                    Height="100"
+                    Style="{x:Null}">
                 <Canvas.Clip>
                     <PathGeometry>
                         <PathGeometry.Figures>
@@ -25,7 +28,9 @@
                         </PathGeometry.Figures>
                     </PathGeometry>
                 </Canvas.Clip>
-                <Rectangle Width="100" Height="100" Style="{x:Null}">
+                <Rectangle Width="100"
+                           Height="100"
+                           Style="{x:Null}">
                     <Rectangle.Fill>
                         <LinearGradientBrush StartPoint="0,1" EndPoint="0.4,0.2">
                             <LinearGradientBrush.GradientStops>
@@ -38,10 +43,12 @@
                 <Viewbox Width="100"
                          Height="100"
                          Stretch="Uniform"
-                         StretchDirection="Both">
+                         StretchDirection="Both"
+                         Style="{x:Null}">
                     <Image Name="_image"
                            Stretch="Fill"
-                           StretchDirection="Both" />
+                           StretchDirection="Both"
+                           Style="{x:Null}" />
                 </Viewbox>
             </Canvas>
             <Grid>
