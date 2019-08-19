@@ -24,7 +24,12 @@
             Margin="8"
             VerticalAlignment="Top"
             ItemsSource="{Binding Path=BaseColors}"
-            CurrentValue="{Binding Path=CurrentColor, Mode=TwoWay}" />
+            Command="{Binding Path=SampleCommand, Mode=OneTime}"
+            CurrentValue="{Binding Path=CurrentColor, Mode=TwoWay}">
+            <oniqys:ColorPickerSplitButton.Content>
+                <Rectangle Fill="{Binding Path=CurrentColor, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}" Width="32" Height="32" />
+            </oniqys:ColorPickerSplitButton.Content>
+        </oniqys:ColorPickerSplitButton>
         <Rectangle
             Width="32"
             Height="32"

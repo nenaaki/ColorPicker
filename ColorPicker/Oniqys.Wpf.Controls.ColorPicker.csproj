@@ -58,6 +58,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorPickerComboBoxBase.cs" />
     <Compile Include="ColorItem.cs" />
     <Compile Include="ColorItemBase.cs" />
     <Compile Include="ColorPickerComboBox.cs" />

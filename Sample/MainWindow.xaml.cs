@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
-using System.Globalization;
+using Oniqys.Wpf;
 using Oniqys.Wpf.Controls.ColorPicker;
 
 namespace Sample
@@ -27,6 +27,8 @@ namespace Sample
 
     public class MainWindowViewModel : INotifyPropertyChanged
     {
+        public Command SampleCommand { get; }
+
         public Color[] BaseColors => new Color[]
         {
             Colors.White, Colors.Black, Colors.Red, Colors.Blue, Colors.Green, Colors.LightGreen, Colors.Pink, Colors.SkyBlue, Colors.Azure, Colors.BlueViolet
@@ -52,6 +54,11 @@ namespace Sample
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public MainWindowViewModel()
+        {
+            SampleCommand = new Command(() => CurrentColor = Colors.Red);
+        }
 
         public void UpdateProperty<T>(ref T field, T value, [CallerMemberName]string propertyName = null, string[] dependedProperties = null)
             where T : IEquatable<T>
