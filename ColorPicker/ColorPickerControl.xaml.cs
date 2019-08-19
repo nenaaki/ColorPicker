@@ -10,6 +10,26 @@ namespace Oniqys.Wpf.Controls.ColorPicker
     /// </summary>
     public partial class ColorPickerControl : UserControl
     {
+        public string DefaultColorName
+        {
+            get { return (string)GetValue(DefaultColorNameProperty); }
+            set { SetValue(DefaultColorNameProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for DefaultColorName.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty DefaultColorNameProperty =
+            DependencyProperty.Register(nameof(DefaultColorName), typeof(string), typeof(ColorPickerControl), new PropertyMetadata(string.Empty));
+
+        public Color DefaultColor
+        {
+            get => (Color)GetValue(DefaultColorProperty);
+            set => SetValue(DefaultColorProperty, value);
+        }
+        public static readonly DependencyProperty DefaultColorProperty
+            = DependencyProperty.Register(nameof(DefaultColor), typeof(Color), typeof(ColorPickerControl),
+            new FrameworkPropertyMetadata(Colors.Transparent,
+            FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
         public Color BaseColor
         {
             get => (Color)GetValue(BaseColorProperty);

@@ -21,7 +21,6 @@
             ItemsSource="{Binding Path=BaseColors}"
             CurrentValue="{Binding Path=CurrentColor, Mode=TwoWay}" />
         <oniqys:ColorPickerSplitButton
-            Content="TEST"
             Margin="8"
             VerticalAlignment="Top"
             ItemsSource="{Binding Path=BaseColors}"

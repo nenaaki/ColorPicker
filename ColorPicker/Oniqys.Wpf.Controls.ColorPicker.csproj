@@ -62,9 +62,7 @@
     <Compile Include="ColorItemBase.cs" />
     <Compile Include="ColorPickerComboBox.cs" />
     <Compile Include="ColorPickerHelper.cs" />
-    <Compile Include="ColorPickerSplitButton.xaml.cs">
-      <DependentUpon>ColorPickerSplitButton.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="ColorPickerSplitButton.cs" />
     <Compile Include="Converters\ColorToGradualColorsConverter.cs" />
     <Compile Include="Converters\WhiteOrBlackConverter.cs" />
     <Compile Include="Enums\SelectionMode.cs" />
@@ -129,10 +127,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="ColorPickerControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ColorPickerSplitButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

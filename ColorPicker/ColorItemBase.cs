@@ -88,6 +88,21 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             MouseUp += OnMouseUp;
         }
 
+        protected override HitTestResult HitTestCore(PointHitTestParameters hitTestParameters)
+        {
+            if (SourceColor == Colors.Transparent)
+            {
+                var point = hitTestParameters.HitPoint;
+                var result = new Rect(RenderSize).Contains(hitTestParameters.HitPoint);
+                if (result)
+                {
+                    return new PointHitTestResult(this, point);
+                }
+            }
+
+            return base.HitTestCore(hitTestParameters);
+        }
+
         /// <summary>
         /// <see cref="FrameworkElement.MouseUp"/>イベントを処理します。
         /// </summary>

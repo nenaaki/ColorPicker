@@ -30,7 +30,7 @@
             <Path Grid.Column="1"
                   HorizontalAlignment="Center"
                   VerticalAlignment="Center"
-                  Data="M 0 0 L 4 4 L 8 0 Z">
+                  Data="M 0 0 L 3 4 L 6 0 Z">
                 <Path.Fill>
                     <SolidColorBrush Color="{Binding RelativeSource={RelativeSource AncestorType=ComboBox}, Path=CurrentValue, Converter={StaticResource WhiteOrBlackConverter}}" />
                 </Path.Fill>
@@ -55,6 +55,100 @@
                                                           Mode=TwoWay,
                                                           RelativeSource={RelativeSource TemplatedParent}}"
                                       Template="{StaticResource ColorPickerComboBoxToggleButton}" />
+                        <TextBox x:Name="PART_EditableTextBox"
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Bottom"
+                                 Background="{Binding SelectedColor,
+                                                      Converter={StaticResource ColorToBrushConverter},
+                                                      ElementName=Picker,
+                                                      Mode=OneWay}"
+                                 Focusable="False"
+                                 Foreground="Transparent"
+                                 IsReadOnly="{TemplateBinding IsReadOnly}"
+                                 Style="{x:Null}"
+                                 Text="{Binding SelectedColor,
+                                                ElementName=Picker,
+                                                Mode=OneWay}"
+                                 Visibility="Collapsed" />
+                        <Popup x:Name="PART_Popup"
+                               AllowsTransparency="True"
+                               Focusable="False"
+                               IsOpen="{Binding IsDropDownOpen,
+                                                Mode=TwoWay,
+                                                RelativeSource={RelativeSource TemplatedParent}}"
+                               Placement="Bottom"
+                               PopupAnimation="Slide"
+                               SnapsToDevicePixels="False">
+                            <Grid x:Name="DropDown"
+                                  Margin="8"
+                                  Background="White"
+                                  SnapsToDevicePixels="False">
+                                <Border x:Name="DropDownBorder"
+                                        BorderThickness="1"
+                                        Padding="4">
+                                    <Border.BorderBrush>
+                                        <SolidColorBrush Color="#FFCCCCCC" />
+                                    </Border.BorderBrush>
+                                    <Border.Background>
+                                        <SolidColorBrush Color="White" />
+                                    </Border.Background>
+                                    <local:ColorPickerControl x:Name="Picker"
+                                                              BaseColors="{TemplateBinding ItemsSource}"
+                                                              CurrentColor="{Binding CurrentValue,
+                                                                                     Mode=OneWay,
+                                                                                     RelativeSource={RelativeSource TemplatedParent}}"
+                                                              GroupLength="8"
+                                                              IsSelecting="{Binding IsDropDownOpen,
+                                                                                    Mode=TwoWay,
+                                                                                    RelativeSource={RelativeSource TemplatedParent}}"
+                                                              SelectedColor="{Binding CurrentValue,
+                                                                                      Mode=TwoWay,
+                                                                                      RelativeSource={RelativeSource TemplatedParent}}" />
+                                </Border>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasItems" Value="false">
+                            <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95" />
+                        </Trigger>
+                        <Trigger Property="IsGrouping" Value="true">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+                        </Trigger>
+                        <Trigger SourceName="PART_Popup" Property="AllowsTransparency" Value="true">
+                            <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="4" />
+                            <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:ColorPickerSplitButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ColorPickerSplitButton}">
+                    <Grid MinWidth="20" MinHeight="20">
+                        <ToggleButton x:Name="ToggleButton" Width="8"
+                                      Grid.Column="2"
+                                      Background="{Binding SelectedColor,
+                                                           Converter={StaticResource ColorToBrushConverter},
+                                                           ElementName=Picker,
+                                                           Mode=OneWay}"
+                                      ClickMode="Press"
+                                      Focusable="false"
+                                      IsChecked="{Binding IsDropDownOpen,
+                                                          Mode=TwoWay,
+                                                          RelativeSource={RelativeSource TemplatedParent}}">
+                            <Path HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Data="M 0 0 L 3 4 L 6 0 Z">
+                                <Path.Fill>
+                                    <SolidColorBrush Color="{Binding RelativeSource={RelativeSource AncestorType=ComboBox}, Path=CurrentValue, Converter={StaticResource WhiteOrBlackConverter}}" />
+                                </Path.Fill>
+                            </Path>
+                        </ToggleButton>
                         <TextBox x:Name="PART_EditableTextBox"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Bottom"

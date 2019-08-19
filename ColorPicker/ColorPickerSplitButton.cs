@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Oniqys.Wpf.Controls.ColorPicker
 {
@@ -41,10 +30,10 @@ namespace Oniqys.Wpf.Controls.ColorPicker
     /// 手順 2)
     /// コントロールを XAML ファイルで使用します。
     ///
-    ///     <MyNamespace:ColorPickerCombo/>
+    ///     <MyNamespace:ColorPickerSplitButton/>
     ///
     /// </summary>
-    public class ColorPickerComboBox : ComboBox
+    public class ColorPickerSplitButton : ComboBox
     {
         public Color CurrentValue
         {
@@ -52,7 +41,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             set { SetValue(CurrentValueProperty, value); }
         }
         public static readonly DependencyProperty CurrentValueProperty =
-            DependencyProperty.Register(nameof(CurrentValue), typeof(Color), typeof(ColorPickerComboBox), new PropertyMetadata(Colors.White));
+            DependencyProperty.Register(nameof(CurrentValue), typeof(Color), typeof(ColorPickerSplitButton), new PropertyMetadata(Colors.White));
 
         public string DefaultColorName
         {
@@ -60,7 +49,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             set { SetValue(DefaultColorNameProperty, value); }
         }
         public static readonly DependencyProperty DefaultColorNameProperty =
-            DependencyProperty.Register(nameof(DefaultColorName), typeof(string), typeof(ColorPickerComboBox), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register(nameof(DefaultColorName), typeof(string), typeof(ColorPickerSplitButton), new PropertyMetadata(string.Empty));
 
         public Color DefaultColor
         {
@@ -68,13 +57,18 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             set => SetValue(DefaultColorProperty, value);
         }
         public static readonly DependencyProperty DefaultColorProperty
-            = DependencyProperty.Register(nameof(DefaultColor), typeof(Color), typeof(ColorPickerComboBox),
+            = DependencyProperty.Register(nameof(DefaultColor), typeof(Color), typeof(ColorPickerSplitButton),
             new FrameworkPropertyMetadata(Colors.Transparent,
             FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
-        static ColorPickerComboBox()
+        public object Content
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(ColorPickerComboBox), new FrameworkPropertyMetadata(typeof(ColorPickerComboBox)));
+            get { return (object)GetValue(ContentProperty); }
+            set { SetValue(ContentProperty, value); }
         }
+
+        // Using a DependencyProperty as the backing store for Content.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ContentProperty =
+            DependencyProperty.Register("Content", typeof(object), typeof(ColorPickerSplitButton), new PropertyMetadata(null));
     }
 }
