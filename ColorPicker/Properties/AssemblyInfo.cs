@@ -9,7 +9,7 @@ using System.Windows.Markup;
 // アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更します。
 [assembly: AssemblyTitle("Oniqys.Wpf.Controls.ColorPicker")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Oniqys Color Picker Control")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Oniqys.Wpf.Controls.ColorPicker")]
@@ -52,5 +52,5 @@ using System.Windows.Markup;
 // すべての値を指定するか、次を使用してビルド番号とリビジョン番号を既定に設定できます
 // 既定値にすることができます:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.8.0.0")]
-[assembly: AssemblyFileVersion("0.8.0.0")]
+[assembly: AssemblyVersion("0.8.1.0")]
+[assembly: AssemblyFileVersion("0.8.1.0")]
