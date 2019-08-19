@@ -25,7 +25,7 @@
                 </Border.BorderBrush>
             </Border>
             <Border Grid.Column="0"
-                    Margin="1"
+                    Margin="2"
                     Background="{TemplateBinding Background}" />
             <Path Grid.Column="1"
                   HorizontalAlignment="Center"
@@ -70,7 +70,6 @@
                                                 ElementName=Picker,
                                                 Mode=OneWay}"
                                  Visibility="Collapsed" />
-                        <!--    -->
                         <Popup x:Name="PART_Popup"
                                AllowsTransparency="True"
                                Focusable="False"

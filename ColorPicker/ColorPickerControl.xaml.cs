@@ -10,69 +10,6 @@ namespace Oniqys.Wpf.Controls.ColorPicker
     /// </summary>
     public partial class ColorPickerControl : UserControl
     {
-        #region Inner Classes
-
-        public class ColorPickerControlContent : ContentBase
-        {
-            private readonly ColorPickerControl _owner;
-
-            private bool _isSelecting;
-
-            public bool IsSelecting
-            {
-                get => _isSelecting;
-                set => UpdateProperty(ref _isSelecting, value);
-            }
-
-            private bool _isDetailOpened;
-
-            public bool IsDetailOpened
-            {
-                get => _isDetailOpened;
-                set => UpdateProperty(ref _isDetailOpened, value);
-            }
-
-            private Color _currentColor;
-
-            public Color CurrentColor
-            {
-                get => _currentColor;
-                set => UpdateProperty(ref _currentColor, value);
-            }
-
-            private Color _baseColor;
-
-            public Color BaseColor
-            {
-                get => _baseColor;
-                set => UpdateProperty(ref _baseColor, value);
-            }
-
-            private RecentColorManager _recentColorManager = RecentColorManager.DefaultInstane;
-
-            public RecentColorManager RecentColors
-            {
-                get => _recentColorManager;
-                set => UpdateReferenceProperty(ref _recentColorManager, value);
-            }
-
-
-            public ColorPickerControlContent(ColorPickerControl owner)
-            {
-                _owner = owner;
-
-                IsSelecting = true;
-
-            }
-        }
-
-        #endregion
-
-        /// <summary>
-        /// DataContextをユーザーに明け渡すために内部で使用するBinding情報を保持します。
-        /// </summary>
-        public ColorPickerControlContent Source { get; }
-
         public Color BaseColor
         {
             get => (Color)GetValue(BaseColorProperty);
@@ -156,13 +93,11 @@ namespace Oniqys.Wpf.Controls.ColorPicker
 
         public ColorPickerControl()
         {
-            Source = new ColorPickerControlContent(this);
-
             InitializeComponent();
 
             SelectColorCommand = new Command(() =>
             {
-                if(_isOpenedPallet.IsChecked == false)
+                if (_isOpenedPallet.IsChecked == false)
                 {
                     SelectedColor = CurrentColor;
                     RecentColors.Register(SelectedColor);

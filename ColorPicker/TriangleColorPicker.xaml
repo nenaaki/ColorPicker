@@ -35,7 +35,7 @@
                         <LinearGradientBrush StartPoint="0,1" EndPoint="0.4,0.2">
                             <LinearGradientBrush.GradientStops>
                                 <GradientStop Offset="0" Color="Black" />
-                                <GradientStop Offset="1.0" Color="{Binding Path=BaseColor}" />
+                                <GradientStop Offset="1.0" Color="{Binding Path=BaseColor, RelativeSource={RelativeSource AncestorType=local:HsvColorPickerBase}}" />
                             </LinearGradientBrush.GradientStops>
                         </LinearGradientBrush>
                     </Rectangle.Fill>
