@@ -1,2 +1,3 @@
 # ColorPicker
-WPF Color Picker
+
+WPF Color Picker Control

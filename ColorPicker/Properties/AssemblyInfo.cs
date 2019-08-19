@@ -11,7 +11,7 @@ using System.Windows.Markup;
 [assembly: AssemblyTitle("Oniqys.Wpf.Controls.ColorPicker")]
 [assembly: AssemblyDescription("Oniqys Color Picker Control")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Reki Yamamoto")]
 [assembly: AssemblyProduct("Oniqys.Wpf.Controls.ColorPicker")]
 [assembly: AssemblyCopyright("Copyright ©  2019 Reki Yamamoto")]
 [assembly: AssemblyTrademark("")]
@@ -54,3 +54,5 @@ using System.Windows.Markup;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("0.8.1.0")]
 [assembly: AssemblyFileVersion("0.8.1.0")]
+[assembly: Guid("DA7A2C44-7AF8-48CE-B424-EEA11701067F")]
+

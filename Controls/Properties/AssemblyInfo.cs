@@ -9,7 +9,7 @@ using System.Windows;
 [assembly: AssemblyTitle("Controls")]
 [assembly: AssemblyDescription("Oniqys Controls")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Reki Yamamoto")]
 [assembly: AssemblyProduct("Controls")]
 [assembly: AssemblyCopyright("Copyright ©  2019 Reki Yamamoto")]
 [assembly: AssemblyTrademark("")]
@@ -51,3 +51,5 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("0.8.1.0")]
 [assembly: AssemblyFileVersion("0.8.1.0")]
+[assembly: Guid("F7FF6F60-F1E5-4660-BBA4-DA406D6CB27C")]
+
