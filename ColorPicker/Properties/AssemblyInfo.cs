@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
 using System.Resources;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Markup;
 
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // アセンブリに関連付けられている情報を変更するには、
@@ -16,6 +16,8 @@ using System.Windows;
 [assembly: AssemblyCopyright("Copyright ©  2019 Reki Yamamoto")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+[assembly: XmlnsDefinition("http://schemas.oniqys.com/wpf/controls", "Oniqys.Wpf.Controls.ColorPicker")]
+[assembly: XmlnsDefinition("http://schemas.oniqys.com/wpf/controls", "Oniqys.Wpf.Controls.ColorPicker.Converters")]
 
 // ComVisible を false に設定すると、このアセンブリ内の型は COM コンポーネントから
 // 参照できなくなります。COM からこのアセンブリ内の型にアクセスする必要がある場合は、

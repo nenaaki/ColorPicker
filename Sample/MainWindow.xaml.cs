@@ -21,6 +21,10 @@ namespace Sample
         }
     }
 
+    public class DummyComboBox : ColorPickerComboBox
+    {
+    }
+
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         public Color[] BaseColors => new Color[]
