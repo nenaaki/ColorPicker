@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Oniqys.Wpf.Controls.ColorPicker</id>
+    <title>Oniqys Wpf Color Picker Control</title>
+    <version>0.8.1</version>
+    <authors>neneaaki</authors>
+    <owners>neneaaki</owners>
+    <license type="expression">Apache-2.0</license>
+    <projectUrl>https://github.com/nenaaki/ColorPicker</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Oniqys Wpf Color Picker Control</description>
+    <releaseNotes>WPF Color Picker Control.</releaseNotes>
+    <copyright>Copyright 2019 (C) Reki Yamamoto.</copyright>
+    <tags>WPF ColorPicker</tags>
+  </metadata>
+</package>
