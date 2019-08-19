@@ -12,6 +12,19 @@ namespace Oniqys.Wpf.Controls.ColorPicker
     /// </summary>
     public partial class TriangleColorPicker : HsvColorPickerBase
     {
+        private readonly struct SV
+        {
+            public readonly double S;
+
+            public readonly double V;
+
+            public SV(double s, double v)
+            {
+                S = s;
+                V = v;
+            }
+        }
+
         private readonly SolidColorBrush _brush = new SolidColorBrush();
 
         private Updater _colorUpdater = new Updater();
@@ -51,21 +64,21 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             CurrentColor = ToColor(_canvas.Width, _canvas.Height, position, BaseColor);
         }
 
-        private (double s, double v) ToSV(double width, double height, Point location)
+        private SV ToSV(double width, double height, Point location)
         {
             var x = location.X / width;
             var y = location.Y / height;
 
             var v = Math.Max(0, Math.Min(1, 1 - y + x / 2));
             var s = Math.Max(0, Math.Min(1, y + x / 2));
-            return (s, v);
+            return new SV(s, v);
         }
 
         private Color ToColor(double width, double height, Point location, Color baseColor)
         {
-            var (s, v) = ToSV(width, height, location);
+            var sv = ToSV(width, height, location);
 
-            return new HsvColor(HsvColor.FromColor(BaseColor).H, s, v).ToColor();
+            return new HsvColor(HsvColor.FromColor(BaseColor).H, sv.S, sv.V).ToColor();
         }
 
         /// <summary>
@@ -99,10 +112,10 @@ namespace Oniqys.Wpf.Controls.ColorPicker
                 for (int x = 0; x < BMP_WIDTH; x++)
                 {
                     var p = y * stride + x * 4;
-                    var (s, v) = ToSV(BMP_WIDTH, BMP_HEIGHT, new Point(x, y));
+                    var sv = ToSV(BMP_WIDTH, BMP_HEIGHT, new Point(x, y));
 
-                    pixels[p + 2] = pixels[p + 1] = pixels[p] = (byte)Math.Min(255, Math.Max(0, v * 255));
-                    pixels[p + 3] = (byte)Math.Min(255, Math.Max(0, (1.0 - s) * 255));
+                    pixels[p + 2] = pixels[p + 1] = pixels[p] = (byte)Math.Min(255, Math.Max(0, sv.V * 255));
+                    pixels[p + 3] = (byte)Math.Min(255, Math.Max(0, (1.0 - sv.S) * 255));
                 }
             }
             wb.WritePixels(new Int32Rect(0, 0, BMP_WIDTH, BMP_HEIGHT), pixels, stride, 0);

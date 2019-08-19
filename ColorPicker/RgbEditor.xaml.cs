@@ -80,7 +80,6 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
             (d, e) => ((RgbEditor)d).SyncColor(e.Property.Name)));
 
-
         public Color CurrentColor
         {
             get => (Color)GetValue(CurrentColorProperty);
@@ -127,7 +126,6 @@ namespace Oniqys.Wpf.Controls.ColorPicker
                             if (propertyName == nameof(Brightness))
                             {
                                 var brightness = Brightness;
-                                var total = brightness + Saturation;
                                 if (brightness + Saturation < 100)
                                 {
                                     Saturation = 100 - brightness;
@@ -136,7 +134,6 @@ namespace Oniqys.Wpf.Controls.ColorPicker
                             else if (propertyName == nameof(Saturation))
                             {
                                 var saturation = Saturation;
-                                var total = Brightness + saturation;
                                 if (Brightness + saturation < 100)
                                 {
                                     Brightness = 100 - saturation;

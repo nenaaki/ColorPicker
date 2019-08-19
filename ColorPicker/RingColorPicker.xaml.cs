@@ -75,7 +75,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         /// <summary>
         /// 色相環のBitmapを生成します。
         /// </summary>
-        private BitmapSource MakeHueRountRect(int width, int height)
+        private static BitmapSource MakeHueRountRect(int width, int height)
         {
             var wb = new WriteableBitmap(width, height, 96, 96, PixelFormats.Rgb24, null);
             int stride = wb.BackBufferStride;

@@ -20,7 +20,13 @@
             Margin="8"
             VerticalAlignment="Top"
             ItemsSource="{Binding Path=BaseColors}"
-            CurrentValue="{Binding Path=CurrentColor, Mode=TwoWay}"/>
+            CurrentValue="{Binding Path=CurrentColor, Mode=TwoWay}" />
+        <cp:ColorPickerSplitButton
+            Content="TEST"
+            Margin="8"
+            VerticalAlignment="Top"
+            ItemsSource="{Binding Path=BaseColors}"
+            CurrentValue="{Binding Path=CurrentColor, Mode=TwoWay}" />
         <Rectangle
             Width="32"
             Height="32"

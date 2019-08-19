@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -20,6 +21,7 @@ using System.Windows;
 // 参照できなくなります。COM からこのアセンブリ内の型にアクセスする必要がある場合は、
 // その型の ComVisible 属性を true に設定してください。
 [assembly: ComVisible(false)]
+[assembly: CLSCompliant(true)]
 
 //ローカライズ可能なアプリケーションのビルドを開始するには、
 //.csproj ファイルの <UICulture>CultureYouAreCodingWith</UICulture> を
@@ -29,17 +31,14 @@ using System.Windows;
 //プロジェクト ファイルの UICulture 設定と一致するよう更新します。
 
 [assembly: NeutralResourcesLanguage("en-US")]
-
-
-[assembly:ThemeInfo(
+[assembly: ThemeInfo(
     ResourceDictionaryLocation.None, //テーマ固有のリソース ディクショナリが置かれている場所
-                             //(リソースがページ、
-                             //またはアプリケーション リソース ディクショナリに見つからない場合に使用されます)
+                                     //(リソースがページ、
+                                     //またはアプリケーション リソース ディクショナリに見つからない場合に使用されます)
     ResourceDictionaryLocation.SourceAssembly //汎用リソース ディクショナリが置かれている場所
-                                      //(リソースがページ、
-                                      //アプリケーション、またはいずれのテーマ固有のリソース ディクショナリにも見つからない場合に使用されます)
+                                              //(リソースがページ、
+                                              //アプリケーション、またはいずれのテーマ固有のリソース ディクショナリにも見つからない場合に使用されます)
 )]
-
 
 // アセンブリのバージョン情報は次の 4 つの値で構成されています:
 //
