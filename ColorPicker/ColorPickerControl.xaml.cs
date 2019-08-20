@@ -15,8 +15,6 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             get { return (string)GetValue(DefaultColorNameProperty); }
             set { SetValue(DefaultColorNameProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for DefaultColorName.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DefaultColorNameProperty =
             DependencyProperty.Register(nameof(DefaultColorName), typeof(string), typeof(ColorPickerControl), new PropertyMetadata(string.Empty));
 

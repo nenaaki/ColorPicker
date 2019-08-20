@@ -3,9 +3,9 @@
   <metadata>
     <id>Oniqys.Wpf.Controls.ColorPicker</id>
     <title>Oniqys Wpf Color Picker Control</title>
-    <version>0.8.1</version>
-    <authors>neneaaki</authors>
-    <owners>neneaaki</owners>
+    <version>0.8.2</version>
+    <authors>Reki Yamamoto</authors>
+    <owners>Reki Yamamoto</owners>
     <license type="expression">Apache-2.0</license>
     <projectUrl>https://github.com/nenaaki/ColorPicker</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

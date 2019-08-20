@@ -93,6 +93,8 @@
                                         x:Name="Picker"
                                         BaseColors="{TemplateBinding ItemsSource}"
                                         CurrentColor="{Binding CurrentValue, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                        DefaultColor="{Binding DefaultColor, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                        DefaultColorName="{Binding DefaultColorName, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                                         GroupLength="8"
                                         IsSelecting="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                         SelectedColor="{Binding CurrentValue, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
@@ -181,6 +183,8 @@
                                         x:Name="Picker"
                                         BaseColors="{TemplateBinding ItemsSource}"
                                         CurrentColor="{Binding CurrentValue, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                        DefaultColor="{Binding DefaultColor, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                        DefaultColorName="{Binding DefaultColorName, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                                         GroupLength="8"
                                         IsSelecting="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                         SelectedColor="{Binding CurrentValue, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />

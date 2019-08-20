@@ -19,12 +19,15 @@
                     <local:ColorItem CurrentColor="{Binding Path=CurrentColor,
                                                             RelativeSource={RelativeSource AncestorType=UserControl}}"
                                      SelectionMode="ClickMode"
-                                     SourceColor="{Binding  Path=DefaultColor,
-                                                            RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" />
+                                     SourceColor="{Binding Path=DefaultColor,
+                                                           RelativeSource={RelativeSource AncestorType=UserControl},
+                                                           Mode=OneWay}" />
                     <TextBlock HorizontalAlignment="Center"
+                               Foreground="Black"
                                IsHitTestVisible="False"
-                               Text="{Binding  Path=DefaultColorName,
-                                                            RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}" />
+                               Text="{Binding Path=DefaultColorName,
+                                              RelativeSource={RelativeSource AncestorType=UserControl},
+                                              Mode=OneWay}" />
                 </Grid>
                 <Border Margin="1" Background="LightGray">
                     <TextBlock FontWeight="Bold"

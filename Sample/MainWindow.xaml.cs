@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -23,6 +25,39 @@ namespace Sample
 
     public class DummyComboBox : ColorPickerComboBox
     {
+        public new IEnumerable<Color> ItemsSource
+        {
+            get { return (IEnumerable<Color>)GetValue(ItemsSourceProperty); }
+            set { SetValue(ItemsSourceProperty, value); }
+        }
+        public static readonly new DependencyProperty ItemsSourceProperty
+            = DependencyProperty.Register(nameof(ItemsSource), typeof(IEnumerable<Color>), typeof(DummyComboBox), new PropertyMetadata(null,
+            (d, e) =>
+            {
+                var owner = (ColorPickerComboBox)d;
+
+                var newValue = ((IEnumerable<Color>)e.NewValue)?.ToArray();
+                if (newValue?.Length > 0)
+                {
+                    var defaultColor = newValue[0];
+                    owner.DefaultColor = defaultColor;
+                    if (defaultColor == Colors.Transparent)
+                    {
+                        owner.DefaultColorName = "Transparent";
+                    }
+                    else
+                    {
+                        owner.DefaultColorName = "Default Color";
+                    }
+                    owner.ItemsSource = newValue.Skip(1).ToArray();
+                }
+                else
+                {
+                    owner.DefaultColorName = "Transparent";
+                    owner.DefaultColor = Colors.Transparent;
+                    owner.ItemsSource = (Color[])Enumerable.Empty<Color>();
+                }
+            }));
     }
 
     public class MainWindowViewModel : INotifyPropertyChanged
