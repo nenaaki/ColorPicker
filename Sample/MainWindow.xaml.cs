@@ -66,7 +66,7 @@ namespace Sample
 
         public Color[] BaseColors => new Color[]
         {
-            Colors.White, Colors.Black, Colors.Red, Colors.Blue, Colors.Green, Colors.LightGreen, Colors.Pink, Colors.SkyBlue, Colors.Azure, Colors.BlueViolet
+            Colors.Black, Colors.White, Colors.Red, Colors.Blue, Colors.Green, Colors.LightGreen, Colors.Pink, Colors.SkyBlue, Colors.Azure, Colors.BlueViolet
         };
 
         public Color[] RecentColors => new Color[]
