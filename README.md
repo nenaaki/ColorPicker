@@ -1,3 +1,3 @@
-# ColorPicker
+# Oniqys WPF ColorPicker
 
-WPF Color Picker Control
+Oniqys WPF Color Picker Control
