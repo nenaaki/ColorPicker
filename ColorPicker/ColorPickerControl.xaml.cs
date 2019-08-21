@@ -135,5 +135,20 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             RecentColors.Register(SelectedColor);
             IsSelecting = false;
         }
+
+        /// <summary>
+        /// 初回だけ<see cref="BaseColor"/>を現在の色に同期します。
+        /// ただし、灰色や透明の場合は何もしません。
+        /// </summary>
+        protected override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+            var newColor = CurrentColor;
+            var hsv = HsvColor.FromColor(newColor);
+            if (newColor != Colors.Transparent && !hsv.IsAchromatic())
+            {
+                BaseColor = new HsvColor(hsv.H, 1.0, 1.0).ToColor();
+            }
+        }
     }
 }

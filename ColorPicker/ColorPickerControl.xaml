@@ -102,7 +102,8 @@
                                                    Height="192"
                                                    Margin="8"
                                                    BaseColor="{Binding BaseColor,
-                                                                       Mode=OneWayToSource}"
+                                                                       Mode=OneWayToSource,
+                                                                       RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                    CurrentColor="{Binding Path=CurrentColor,
                                                                           RelativeSource={RelativeSource AncestorType=UserControl}}" />
                             <local:TriangleColorPicker Width="128"
@@ -111,7 +112,7 @@
                                                        CurrentColor="{Binding CurrentColor,
                                                                               RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                        Hue="{Binding Path=Hue,
-                                                                     ElementName=_ring}" />
+                                                                     ElementName=_ring, Mode=OneWay}" />
                         </Grid>
                     </TabItem>
                 </TabControl>
