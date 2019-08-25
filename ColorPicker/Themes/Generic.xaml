@@ -123,7 +123,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ColorPickerSplitButton}">
-                    <Grid MinWidth="20" MinHeight="20">
+                    <Grid MinWidth="16" MinHeight="16">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
@@ -131,7 +131,7 @@
                         <ToggleButton
                             x:Name="ToggleButton"
                             Grid.Column="1"
-                            Width="8"
+                            Width="12"
                             ClickMode="Press"
                             Focusable="false"
                             IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
