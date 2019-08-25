@@ -8,9 +8,13 @@ namespace Oniqys.Wpf
     /// </summary>
     public abstract class CommandBase
     {
+        /// <inheritdoc />
         public event EventHandler CanExecuteChanged;
 
-        public void RiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        /// <summary>
+        /// <see cref="CanExecuteChanged"/>を発射します。
+        /// </summary>
+        protected void RiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
 
     /// <summary>
@@ -23,23 +27,24 @@ namespace Oniqys.Wpf
 
         private readonly Action _execute;
 
+        /// <summary>
+        /// コンストラクターです。
+        /// </summary>
         public Command(Action execute, Func<bool> canExecute = null)
         {
             _execute = execute;
             _canExecute = canExecute;
         }
 
-        public bool CanExecute() => _canExecute?.Invoke() ?? true;
+        /// <inheritdoc />
+        public bool CanExecute(object _) => _canExecute?.Invoke() ?? true;
 
-        public void Execute()
+        /// <inheritdoc />
+        public void Execute(object _)
         {
-            if (_canExecute?.Invoke() ?? true)
-                _execute();
+            if (CanExecute(_))
+                _execute?.Invoke();
         }
-
-        bool ICommand.CanExecute(object parameter) => CanExecute();
-
-        void ICommand.Execute(object parameter) => Execute();
     }
 
     /// <summary>
@@ -52,22 +57,33 @@ namespace Oniqys.Wpf
 
         private readonly Action<TParam> _execute;
 
+        /// <summary>
+        /// コンストラクターです。
+        /// </summary>
         public Command(Action<TParam> execute, Func<TParam, bool> canExecute = null)
         {
             _execute = execute;
             _canExecute = canExecute;
         }
 
+        /// <summary>
+        /// <see cref="ICommand.CanExecute(object)"/>を内部で実装します。
+        /// </summary>
         public bool CanExecute(TParam parameter) => _canExecute?.Invoke(parameter) ?? true;
 
+        /// <summary>
+        /// <see cref="ICommand.Execute(object)"/>を内部で実装します。
+        ///// </summary>
         public void Execute(TParam parameter)
         {
-            if (_canExecute?.Invoke(parameter) ?? true)
+            if (CanExecute(parameter))
                 _execute(parameter);
         }
 
+        /// <inheritdoc />
         bool ICommand.CanExecute(object parameter) => CanExecute((TParam)parameter);
 
+        /// <inheritdoc />
         void ICommand.Execute(object parameter) => Execute((TParam)parameter);
     }
 }
