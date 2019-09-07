@@ -2,10 +2,10 @@
     x:Class="Sample.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:oniqys="http://schemas.oniqys.com/wpf/controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Sample"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:oniqys="http://schemas.oniqys.com/wpf/controls"
     Title="MainWindow"
     Width="800"
     Height="600"
@@ -15,29 +15,33 @@
     </Window.Resources>
 
     <StackPanel Orientation="Horizontal">
+        <oniqys:ColorPickerControl BaseColors="{Binding Path=BaseColors}" CurrentColor="{Binding Path=CurrentColor, Mode=TwoWay}" />
         <oniqys:ColorPickerComboBox
             Margin="8"
             VerticalAlignment="Top"
-            ItemsSource="{Binding Path=BaseColors}"
-            CurrentValue="{Binding Path=CurrentColor, Mode=TwoWay}" />
+            CurrentValue="{Binding Path=CurrentColor, Mode=TwoWay}"
+            ItemsSource="{Binding Path=BaseColors}" />
         <oniqys:ColorPickerSplitButton
             Margin="8"
             VerticalAlignment="Top"
-            ItemsSource="{Binding Path=BaseColors}"
             Command="{Binding Path=SampleCommand, Mode=OneTime}"
-            CurrentValue="{Binding Path=CurrentColor, Mode=TwoWay}">
+            CurrentValue="{Binding Path=CurrentColor, Mode=TwoWay}"
+            ItemsSource="{Binding Path=BaseColors}">
             <oniqys:ColorPickerSplitButton.Content>
-                <Rectangle Fill="{Binding Path=CurrentColor, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}" Width="32" Height="32" />
+                <Rectangle
+                    Width="32"
+                    Height="32"
+                    Fill="{Binding Path=CurrentColor, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}" />
             </oniqys:ColorPickerSplitButton.Content>
         </oniqys:ColorPickerSplitButton>
         <Rectangle
             Width="32"
             Height="32"
-            Fill="{Binding Path=CurrentColor,Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}" />
+            Fill="{Binding Path=CurrentColor, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}" />
         <local:DummyComboBox
             Margin="8"
             VerticalAlignment="Top"
-            ItemsSource="{Binding Path=BaseColors}"
-            CurrentValue="{Binding Path=CurrentColor, Mode=TwoWay}" />
+            CurrentValue="{Binding Path=CurrentColor, Mode=TwoWay}"
+            ItemsSource="{Binding Path=BaseColors}" />
     </StackPanel>
 </Window>

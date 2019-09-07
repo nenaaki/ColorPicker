@@ -21,6 +21,11 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         protected static Pen WhitePen { get; } = new Pen(Brushes.White, 1);
 
         /// <summary>
+        /// 黒の点線を取得します。
+        /// </summary>
+        protected static Pen BlackDashPen { get; } = new Pen(Brushes.Black, 1) { DashStyle = DashStyles.Dot };
+
+        /// <summary>
         /// 塗りつぶし用のブラシを取得します。
         /// </summary>
         /// <remarks>
@@ -78,16 +83,14 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         /// <summary>
         /// コンストラクターです。
         /// </summary>
-        /// <remarks>
-        /// マウスイベントを設定します。
-        /// </remarks>
         protected ColorItemBase()
         {
-            MouseDown += OnMouseDown;
-            MouseMove += OnMouseMove;
-            MouseUp += OnMouseUp;
+            Focusable = true;
         }
 
+        /// <summary>
+        /// 当たり判定します。
+        /// </summary>
         protected override HitTestResult HitTestCore(PointHitTestParameters hitTestParameters)
         {
             if (SourceColor == Colors.Transparent)
@@ -103,34 +106,37 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             return base.HitTestCore(hitTestParameters);
         }
 
-        /// <summary>
-        /// <see cref="FrameworkElement.MouseUp"/>イベントを処理します。
-        /// </summary>
-        private void OnMouseUp(object sender, MouseButtonEventArgs e)
+
+        protected override void OnMouseDown(MouseButtonEventArgs e)
         {
+            base.OnMouseDown(e);
+            UpdateCurrentColor();
+            InvalidateVisual();
+        }
+
+
+        protected override void OnMouseUp(MouseButtonEventArgs e)
+        {
+            base.OnMouseUp(e);
             UpdateCurrentColor();
             var command = ColorPickerHelper.GetColorChangeCommand(this);
             command?.Execute(SourceColor);
         }
 
-        /// <summary>
-        /// <see cref="FrameworkElement.MouseDown"/>イベントを処理します。
-        /// </summary>
-        private void OnMouseDown(object sender, MouseButtonEventArgs e)
+        protected override void OnMouseMove(MouseEventArgs e)
         {
-            UpdateCurrentColor();
-            InvalidateVisual();
-        }
-
-        /// <summary>
-        /// <see cref="FrameworkElement.MouseMove"/>イベントを処理します。
-        /// </summary>
-        private void OnMouseMove(object sender, MouseEventArgs e)
-        {
+            base.OnMouseMove(e);
             if (e.LeftButton != MouseButtonState.Pressed)
                 return;
 
             UpdateCurrentColor();
+        }
+
+        protected override void OnGotKeyboardFocus(KeyboardFocusChangedEventArgs e)
+        {
+            base.OnGotKeyboardFocus(e);
+            UpdateCurrentColor();
+            InvalidateVisual();
         }
 
         /// <summary>
