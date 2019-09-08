@@ -23,7 +23,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         /// <summary>
         /// 黒の点線を取得します。
         /// </summary>
-        protected static Pen BlackDashPen { get; } = new Pen(Brushes.Black, 1) { DashStyle = DashStyles.Dot };
+        protected static Pen BlackDashPen { get; } = new Pen(Brushes.Black, 1) { DashStyle = new DashStyle(new[] { 1.0, 2.0 }, 0) };
 
         /// <summary>
         /// 塗りつぶし用のブラシを取得します。
@@ -114,11 +114,17 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             InvalidateVisual();
         }
 
+        protected override void OnLostKeyboardFocus(KeyboardFocusChangedEventArgs e)
+        {
+            base.OnLostKeyboardFocus(e);
+            InvalidateVisual();
+        }
 
         protected override void OnMouseUp(MouseButtonEventArgs e)
         {
             base.OnMouseUp(e);
             UpdateCurrentColor();
+            Focus();
             var command = ColorPickerHelper.GetColorChangeCommand(this);
             command?.Execute(SourceColor);
         }
@@ -135,6 +141,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         protected override void OnGotKeyboardFocus(KeyboardFocusChangedEventArgs e)
         {
             base.OnGotKeyboardFocus(e);
+            Focus();
             UpdateCurrentColor();
             InvalidateVisual();
         }

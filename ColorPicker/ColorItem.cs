@@ -26,18 +26,18 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         {
             base.OnRender(drawingContext);
             var renderSize = RenderSize;
-            if (IsKeyboardFocused)
+            var isKeyboardFocused = IsKeyboardFocused;
+            if (isKeyboardFocused)
             {
                 if (renderSize.Width >= 2 && renderSize.Height >= 2)
                     drawingContext.DrawRectangle(Brush, BlackDashPen, new Rect(0.5, 0.5, renderSize.Width - 1, renderSize.Height - 1));
-
                 if (renderSize.Width >= 4 && renderSize.Height >= 4)
-                    drawingContext.DrawRectangle(null, BlackPen, new Rect(1.5, 1.5, renderSize.Width - 3, renderSize.Height - 3));
-
+                    drawingContext.DrawRectangle(Brush, WhitePen, new Rect(1.5, 1.5, renderSize.Width - 3, renderSize.Height - 3));
                 if (renderSize.Width >= 6 && renderSize.Height >= 6)
                     drawingContext.DrawRectangle(null, BlackPen, new Rect(2.5, 2.5, renderSize.Width - 5, renderSize.Height - 5));
             }
-            else if (CurrentColor == SourceColor || SelectionMode == SelectionMode.ClickMode && IsMouseOver && Mouse.LeftButton == MouseButtonState.Pressed)
+
+            if (isKeyboardFocused || CurrentColor == SourceColor || SelectionMode == SelectionMode.ClickMode && IsMouseOver && Mouse.LeftButton == MouseButtonState.Pressed)
             {
                 if (renderSize.Width >= 2 && renderSize.Height >= 2)
                     drawingContext.DrawRectangle(Brush, WhitePen, new Rect(0.5, 0.5, renderSize.Width - 1, renderSize.Height - 1));

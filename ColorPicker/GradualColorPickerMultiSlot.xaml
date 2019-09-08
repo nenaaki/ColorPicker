@@ -13,18 +13,33 @@
     mc:Ignorable="d">
     <ListBox.ItemContainerStyle>
         <Style TargetType="ListBoxItem">
+            <Setter Property="IsTabStop" Value="False" />
             <Setter Property="Padding" Value="-1" />
             <Setter Property="BorderBrush" Value="Transparent" />
             <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         </Style>
     </ListBox.ItemContainerStyle>
     <ListBox.ItemTemplate>
         <DataTemplate>
             <StackPanel Orientation="Horizontal">
-                <local:GradualColorPickerSlot
-                    BaseColors="{Binding}"
-                    CurrentColor="{Binding Path=CurrentColor, RelativeSource={RelativeSource AncestorType=ListBox}}"
-                    StepCount="0" />
+                <ItemsControl IsTabStop="False" ItemsSource="{Binding}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:ColorItem
+                                Width="16"
+                                Height="16"
+                                Margin="1"
+                                CurrentColor="{Binding Path=CurrentColor, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                SourceColor="{Binding}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
                 <Rectangle Width="12" Height="16" />
             </StackPanel>
         </DataTemplate>
