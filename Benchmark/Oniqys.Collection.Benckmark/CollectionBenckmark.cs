@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BenchmarkDotNet.Attributes;
 
 namespace Oniqys.Collection.Benckmark
@@ -43,6 +44,25 @@ namespace Oniqys.Collection.Benckmark
         }
 
         [Benchmark]
+        public List<Dummy> ToList()
+        {
+            return GetDummys().ToList();
+        }
+
+        [Benchmark]
+        public List<Dummy> ToListFast()
+        {
+            return GetDummys().ToArrayFast().ToList();
+        }
+
+        [Benchmark]
+        public ReferenceList<Dummy> ToReferenceList()
+        {
+            return new ReferenceList<Dummy>(GetDummys());
+        }
+
+
+        [Benchmark]
         public List<Dummy> SystemCollectionListAdd()
         {
             var list = new List<Dummy>();
@@ -83,6 +103,14 @@ namespace Oniqys.Collection.Benckmark
             foreach (ref var item in _reflist)
             {
                 _results[idx++] = item.Value1 + item.Value2 + item.Value3 + item.Value4;
+            }
+        }
+
+        private IEnumerable<Dummy> GetDummys()
+        {
+            for (int idx = 0; idx < 10000; idx++)
+            {
+                yield return new Dummy(idx, idx * 2, idx * 3, idx * 4);
             }
         }
     }

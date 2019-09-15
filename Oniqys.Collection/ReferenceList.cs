@@ -17,6 +17,9 @@ namespace Oniqys.Collection
     {
         #region Inner Classes
 
+        /// <summary>
+        /// 参照を扱う列挙子です。
+        /// </summary>
         public struct ReferenceEnumerator : IReferenceEnumerator<T>
         {
             private readonly ReferenceList<T> _list;
@@ -34,6 +37,9 @@ namespace Oniqys.Collection
             public bool MoveNext() => ++_index < _list.Count;
         }
 
+        /// <summary>
+        /// LINQ互換のための IEnumerator
+        /// </summary>
         public struct Enumerator : IEnumerator<T>
         {
             private readonly ReferenceList<T> _list;
@@ -63,7 +69,7 @@ namespace Oniqys.Collection
 
         private int _count;
 
-        T[] _array;
+        private T[] _array;
 
         public ReferenceList()
         {
@@ -77,6 +83,8 @@ namespace Oniqys.Collection
 
         public ReferenceList(IEnumerable<T> source)
         {
+
+
             if (source is ICollection<T> collection)
             {
                 _count = collection.Count;
@@ -85,11 +93,8 @@ namespace Oniqys.Collection
             }
             else
             {
-                _array = new T[DefaultCapacity];
-                foreach (var item in source)
-                {
-                    Add(item);
-                }
+                _array = source.ToArrayFast();
+                _count = _array.Length;
             }
         }
 
@@ -155,8 +160,6 @@ namespace Oniqys.Collection
 
         int IList<T>.IndexOf(T item) => throw new NotSupportedException();
         void IList<T>.Insert(int index, T item) => throw new NotSupportedException();
-
-        void ICollection<T>.Add(T item) => Add(item);
 
         bool ICollection<T>.Contains(T item) => Contains(item);
 
