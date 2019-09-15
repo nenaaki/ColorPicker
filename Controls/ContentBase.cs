@@ -55,7 +55,7 @@ namespace Oniqys.Wpf.Controls
         }
 
         /// <summary>
-        /// <see cref="ProerptyChanged"/>を発生します。
+        /// <see cref="PropertyChanged"/>を発生します。
         /// </summary>
         /// <param name="propertyName">プロパティから使用する場合はnullにしてください</param>
         protected void OnPropertyChanged([CallerMemberName]string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

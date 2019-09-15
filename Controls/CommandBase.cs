@@ -73,7 +73,7 @@ namespace Oniqys.Wpf
 
         /// <summary>
         /// <see cref="ICommand.Execute(object)"/>を内部で実装します。
-        ///// </summary>
+        /// </summary>
         public void Execute(TParam parameter)
         {
             if (CanExecute(parameter))
