@@ -4,7 +4,6 @@
     xmlns:conv="clr-namespace:Oniqys.Wpf.Controls.ColorPicker.Converters"
     xmlns:local="clr-namespace:Oniqys.Wpf.Controls.ColorPicker">
 
-    <conv:ColorToBrushConverter x:Key="ColorToBrushConverter" />
     <conv:WhiteOrBlackConverter x:Key="WhiteOrBlackConverter" />
 
     <ControlTemplate x:Key="ColorPickerComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
@@ -50,22 +49,28 @@
                         <ToggleButton
                             x:Name="ToggleButton"
                             Grid.Column="2"
-                            Background="{Binding SelectedColor, Converter={StaticResource ColorToBrushConverter}, ElementName=Picker, Mode=OneWay}"
                             ClickMode="Press"
                             Focusable="false"
                             IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                            Template="{StaticResource ColorPickerComboBoxToggleButton}" />
+                            Template="{StaticResource ColorPickerComboBoxToggleButton}">
+                            <ToggleButton.Background>
+                                <SolidColorBrush Color="{Binding SelectedColor, ElementName=Picker, Mode=OneWay}" />
+                            </ToggleButton.Background>
+                        </ToggleButton>
                         <TextBox
                             x:Name="PART_EditableTextBox"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Bottom"
-                            Background="{Binding SelectedColor, Converter={StaticResource ColorToBrushConverter}, ElementName=Picker, Mode=OneWay}"
                             Focusable="False"
                             Foreground="Transparent"
                             IsReadOnly="{TemplateBinding IsReadOnly}"
                             Style="{x:Null}"
                             Text="{Binding SelectedColor, ElementName=Picker, Mode=OneWay}"
-                            Visibility="Collapsed" />
+                            Visibility="Collapsed">
+                            <TextBox.Background>
+                                <SolidColorBrush Color="{Binding SelectedColor, ElementName=Picker, Mode=OneWay}" />
+                            </TextBox.Background>
+                        </TextBox>
                         <Popup
                             x:Name="PART_Popup"
                             AllowsTransparency="True"
@@ -148,13 +153,16 @@
                             x:Name="PART_EditableTextBox"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Bottom"
-                            Background="{Binding SelectedColor, Converter={StaticResource ColorToBrushConverter}, ElementName=Picker, Mode=OneWay}"
                             Focusable="False"
                             Foreground="Transparent"
                             IsReadOnly="{TemplateBinding IsReadOnly}"
                             Style="{x:Null}"
                             Text="{Binding SelectedColor, ElementName=Picker, Mode=OneWay}"
-                            Visibility="Collapsed" />
+                            Visibility="Collapsed" >
+                            <TextBox.Background>
+                                <SolidColorBrush Color="{Binding SelectedColor, ElementName=Picker, Mode=OneWay}"/>
+                            </TextBox.Background>
+                        </TextBox>
                         <Button Command="{Binding Path=Command, RelativeSource={RelativeSource AncestorType=ComboBox}}" Content="{Binding Path=Content, RelativeSource={RelativeSource AncestorType=ComboBox}}" />
                         <Popup
                             x:Name="PART_Popup"

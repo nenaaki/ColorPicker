@@ -10,10 +10,6 @@
     Width="800"
     Height="600"
     mc:Ignorable="d">
-    <Window.Resources>
-        <oniqys:ColorToBrushConverter x:Key="ColorToBrushConverter" />
-    </Window.Resources>
-
     <StackPanel Orientation="Horizontal">
         <oniqys:ColorPickerControl BaseColors="{Binding Path=BaseColors}" CurrentColor="{Binding Path=CurrentColor, Mode=TwoWay}" />
         <oniqys:ColorPickerComboBox
@@ -28,16 +24,18 @@
             CurrentValue="{Binding Path=CurrentColor, Mode=TwoWay}"
             ItemsSource="{Binding Path=BaseColors}">
             <oniqys:ColorPickerSplitButton.Content>
-                <Rectangle
-                    Width="32"
-                    Height="32"
-                    Fill="{Binding Path=CurrentColor, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}" />
+                <Rectangle Width="32" Height="32">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="{Binding Path=CurrentColor, Mode=OneWay}" />
+                    </Rectangle.Fill>
+                </Rectangle>
             </oniqys:ColorPickerSplitButton.Content>
         </oniqys:ColorPickerSplitButton>
-        <Rectangle
-            Width="32"
-            Height="32"
-            Fill="{Binding Path=CurrentColor, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}" />
+        <Rectangle Width="32" Height="32">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="{Binding Path=CurrentColor, Mode=OneWay}" />
+            </Rectangle.Fill>
+        </Rectangle>
         <local:DummyComboBox
             Margin="8"
             VerticalAlignment="Top"

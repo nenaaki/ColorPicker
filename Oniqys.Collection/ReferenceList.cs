@@ -83,19 +83,8 @@ namespace Oniqys.Collection
 
         public ReferenceList(IEnumerable<T> source)
         {
-
-
-            if (source is ICollection<T> collection)
-            {
-                _count = collection.Count;
-                _array = new T[_count];
-                collection.CopyTo(_array, 0);
-            }
-            else
-            {
-                _array = source.ToArrayFast();
-                _count = _array.Length;
-            }
+            _array = source.ToArrayFast();
+            _count = _array.Length;
         }
 
         public ref T this[int index] => ref _array[index];

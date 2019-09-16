@@ -12,16 +12,25 @@ namespace Oniqys.Wpf.Controls.ColorPicker
     [ContentProperty("Content")]
     public sealed class ColorItem : ColorItemBase
     {
+        /// <summary>
+        /// 内部に配置する<see cref="UIElement"/>を設定します。
+        /// </summary>
         public UIElement Content
         {
             get { return (UIElement)GetValue(ContentProperty); }
             set { SetValue(ContentProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="Content"/>の依存関係プロパティです。
+        /// </summary>
         public static readonly DependencyProperty ContentProperty =
             DependencyProperty.Register(nameof(Content), typeof(UIElement), typeof(ColorItem),
                 new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
+        /// <summary>
+        /// 単色のピッカーを描画します。
+        /// </summary>
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);

@@ -22,7 +22,7 @@ namespace Oniqys.Collection.Benckmark
                 Value4 = value4;
             }
 
-            public bool Equals(ref Dummy other) => Value1 == other.Value1 && Value2 == other.Value2 && Value3 == other.Value3 && Value4 == other.Value4;
+            public bool Equals(in Dummy other) => Value1 == other.Value1 && Value2 == other.Value2 && Value3 == other.Value3 && Value4 == other.Value4;
             public bool Equals(Dummy other) => Value1 == other.Value1 && Value2 == other.Value2 && Value3 == other.Value3 && Value4 == other.Value4;
         }
 
@@ -50,9 +50,15 @@ namespace Oniqys.Collection.Benckmark
         }
 
         [Benchmark]
-        public List<Dummy> ToListFast()
+        public Dummy[] ToArray()
         {
-            return GetDummys().ToArrayFast().ToList();
+            return GetDummys().ToArray();
+        }
+
+        [Benchmark]
+        public Dummy[] ToArrayFast()
+        {
+            return GetDummys().ToArrayFast();
         }
 
         [Benchmark]
