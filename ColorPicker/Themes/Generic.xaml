@@ -162,7 +162,11 @@
                                 <SolidColorBrush Color="{Binding SelectedColor, ElementName=Picker, Mode=OneWay}" />
                             </TextBox.Background>
                         </TextBox>
-                        <Button x:Name="Button" Command="{Binding Path=Command, RelativeSource={RelativeSource AncestorType=ComboBox}}" Content="{Binding Path=Content, RelativeSource={RelativeSource AncestorType=ComboBox}}" />
+                        <Button
+                            x:Name="Button"
+                            Command="{Binding Path=Command, RelativeSource={RelativeSource AncestorType=ComboBox}}"
+                            CommandParameter="{Binding Path=CommandParameter, RelativeSource={RelativeSource AncestorType=ComboBox}}"
+                            Content="{Binding Path=Content, RelativeSource={RelativeSource AncestorType=ComboBox}}" />
                         <Popup
                             x:Name="PART_Popup"
                             AllowsTransparency="True"

@@ -3,8 +3,14 @@ using System.Windows.Input;
 
 namespace Oniqys.Wpf.Controls.ColorPicker
 {
+    /// <summary>
+    /// カラーピッカーを持つSplitButtonです。
+    /// </summary>
     public class ColorPickerSplitButton : ColorPickerComboBoxBase, ICommandSource
     {
+        /// <summary>
+        /// ボタン内に配置するコンテントを取得または設定します。
+        /// </summary>
         public object Content
         {
             get { return GetValue(ContentProperty); }
