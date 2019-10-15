@@ -3,25 +3,40 @@ using System.Windows.Input;
 
 namespace Oniqys.Wpf.Controls.ColorPicker
 {
-    public class ColorPickerSplitButton : ColorPickerComboBoxBase
+    public class ColorPickerSplitButton : ColorPickerComboBoxBase, ICommandSource
     {
         public object Content
         {
-            get { return (object)GetValue(ContentProperty); }
+            get { return GetValue(ContentProperty); }
             set { SetValue(ContentProperty, value); }
         }
         public static readonly DependencyProperty ContentProperty =
             DependencyProperty.Register(nameof(Content), typeof(object), typeof(ColorPickerSplitButton), new PropertyMetadata(null));
-
 
         public ICommand Command
         {
             get { return (ICommand)GetValue(CommandProperty); }
             set { SetValue(CommandProperty, value); }
         }
-        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+
         public static readonly DependencyProperty CommandProperty =
             DependencyProperty.Register(nameof(Command), typeof(ICommand), typeof(ColorPickerSplitButton), new PropertyMetadata(null));
+
+        public object CommandParameter
+        {
+            get { return GetValue(CommandParameterProperty); }
+            set { SetValue(CommandParameterProperty, value); }
+        }
+        public static readonly DependencyProperty CommandParameterProperty
+            = DependencyProperty.Register(nameof(CommandParameter), typeof(object), typeof(ColorPickerSplitButton), new PropertyMetadata(null));
+
+        public IInputElement CommandTarget
+        {
+            get { return (IInputElement)GetValue(CommandTargetProperty); }
+            set { SetValue(CommandTargetProperty, value); }
+        }
+        public static readonly DependencyProperty CommandTargetProperty
+            = DependencyProperty.Register(nameof(CommandTarget), typeof(IInputElement), typeof(ColorPickerSplitButton), new PropertyMetadata(null));
 
         static ColorPickerSplitButton()
         {

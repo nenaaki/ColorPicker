@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using Oniqys.Wpf.Controls.ColorPicker.Enums;
@@ -10,6 +11,11 @@ namespace Oniqys.Wpf.Controls.ColorPicker
     /// </summary>
     public abstract class ColorItemBase : FrameworkElement
     {
+        /// <summary>
+        /// Box化されたtrueです。
+        /// </summary>
+        private static readonly object _boxedTrue = true;
+
         /// <summary>
         /// 黒いペンを取得します。
         /// </summary>
@@ -85,7 +91,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         /// </summary>
         protected ColorItemBase()
         {
-            Focusable = true;
+            SetValue(FocusableProperty, _boxedTrue);
         }
 
         /// <summary>
@@ -105,7 +111,6 @@ namespace Oniqys.Wpf.Controls.ColorPicker
 
             return base.HitTestCore(hitTestParameters);
         }
-
 
         protected override void OnMouseDown(MouseButtonEventArgs e)
         {

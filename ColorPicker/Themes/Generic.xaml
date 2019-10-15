@@ -136,7 +136,6 @@
                         <ToggleButton
                             x:Name="ToggleButton"
                             Grid.Column="1"
-                            Width="12"
                             ClickMode="Press"
                             Focusable="false"
                             IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
@@ -158,12 +157,12 @@
                             IsReadOnly="{TemplateBinding IsReadOnly}"
                             Style="{x:Null}"
                             Text="{Binding SelectedColor, ElementName=Picker, Mode=OneWay}"
-                            Visibility="Collapsed" >
+                            Visibility="Collapsed">
                             <TextBox.Background>
-                                <SolidColorBrush Color="{Binding SelectedColor, ElementName=Picker, Mode=OneWay}"/>
+                                <SolidColorBrush Color="{Binding SelectedColor, ElementName=Picker, Mode=OneWay}" />
                             </TextBox.Background>
                         </TextBox>
-                        <Button Command="{Binding Path=Command, RelativeSource={RelativeSource AncestorType=ComboBox}}" Content="{Binding Path=Content, RelativeSource={RelativeSource AncestorType=ComboBox}}" />
+                        <Button x:Name="Button" Command="{Binding Path=Command, RelativeSource={RelativeSource AncestorType=ComboBox}}" Content="{Binding Path=Content, RelativeSource={RelativeSource AncestorType=ComboBox}}" />
                         <Popup
                             x:Name="PART_Popup"
                             AllowsTransparency="True"
