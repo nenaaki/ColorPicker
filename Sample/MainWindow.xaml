@@ -38,6 +38,21 @@
                 </Rectangle>
             </oniqys:ColorPickerSplitButton.Content>
         </oniqys:ColorPickerSplitButton>
+        <oniqys:ColorPickerSplitButton Margin="8"
+                                       VerticalAlignment="Top"
+                                       Command="{Binding Path=DisabledCommand,
+                                                         Mode=OneTime}"
+                                       CurrentValue="{Binding Path=CurrentColor,
+                                                              Mode=TwoWay}"
+                                       ItemsSource="{Binding Path=BaseColors}">
+            <oniqys:ColorPickerSplitButton.Content>
+                <Rectangle Width="32" Height="32">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="{Binding Path=CurrentColor, Mode=OneWay}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </oniqys:ColorPickerSplitButton.Content>
+        </oniqys:ColorPickerSplitButton>
         <Rectangle Width="32" Height="32">
             <Rectangle.Fill>
                 <SolidColorBrush Color="{Binding Path=CurrentColor, Mode=OneWay}" />

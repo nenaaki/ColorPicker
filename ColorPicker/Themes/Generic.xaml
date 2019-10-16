@@ -138,6 +138,7 @@
                             Grid.Column="1"
                             ClickMode="Press"
                             Focusable="false"
+                            IsEnabled="{Binding Path=IsEnabled,Mode=OneWay,ElementName=Button}"
                             IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
                             <Path
                                 HorizontalAlignment="Center"
