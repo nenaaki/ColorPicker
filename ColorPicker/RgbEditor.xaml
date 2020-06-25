@@ -30,11 +30,11 @@
             <TextBlock
                 MinWidth="12"
                 Margin="2"
-                TextAlignment="Center"
                 HorizontalAlignment="Left"
                 Background="Red"
                 FontWeight="Bold"
-                Foreground="White">
+                Foreground="White"
+                TextAlignment="Center">
                 R
             </TextBlock>
         </Grid>
@@ -52,11 +52,11 @@
             <TextBlock
                 MinWidth="12"
                 Margin="2"
-                TextAlignment="Center"
                 HorizontalAlignment="Left"
                 Background="DarkGreen"
                 FontWeight="Bold"
-                Foreground="White">
+                Foreground="White"
+                TextAlignment="Center">
                 G
             </TextBlock>
         </Grid>
@@ -75,11 +75,11 @@
             <TextBlock
                 MinWidth="12"
                 Margin="2"
-                TextAlignment="Center"
                 HorizontalAlignment="Left"
                 Background="Blue"
                 FontWeight="Bold"
-                Foreground="White">
+                Foreground="White"
+                TextAlignment="Center">
                 B
             </TextBlock>
         </Grid>
@@ -105,10 +105,10 @@
                 MinWidth="12"
                 Margin="2"
                 HorizontalAlignment="Left"
-                TextAlignment="Center"
                 Background="Pink"
                 FontWeight="Bold"
-                Foreground="Black">
+                Foreground="Black"
+                TextAlignment="Center">
                 H
             </TextBlock>
         </Grid>
@@ -116,9 +116,9 @@
             Grid.Row="4"
             Grid.Column="1"
             VerticalAlignment="Center"
-            SmallChange="1"
             Maximum="360"
             Minimum="0"
+            SmallChange="1"
             Value="{Binding Path=Hue, RelativeSource={RelativeSource AncestorType=UserControl}}" />
         <Grid Grid.Row="5" Margin="2">
             <TextBox
@@ -128,11 +128,11 @@
             <TextBlock
                 MinWidth="12"
                 Margin="2"
-                TextAlignment="Center"
                 HorizontalAlignment="Left"
                 Background="LightGray"
                 FontWeight="Bold"
-                Foreground="Black">
+                Foreground="Black"
+                TextAlignment="Center">
                 S
             </TextBlock>
         </Grid>
@@ -140,9 +140,9 @@
             Grid.Row="5"
             Grid.Column="1"
             VerticalAlignment="Center"
-            SmallChange="1"
             Maximum="100"
             Minimum="0"
+            SmallChange="1"
             Value="{Binding Path=Saturation, RelativeSource={RelativeSource AncestorType=UserControl}}" />
         <Grid Grid.Row="6" Margin="2">
             <TextBox
@@ -152,11 +152,11 @@
             <TextBlock
                 MinWidth="12"
                 Margin="2"
-                TextAlignment="Center"
                 HorizontalAlignment="Left"
                 Background="Black"
                 FontWeight="Bold"
-                Foreground="White">
+                Foreground="White"
+                TextAlignment="Center">
                 V
             </TextBlock>
         </Grid>
@@ -164,9 +164,9 @@
             Grid.Row="6"
             Grid.Column="1"
             VerticalAlignment="Center"
-            SmallChange="1"
             Maximum="100"
             Minimum="0"
+            SmallChange="1"
             Value="{Binding Path=Brightness, RelativeSource={RelativeSource AncestorType=UserControl}}" />
     </Grid>
 </UserControl>

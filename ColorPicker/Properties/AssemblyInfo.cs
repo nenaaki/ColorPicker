@@ -35,9 +35,11 @@ using System.Windows.Markup;
 [assembly: NeutralResourcesLanguage("en-US")]
 [assembly: ThemeInfo(
     ResourceDictionaryLocation.None, //テーマ固有のリソース ディクショナリが置かれている場所
+
                                      //(リソースがページ、
                                      //またはアプリケーション リソース ディクショナリに見つからない場合に使用されます)
     ResourceDictionaryLocation.SourceAssembly //汎用リソース ディクショナリが置かれている場所
+
                                               //(リソースがページ、
                                               //アプリケーション、またはいずれのテーマ固有のリソース ディクショナリにも見つからない場合に使用されます)
 )]
@@ -52,6 +54,6 @@ using System.Windows.Markup;
 // すべての値を指定するか、次を使用してビルド番号とリビジョン番号を既定に設定できます
 // 既定値にすることができます:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.8.5.0")]
-[assembly: AssemblyFileVersion("0.8.5.0")]
+[assembly: AssemblyVersion("0.9.3.0")]
+[assembly: AssemblyFileVersion("0.9.3.0")]
 [assembly: Guid("DA7A2C44-7AF8-48CE-B424-EEA11701067F")]

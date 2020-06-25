@@ -67,7 +67,8 @@
                 <ToggleButton
                     Name="_isOpenedPallet"
                     Margin="1"
-                    Content="{Binding Source={x:Static local:LocalizerService.Instance}, Path=Resources.Detail, Mode=OneWay}" />
+                    Content="{Binding Source={x:Static local:LocalizerService.Instance}, Path=Resources.Detail, Mode=OneWay}"
+                    Focusable="False" />
             </StackPanel>
             <StackPanel Orientation="Vertical" Visibility="{Binding Path=IsChecked, ElementName=_isOpenedPallet, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <TabControl Background="Transparent">
