@@ -47,6 +47,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             get { return (SelectionMode)GetValue(SelectionModeProperty); }
             set { SetValue(SelectionModeProperty, value); }
         }
+
         /// <summary>
         /// <see cref="SelectionMode"/>の依存関係プロパていxです。
         /// </summary>
@@ -61,6 +62,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             get => (Color)GetValue(CurrentColorProperty);
             set => SetValue(CurrentColorProperty, value);
         }
+
         /// <summary>
         /// <see cref="CurrentColor"/>の依存関係プロパティです。
         /// </summary>
@@ -77,6 +79,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             get => (Color)GetValue(SourceColorProperty);
             set => SetValue(SourceColorProperty, value);
         }
+
         /// <summary>
         /// <see cref="SourceColor"/>の依存関係プロパティです。
         /// </summary>
@@ -115,6 +118,9 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         protected override void OnMouseDown(MouseButtonEventArgs e)
         {
             base.OnMouseDown(e);
+            if (e.ChangedButton != MouseButton.Left)
+                return;
+
             UpdateCurrentColor();
             InvalidateVisual();
         }
@@ -128,6 +134,9 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         protected override void OnMouseUp(MouseButtonEventArgs e)
         {
             base.OnMouseUp(e);
+            if (e.ChangedButton != MouseButton.Left)
+                return;
+
             UpdateCurrentColor();
             Focus();
             var command = ColorPickerHelper.GetColorChangeCommand(this);
