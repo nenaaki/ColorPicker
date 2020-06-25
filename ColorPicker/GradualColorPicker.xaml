@@ -11,11 +11,12 @@
     Background="Transparent"
     BorderBrush="Transparent"
     BorderThickness="0"
+    KeyboardNavigation.IsTabStop="False"
     mc:Ignorable="d">
     <UserControl.Resources>
         <conv:ColorToGradualColorsConverter x:Key="ColorToGradualColorsConverter" />
     </UserControl.Resources>
-    <ItemsControl>
+    <ItemsControl IsTabStop="False">
         <ItemsControl.ItemsSource>
             <MultiBinding Converter="{StaticResource ColorToGradualColorsConverter}">
                 <MultiBinding.Bindings>

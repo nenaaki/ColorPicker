@@ -17,11 +17,6 @@ namespace Oniqys.Wpf.Controls
         /// <summary>
         /// プロパティに変化があった場合に<see cref="PropertyChanged"/>イベントを発生します。
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="field"></param>
-        /// <param name="value"></param>
-        /// <param name="propertyName"></param>
-        /// <param name="dependedProperties"></param>
         /// <returns>変更の有無</returns>
         protected bool UpdateProperty<T>(ref T field, T value, [CallerMemberName]string propertyName = null, string[] dependedProperties = null)
             where T : struct, IEquatable<T>
@@ -39,6 +34,10 @@ namespace Oniqys.Wpf.Controls
             return true;
         }
 
+        /// <summary>
+        /// プロパティに変化があった場合に<see cref="PropertyChanged"/>イベントを発生します。
+        /// </summary>
+        /// <returns>変更の有無</returns>
         protected bool UpdateReferenceProperty<T>(ref T field, T value, [CallerMemberName]string propertyName = null, string[] dependedProperties = null)
             where T : class
         {
@@ -56,7 +55,7 @@ namespace Oniqys.Wpf.Controls
         }
 
         /// <summary>
-        /// <see cref="ProerptyChanged"/>を発生します。
+        /// <see cref="PropertyChanged"/>を発生します。
         /// </summary>
         /// <param name="propertyName">プロパティから使用する場合はnullにしてください</param>
         protected void OnPropertyChanged([CallerMemberName]string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

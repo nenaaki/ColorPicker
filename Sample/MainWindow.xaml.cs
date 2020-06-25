@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
@@ -64,6 +64,8 @@ namespace Sample
     {
         public Command SampleCommand { get; }
 
+        public Command DisabledCommand { get; }
+
         public Color[] BaseColors => new Color[]
         {
             Colors.Black, Colors.White, Colors.Red, Colors.Blue, Colors.Green, Colors.LightGreen, Colors.Pink, Colors.SkyBlue, Colors.Azure, Colors.BlueViolet
@@ -86,6 +88,7 @@ namespace Sample
         public MainWindowViewModel()
         {
             SampleCommand = new Command(() => CurrentColor = Colors.Red);
+            DisabledCommand = new Command(() => CurrentColor = Colors.Red, () => false);
         }
 
         public void UpdateProperty<T>(ref T field, T value, [CallerMemberName]string propertyName = null, string[] dependedProperties = null)

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using Oniqys.Wpf.Controls.ColorPicker.Enums;
@@ -11,6 +12,11 @@ namespace Oniqys.Wpf.Controls.ColorPicker
     public abstract class ColorItemBase : FrameworkElement
     {
         /// <summary>
+        /// Box化されたtrueです。
+        /// </summary>
+        private static readonly object _boxedTrue = true;
+
+        /// <summary>
         /// 黒いペンを取得します。
         /// </summary>
         protected static Pen BlackPen { get; } = new Pen(Brushes.Black, 1);
@@ -19,6 +25,11 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         /// 白いペンを取得します。
         /// </summary>
         protected static Pen WhitePen { get; } = new Pen(Brushes.White, 1);
+
+        /// <summary>
+        /// 黒の点線を取得します。
+        /// </summary>
+        protected static Pen BlackDashPen { get; } = new Pen(Brushes.Black, 1) { DashStyle = new DashStyle(new[] { 1.0, 2.0 }, 0) };
 
         /// <summary>
         /// 塗りつぶし用のブラシを取得します。
@@ -36,6 +47,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             get { return (SelectionMode)GetValue(SelectionModeProperty); }
             set { SetValue(SelectionModeProperty, value); }
         }
+
         /// <summary>
         /// <see cref="SelectionMode"/>の依存関係プロパていxです。
         /// </summary>
@@ -50,6 +62,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             get => (Color)GetValue(CurrentColorProperty);
             set => SetValue(CurrentColorProperty, value);
         }
+
         /// <summary>
         /// <see cref="CurrentColor"/>の依存関係プロパティです。
         /// </summary>
@@ -66,6 +79,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             get => (Color)GetValue(SourceColorProperty);
             set => SetValue(SourceColorProperty, value);
         }
+
         /// <summary>
         /// <see cref="SourceColor"/>の依存関係プロパティです。
         /// </summary>
@@ -78,16 +92,14 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         /// <summary>
         /// コンストラクターです。
         /// </summary>
-        /// <remarks>
-        /// マウスイベントを設定します。
-        /// </remarks>
         protected ColorItemBase()
         {
-            MouseDown += OnMouseDown;
-            MouseMove += OnMouseMove;
-            MouseUp += OnMouseUp;
+            SetValue(FocusableProperty, _boxedTrue);
         }
 
+        /// <summary>
+        /// 当たり判定します。
+        /// </summary>
         protected override HitTestResult HitTestCore(PointHitTestParameters hitTestParameters)
         {
             if (SourceColor == Colors.Transparent)
@@ -103,34 +115,49 @@ namespace Oniqys.Wpf.Controls.ColorPicker
             return base.HitTestCore(hitTestParameters);
         }
 
-        /// <summary>
-        /// <see cref="FrameworkElement.MouseUp"/>イベントを処理します。
-        /// </summary>
-        private void OnMouseUp(object sender, MouseButtonEventArgs e)
+        protected override void OnMouseDown(MouseButtonEventArgs e)
         {
-            UpdateCurrentColor();
-            var command = ColorPickerHelper.GetColorChangeCommand(this);
-            command?.Execute(SourceColor);
-        }
+            base.OnMouseDown(e);
+            if (e.ChangedButton != MouseButton.Left)
+                return;
 
-        /// <summary>
-        /// <see cref="FrameworkElement.MouseDown"/>イベントを処理します。
-        /// </summary>
-        private void OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
             UpdateCurrentColor();
             InvalidateVisual();
         }
 
-        /// <summary>
-        /// <see cref="FrameworkElement.MouseMove"/>イベントを処理します。
-        /// </summary>
-        private void OnMouseMove(object sender, MouseEventArgs e)
+        protected override void OnLostKeyboardFocus(KeyboardFocusChangedEventArgs e)
         {
+            base.OnLostKeyboardFocus(e);
+            InvalidateVisual();
+        }
+
+        protected override void OnMouseUp(MouseButtonEventArgs e)
+        {
+            base.OnMouseUp(e);
+            if (e.ChangedButton != MouseButton.Left)
+                return;
+
+            UpdateCurrentColor();
+            Focus();
+            var command = ColorPickerHelper.GetColorChangeCommand(this);
+            command?.Execute(SourceColor);
+        }
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
             if (e.LeftButton != MouseButtonState.Pressed)
                 return;
 
             UpdateCurrentColor();
+        }
+
+        protected override void OnGotKeyboardFocus(KeyboardFocusChangedEventArgs e)
+        {
+            base.OnGotKeyboardFocus(e);
+            Focus();
+            UpdateCurrentColor();
+            InvalidateVisual();
         }
 
         /// <summary>

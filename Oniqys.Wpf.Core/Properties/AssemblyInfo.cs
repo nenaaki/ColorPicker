@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // 制御されます。アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
-[assembly: AssemblyTitle("Oniqys.Core")]
+[assembly: AssemblyTitle("Oniqys.Wpf.Core")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Oniqys.Core")]
+[assembly: AssemblyProduct("Oniqys.Wpf.Core")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // このプロジェクトが COM に公開される場合、次の GUID が typelib の ID になります
-[assembly: Guid("a2872c38-7740-4034-a5e2-daf52a10fcaf")]
+[assembly: Guid("d5338c53-074d-4f9a-8f14-6cd6cc506dca")]
 
 // アセンブリのバージョン情報は、以下の 4 つの値で構成されています:
 //

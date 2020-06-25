@@ -72,7 +72,6 @@
     <Compile Include="ColorPickerControl.xaml.cs">
       <DependentUpon>ColorPickerControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\ColorToBrushConverter.cs" />
     <Compile Include="GradualColorPicker.xaml.cs">
       <DependentUpon>GradualColorPicker.xaml</DependentUpon>
     </Compile>
@@ -121,7 +120,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Oniqys.snk" />
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
