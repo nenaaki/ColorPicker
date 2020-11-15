@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFrameworks>net452;net472;net48;netcoreapp3.1;net5.0-windows</TargetFrameworks>
     <UseWPF>true</UseWPF>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Oniqys.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
 </Project>
