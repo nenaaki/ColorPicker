@@ -3,13 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29001.49
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oniqys.Wpf.Controls.ColorPicker", "ColorPicker\Oniqys.Wpf.Controls.ColorPicker.csproj", "{7637F59D-64D4-4B95-B445-02B32977521D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample", "Sample\Sample.csproj", "{9DFC9B82-B639-4AA3-83FF-9A336B1B6D35}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oniqys.Wpf.Controls", "Controls\Oniqys.Wpf.Controls.csproj", "{B9C231CC-0BAC-4E8B-9B2C-A7C5FDAE9DA2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oniqys.Wpf.Controls.Slicer", "Slicer\Oniqys.Wpf.Controls.Slicer.csproj", "{B6D386A2-D763-4EEB-92E1-9125091EF92E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6F775016-553F-4BF0-805C-BC023F431B0C}"
 	ProjectSection(SolutionItems) = preProject
@@ -21,17 +15,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{19A39433
 		nuget\Package.nuspec = nuget\Package.nuspec
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oniqys.Wpf.Core", "Oniqys.Wpf.Core\Oniqys.Wpf.Core.csproj", "{D5338C53-074D-4F9A-8F14-6CD6CC506DCA}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oniqys.Collection", "Oniqys.Collection\Oniqys.Collection.csproj", "{7979FB81-ACF3-4A0E-BAC0-29465EB28BB6}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Benchmark", "Benchmark", "{99024C51-2065-4D17-80B5-28FBDB33A969}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oniqys.Collection.Benckmark", "Benchmark\Oniqys.Collection.Benckmark\Oniqys.Collection.Benckmark.csproj", "{9FBA05D6-3B69-429D-89D1-A486550963CD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{5B9242C0-07CD-4D92-AE33-E68587C1F411}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oniqys.Collection.Test", "UnitTest\Oniqys.Collection.Test\Oniqys.Collection.Test.csproj", "{533FA4D1-47CC-48F0-934D-4FC84F13EA94}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Oniqys", "Oniqys", "{0F98D4DB-C109-45F1-8B43-D9DF8FA0F37E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wpf", "Wpf", "{6139C5E3-735C-46DE-9F95-C9A2FAE5957E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oniqys.Wpf.Core", "Oniqys\Wpf\Core\Oniqys.Wpf.Core.csproj", "{E61FFF4B-72F0-4929-8539-A922CE864A45}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oniqys.Wpf.Controls", "Oniqys\Wpf\Controls\Oniqys.Wpf.Controls.csproj", "{E28F8CAE-371F-4032-813F-EDFC53137255}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oniqys.Wpf.Controls.ColorPicker", "Oniqys\Wpf\ColorPicker\Oniqys.Wpf.Controls.ColorPicker.csproj", "{515FD783-40F6-463B-B644-7941E031491F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oniqys.Wpf.Controls.Slicer", "Oniqys\Wpf\Slicer\Oniqys.Wpf.Controls.Slicer.csproj", "{3EE1B2BA-5BDA-431E-ADCD-87C883EE30C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,45 +37,36 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7637F59D-64D4-4B95-B445-02B32977521D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7637F59D-64D4-4B95-B445-02B32977521D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7637F59D-64D4-4B95-B445-02B32977521D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7637F59D-64D4-4B95-B445-02B32977521D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9DFC9B82-B639-4AA3-83FF-9A336B1B6D35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9DFC9B82-B639-4AA3-83FF-9A336B1B6D35}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DFC9B82-B639-4AA3-83FF-9A336B1B6D35}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DFC9B82-B639-4AA3-83FF-9A336B1B6D35}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B9C231CC-0BAC-4E8B-9B2C-A7C5FDAE9DA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B9C231CC-0BAC-4E8B-9B2C-A7C5FDAE9DA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B9C231CC-0BAC-4E8B-9B2C-A7C5FDAE9DA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B9C231CC-0BAC-4E8B-9B2C-A7C5FDAE9DA2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B6D386A2-D763-4EEB-92E1-9125091EF92E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B6D386A2-D763-4EEB-92E1-9125091EF92E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B6D386A2-D763-4EEB-92E1-9125091EF92E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B6D386A2-D763-4EEB-92E1-9125091EF92E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D5338C53-074D-4F9A-8F14-6CD6CC506DCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D5338C53-074D-4F9A-8F14-6CD6CC506DCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D5338C53-074D-4F9A-8F14-6CD6CC506DCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D5338C53-074D-4F9A-8F14-6CD6CC506DCA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7979FB81-ACF3-4A0E-BAC0-29465EB28BB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7979FB81-ACF3-4A0E-BAC0-29465EB28BB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7979FB81-ACF3-4A0E-BAC0-29465EB28BB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7979FB81-ACF3-4A0E-BAC0-29465EB28BB6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9FBA05D6-3B69-429D-89D1-A486550963CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9FBA05D6-3B69-429D-89D1-A486550963CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9FBA05D6-3B69-429D-89D1-A486550963CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9FBA05D6-3B69-429D-89D1-A486550963CD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{533FA4D1-47CC-48F0-934D-4FC84F13EA94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{533FA4D1-47CC-48F0-934D-4FC84F13EA94}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{533FA4D1-47CC-48F0-934D-4FC84F13EA94}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{533FA4D1-47CC-48F0-934D-4FC84F13EA94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E61FFF4B-72F0-4929-8539-A922CE864A45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E61FFF4B-72F0-4929-8539-A922CE864A45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E61FFF4B-72F0-4929-8539-A922CE864A45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E61FFF4B-72F0-4929-8539-A922CE864A45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E28F8CAE-371F-4032-813F-EDFC53137255}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E28F8CAE-371F-4032-813F-EDFC53137255}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E28F8CAE-371F-4032-813F-EDFC53137255}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E28F8CAE-371F-4032-813F-EDFC53137255}.Release|Any CPU.Build.0 = Release|Any CPU
+		{515FD783-40F6-463B-B644-7941E031491F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{515FD783-40F6-463B-B644-7941E031491F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{515FD783-40F6-463B-B644-7941E031491F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{515FD783-40F6-463B-B644-7941E031491F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EE1B2BA-5BDA-431E-ADCD-87C883EE30C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EE1B2BA-5BDA-431E-ADCD-87C883EE30C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EE1B2BA-5BDA-431E-ADCD-87C883EE30C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EE1B2BA-5BDA-431E-ADCD-87C883EE30C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{9FBA05D6-3B69-429D-89D1-A486550963CD} = {99024C51-2065-4D17-80B5-28FBDB33A969}
-		{533FA4D1-47CC-48F0-934D-4FC84F13EA94} = {5B9242C0-07CD-4D92-AE33-E68587C1F411}
+		{6139C5E3-735C-46DE-9F95-C9A2FAE5957E} = {0F98D4DB-C109-45F1-8B43-D9DF8FA0F37E}
+		{E61FFF4B-72F0-4929-8539-A922CE864A45} = {6139C5E3-735C-46DE-9F95-C9A2FAE5957E}
+		{E28F8CAE-371F-4032-813F-EDFC53137255} = {6139C5E3-735C-46DE-9F95-C9A2FAE5957E}
+		{515FD783-40F6-463B-B644-7941E031491F} = {6139C5E3-735C-46DE-9F95-C9A2FAE5957E}
+		{3EE1B2BA-5BDA-431E-ADCD-87C883EE30C4} = {6139C5E3-735C-46DE-9F95-C9A2FAE5957E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {75C19532-2A42-410A-AD04-50CBDC53664A}
