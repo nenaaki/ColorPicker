@@ -73,6 +73,11 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Oniqys.Wpf.Core\Oniqys.Wpf.Core.csproj">
+      <Project>{d5338c53-074d-4f9a-8f14-6cd6cc506dca}</Project>
+      <Name>Oniqys.Wpf.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

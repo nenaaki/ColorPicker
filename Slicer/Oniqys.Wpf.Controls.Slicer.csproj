@@ -92,9 +92,13 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Controls\Oniqys.Wpf.Controls.csproj">
+    <ProjectReference Include="..\Oniqys.Wpf.Controls\Oniqys.Wpf.Controls.csproj">
       <Project>{b9c231cc-0bac-4e8b-9b2c-a7c5fdae9da2}</Project>
       <Name>Oniqys.Wpf.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Oniqys.Wpf.Core\Oniqys.Wpf.Core.csproj">
+      <Project>{d5338c53-074d-4f9a-8f14-6cd6cc506dca}</Project>
+      <Name>Oniqys.Wpf.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

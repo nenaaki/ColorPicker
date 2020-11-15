@@ -99,7 +99,7 @@
       <Project>{7637f59d-64d4-4b95-b445-02b32977521d}</Project>
       <Name>Oniqys.Wpf.Controls.ColorPicker</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Controls\Oniqys.Wpf.Controls.csproj">
+    <ProjectReference Include="..\Oniqys.Wpf.Controls\Oniqys.Wpf.Controls.csproj">
       <Project>{b9c231cc-0bac-4e8b-9b2c-a7c5fdae9da2}</Project>
       <Name>Oniqys.Wpf.Controls</Name>
     </ProjectReference>
