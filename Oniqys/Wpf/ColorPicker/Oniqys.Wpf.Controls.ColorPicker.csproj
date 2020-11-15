@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Oniqys.Wpf.Controls\Oniqys.Wpf.Controls.csproj" />
-    <ProjectReference Include="..\Oniqys.Wpf.Core\Oniqys.Wpf.Core.csproj" />
+    <ProjectReference Include="..\Controls\Oniqys.Wpf.Controls.csproj" />
+    <ProjectReference Include="..\Core\Oniqys.Wpf.Core.csproj" />
   </ItemGroup>
 
 </Project>

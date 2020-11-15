@@ -95,13 +95,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ColorPicker\Oniqys.Wpf.Controls.ColorPicker.csproj">
-      <Project>{7637f59d-64d4-4b95-b445-02b32977521d}</Project>
+    <ProjectReference Include="..\Oniqys\Wpf\ColorPicker\Oniqys.Wpf.Controls.ColorPicker.csproj">
+      <Project>{515fd783-40f6-463b-b644-7941e031491f}</Project>
       <Name>Oniqys.Wpf.Controls.ColorPicker</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Oniqys.Wpf.Controls\Oniqys.Wpf.Controls.csproj">
-      <Project>{b9c231cc-0bac-4e8b-9b2c-a7c5fdae9da2}</Project>
+    <ProjectReference Include="..\Oniqys\Wpf\Controls\Oniqys.Wpf.Controls.csproj">
+      <Project>{e28f8cae-371f-4032-813f-edfc53137255}</Project>
       <Name>Oniqys.Wpf.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Oniqys\Wpf\Core\Oniqys.Wpf.Core.csproj">
+      <Project>{e61fff4b-72f0-4929-8539-a922ce864a45}</Project>
+      <Name>Oniqys.Wpf.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
