@@ -29,7 +29,7 @@ namespace Oniqys.Wpf.Controls
 
             if (dependedProperties != null)
                 foreach (var prop in dependedProperties)
-                    OnPropertyChanged(propertyName);
+                    OnPropertyChanged(prop);
 
             return true;
         }
@@ -49,7 +49,7 @@ namespace Oniqys.Wpf.Controls
 
             if (dependedProperties != null)
                 foreach (var prop in dependedProperties)
-                    OnPropertyChanged(propertyName);
+                    OnPropertyChanged(prop);
 
             return true;
         }

@@ -86,7 +86,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         }
         public static readonly DependencyProperty RecentColorsProperty
             = DependencyProperty.Register(nameof(RecentColors), typeof(RecentColorManager), typeof(ColorPickerControl),
-            new FrameworkPropertyMetadata(RecentColorManager.DefaultInstane,
+            new FrameworkPropertyMetadata(RecentColorManager.DefaultInstance,
             FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         public Command SelectColorCommand

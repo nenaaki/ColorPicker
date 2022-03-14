@@ -9,23 +9,23 @@ namespace Oniqys.Wpf.Controls.ColorPicker.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values[0] is Color color1 && int.TryParse(values[1].ToString(), out int stepCount))
+            if (values[0] is Color startColor && int.TryParse(values[1].ToString(), out int stepCount))
             {
-                Color color2;
+                Color endColor;
 
-                if (color1 == Colors.Black)
+                if (startColor == Colors.Black)
                 {
-                    color2 = Colors.White;
+                    endColor = Colors.White;
                 }
-                else if (color1 == Colors.White)
+                else if (startColor == Colors.White)
                 {
-                    color2 = Colors.Black;
+                    endColor = Colors.Black;
                 }
                 else
                 {
                     // MEMO : グレースケール化したときの明度が50%未満かで白に向けるか黒に向けるかを切り替える。
-                    var brightness = HsvColor.FromColor(color1).GetBrightness();
-                    color2 = (brightness < 0.5) ? Colors.White : Colors.Black;
+                    var brightness = HsvColor.FromColor(startColor).GetBrightness();
+                    endColor = (brightness < 0.5) ? Colors.White : Colors.Black;
                 }
 
                 var colors = new Color[stepCount + 1];
@@ -33,9 +33,9 @@ namespace Oniqys.Wpf.Controls.ColorPicker.Converters
                 {
                     float ratio = idx / (float)(stepCount + 1);
                     colors[idx] = Color.FromRgb(
-                        (byte)(color2.R * ratio + color1.R * (1 - ratio)),
-                        (byte)(color2.G * ratio + color1.G * (1 - ratio)),
-                        (byte)(color2.B * ratio + color1.B * (1 - ratio)));
+                        (byte)(endColor.R * ratio + startColor.R * (1 - ratio)),
+                        (byte)(endColor.G * ratio + startColor.G * (1 - ratio)),
+                        (byte)(endColor.B * ratio + startColor.B * (1 - ratio)));
                 }
                 return colors;
             }

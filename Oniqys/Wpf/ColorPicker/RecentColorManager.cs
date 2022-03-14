@@ -30,7 +30,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         /// <summary>
         /// デフォルトで使用するマネージャーです。
         /// </summary>
-        public static RecentColorManager DefaultInstane = new RecentColorManager();
+        public static RecentColorManager DefaultInstance = new RecentColorManager();
 
         /// <summary>
         /// 保持数を取得または設定します。
