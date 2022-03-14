@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using Oniqys.Wpf.Controls.ColorPicker.Enums;
+using Oniqys.Wpf.Core;
 
 namespace Oniqys.Wpf.Controls.ColorPicker
 {
@@ -19,17 +20,17 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         /// <summary>
         /// 黒いペンを取得します。
         /// </summary>
-        protected static Pen BlackPen { get; } = new Pen(Brushes.Black, 1);
+        protected static Pen BlackPen { get; } = new Pen(Brushes.Black, 1).WithFreeze();
 
         /// <summary>
         /// 白いペンを取得します。
         /// </summary>
-        protected static Pen WhitePen { get; } = new Pen(Brushes.White, 1);
+        protected static Pen WhitePen { get; } = new Pen(Brushes.White, 1).WithFreeze();
 
         /// <summary>
         /// 黒の点線を取得します。
         /// </summary>
-        protected static Pen BlackDashPen { get; } = new Pen(Brushes.Black, 1) { DashStyle = new DashStyle(new[] { 1.0, 2.0 }, 0) };
+        protected static Pen BlackDashPen { get; } = new Pen(Brushes.Black, 1) { DashStyle = new DashStyle(new[] { 1.0, 2.0 }, 0).WithFreeze() }.WithFreeze();
 
         /// <summary>
         /// 塗りつぶし用のブラシを取得します。
@@ -49,7 +50,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         }
 
         /// <summary>
-        /// <see cref="SelectionMode"/>の依存関係プロパていxです。
+        /// <see cref="SelectionMode"/>の依存関係プロパティです。
         /// </summary>
         public static readonly DependencyProperty SelectionModeProperty =
             DependencyProperty.Register("SelectionMode", typeof(SelectionMode), typeof(ColorItemBase), new PropertyMetadata(SelectionMode.PressMode));
