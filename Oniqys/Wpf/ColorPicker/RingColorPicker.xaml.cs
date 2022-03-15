@@ -88,7 +88,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
                 for (int x = 0; x < width; x++)
                 {
                     float radian = (float)Math.Atan2(y - yDiff, x - xDiff);
-                    var c = HsvColor.ToRgb(radian, 1.0f, 1.0f);
+                    var c = HsvColor.ToColor(radian, 1.0f, 1.0f);
                     var p = y * stride + x * 3;
                     pixels[p] = c.R;
                     pixels[p + 1] = c.G;

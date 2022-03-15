@@ -46,7 +46,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
                         double cx = CENTER_X + s * sx + h2 * h2x;
                         double cy = CENTER_Y + s * sy + h2 * h2y;
 
-                        var item = new HexColorItem { SourceColor = HsvColor.ToRgb((float)((h1 + h2 / (double)s) * pi3), s / 6.0f, 1.0f) };
+                        var item = new HexColorItem { SourceColor = HsvColor.ToColor((float)((h1 + h2 / (double)s) * pi3), s / 6.0f, 1.0f) };
 
                         Canvas.SetLeft(item, cx);
                         Canvas.SetTop(item, cy);

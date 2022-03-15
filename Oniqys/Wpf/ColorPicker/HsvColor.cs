@@ -130,7 +130,7 @@ namespace Oniqys.Wpf.Controls.ColorPicker
         /// <summary>
         /// <see cref="Color"/>に変換します。
         /// </summary>
-        public static Color ToRgb(double h, double s, double v)
+        public static Color ToColor(double h, double s, double v)
         {
             return new HsvColor(h, s, v).ToColor();
         }
